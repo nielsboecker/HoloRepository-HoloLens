@@ -65,14 +65,17 @@ def UploadFile(path):
             username = sys.argv[4]
             password = sys.argv[5]
 
-            # h.add_credentials(username, password)
+            # This was commented out initially
+            h.add_credentials(username, password)
 
             # This is a custom reimplementation of the
             # "Http.add_credentials()" method for Basic HTTP Access
             # Authentication (for some weird reason, this method does
             # not always work)
             # http://en.wikipedia.org/wiki/Basic_access_authentication
-            headers['authorization'] = 'Basic ' + base64.b64encode(username + ':' + password)       
+
+            # This was the original implemnetation, but it did not work
+            #headers['authorization'] = 'Basic ' + base64.b64encode(username + ':' + password)       
 
         resp, content = h.request(URL, 'POST', 
                                   body = content,
