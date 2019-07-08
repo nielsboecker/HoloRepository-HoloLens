@@ -1,8 +1,9 @@
 ﻿using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Utilities.Gltf.Serialization;
-using System;
 using Microsoft.MixedReality.Toolkit.UI;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Microsoft.MixedReality.Toolkit.Examples.Demos.Gltf
 {
@@ -13,8 +14,10 @@ namespace Microsoft.MixedReality.Toolkit.Examples.Demos.Gltf
         [Tooltip("This can be a local or external resource uri.")]
         private string uri = "https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb";
 
+
         public async void Start()
         {
+            Scene ModelDisplayScene = SceneManager.GetSceneByBuildIndex(2);
             Response response = new Response();
 
             try
@@ -36,12 +39,13 @@ namespace Microsoft.MixedReality.Toolkit.Examples.Demos.Gltf
 
             try
             {
-               GameObject loadedObject = await gltfObject.ConstructAsync();
-               loadedObject.transform.position = new Vector3(0.0f, 0.0f, 2.0f);
-               loadedObject.transform.localScale = new Vector3(0.25F, 0.25F, 0.25F);
-               loadedObject.transform.eulerAngles = new Vector3(0, 180, 0);
-               loadedObject.AddComponent<BoundingBox>();
-               loadedObject.AddComponent<ManipulationHandler>();
+                GameObject loadedObject = await gltfObject.ConstructAsync();
+                loadedObject.transform.position = new Vector3(0.0f, 0.0f, 2.0f);
+                loadedObject.transform.localScale = new Vector3(0.25F, 0.25F, 0.25F);
+                loadedObject.transform.eulerAngles = new Vector3(0, 180, 0);
+                loadedObject.AddComponent<BoundingBox>();
+                loadedObject.AddComponent<ManipulationHandler>();
+                SceneManager.MoveGameObjectToScene(loadedObject, ModelDisplayScene);
             }
             catch (Exception e)
             {
