@@ -1,24 +1,23 @@
 ﻿public class PatientInfo
 {
-    public string id;
+    public string pid;
     public PersonName name;
     public string gender;
     public string email;
     public string phone;
-    public string dateOfBirth;
+    public string birthDate;
     public string pictureUrl;
-    public PersonAddress address;
+    public Address address;
     public string[] imagingStudySeries;
     public HoloGrams[] holograms;
 }
 
 public class HoloGrams
 {
-    public string gender;
-    public string email;
-    public string phone;
-    public Person subject;
-    public Person author;
+    public string hid;
+    public string title;
+    public Subject subject;
+    public Author author;
     public string createDate;
     public int fileSizeInkb;
     public string imagingStudySeriesId;
@@ -32,7 +31,7 @@ public class PersonName
     public string last;
 }
 
-public class PersonAddress
+public class Address
 {
     public string street;
     public string city;
@@ -40,9 +39,15 @@ public class PersonAddress
     public int postcode;
 }
 
-public class Person
+public class Subject
 {
-    public string id;
+    public string pid;
+    public PersonName name;
+}
+
+public class Author
+{
+    public string aid;
     public PersonName name;
 }
 
