@@ -2,14 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PatientListComponent : MonoBehaviour
 {
     [SerializeField]
-    private Text listText;
+    private TextMeshProUGUI listText;
+    [SerializeField]
+    private Text PatientID;
 
-    public void SetText(string mytext)
+    private void Start()
     {
-        listText.text = mytext;
+        listText = GetComponent<TextMeshProUGUI>();
+    }
+
+    public void SetText(string info)
+    {
+        listText.text = info;
+    }
+    public void SetID(string id)
+    {
+        PatientID.text = id;
     }
 }
