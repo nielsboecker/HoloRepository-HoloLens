@@ -212,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 2502023175873994979, guid: 4b135324d171b7b428b60c282bcee7e6,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartApp
+      value: LoadScene
       objectReference: {fileID: 0}
     - target: {fileID: 2502023175873994979, guid: 4b135324d171b7b428b60c282bcee7e6,
         type: 3}
@@ -228,6 +228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502023175873994979, guid: 4b135324d171b7b428b60c282bcee7e6,
+        type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2535423023375852139, guid: 4b135324d171b7b428b60c282bcee7e6,
         type: 3}
@@ -514,6 +519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2215019b1e6d6649817e1349917fe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadSceneIndex: 1
+  UnloadedSceneIndex: 0
 --- !u!1 &588631686
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,3 +791,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2215019b1e6d6649817e1349917fe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadSceneIndex: 0
+  UnloadedSceneIndex: 0

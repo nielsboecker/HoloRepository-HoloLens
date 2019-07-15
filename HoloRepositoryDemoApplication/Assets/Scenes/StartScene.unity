@@ -492,12 +492,12 @@ PrefabInstance:
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -512,11 +512,36 @@ PrefabInstance:
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToDetailScene
+      value: UnloadScene
       objectReference: {fileID: 0}
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 806111308}
+    - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5685969086307417569, guid: 3d5dd5782c009d849b8534d2615b5768,
@@ -607,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40478a3e28ebd4242b385ffc0cd76ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listText: {fileID: 34065464}
+  PatientInfo: {fileID: 34065464}
 --- !u!114 &34065468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,6 +689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2215019b1e6d6649817e1349917fe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadSceneIndex: 2
+  UnloadedSceneIndex: 1
 --- !u!1 &1657265918
 GameObject:
   m_ObjectHideFlags: 0
