@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class LoginAuth : MonoBehaviour
+public class LoginAuthentication : MonoBehaviour
 {
     [SerializeField]
     private TMP_InputField PIN;

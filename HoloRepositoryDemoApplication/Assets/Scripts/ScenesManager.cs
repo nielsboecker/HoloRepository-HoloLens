@@ -20,7 +20,7 @@ public class ScenesManager : MonoBehaviour
         SceneManager.UnloadSceneAsync(UnloadedSceneIndex);
     }
 
-    public void RemoveComponent()
+    public static void RemoveComponent(GameObject gameObject)
     {
         Destroy(gameObject);
     }
