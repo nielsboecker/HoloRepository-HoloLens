@@ -11,13 +11,12 @@ public class GeneratePatientList : MonoBehaviour
     private GameObject buttonTemplates;
 
     private List<PatientInfo> patientList = new List<PatientInfo>();
-    private List<employee> employeeList = new List<employee>();
+    //private List<employee> employeeList = new List<employee>();
 
-    IEnumerator GetRequest(string uri)
+    /*IEnumerator GetRequest(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
-            // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
 
             string[] pages = uri.Split('/');
@@ -51,7 +50,7 @@ public class GeneratePatientList : MonoBehaviour
                 button.transform.SetParent(buttonTemplates.transform.parent, false);
             }
         }
-    }
+    }*/
 
     public void ReadJsonFile()
     {
