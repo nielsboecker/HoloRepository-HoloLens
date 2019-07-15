@@ -69,8 +69,8 @@ public class GeneratePatientList : MonoBehaviour
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
 
-            button.GetComponent<PatientListComponent>().SetID(patient.id);
-            button.GetComponent<PatientListComponent>().SetText("Patient name: " + patient.name.first + " " + patient.name.last + "\nGender: " + patient.gender + "\nDate of birth: " + patient.dateOfBirth.Substring(0, 10));
+            button.GetComponent<PatientListComponent>().SetID(patient.pid);
+            button.GetComponent<PatientListComponent>().SetText("Patient name: " + patient.name.first + " " + patient.name.last + "\nGender: " + patient.gender + "\nDate of birth: " + patient.birthDate.Substring(0, 10));
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
