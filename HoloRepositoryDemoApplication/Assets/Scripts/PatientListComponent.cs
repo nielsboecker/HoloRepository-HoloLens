@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class PatientListComponent : MonoBehaviour
 {
     [SerializeField]
-    private Text listText;
+    private Text PatientInfo;
 
-    public void SetText(string mytext)
+    public void SetText(string patientInfo)
     {
-        listText.text = mytext;
+        PatientInfo.text = patientInfo;
     }
 }
