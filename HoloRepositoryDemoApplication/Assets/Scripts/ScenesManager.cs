@@ -5,21 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
-    public void ToStartScene(string sceneName)
+    [SerializeField]
+    private int LoadSceneIndex;
+    [SerializeField]
+    private int UnloadedSceneIndex;
+
+    public void LoadScene()
     {
-        SceneManager.UnloadSceneAsync(2);
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.LoadScene(LoadSceneIndex, LoadSceneMode.Additive);
     }
 
-    public void ToDetailScene(string sceneName)
+    public void UnloadScene()
     {
-        SceneManager.UnloadSceneAsync(1);
-        SceneManager.LoadScene(2, LoadSceneMode.Additive);
-    }
-
-    public void StartApp(string sceneName)
-    {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(UnloadedSceneIndex);
     }
 
     public void RemoveComponent()
