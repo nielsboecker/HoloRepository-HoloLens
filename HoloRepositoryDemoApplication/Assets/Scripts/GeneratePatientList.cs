@@ -13,8 +13,6 @@ public class GeneratePatientList : MonoBehaviour
     private List<PatientInfo> patientList = new List<PatientInfo>();
     private List<employee> employeeList = new List<employee>();
 
-
-
     IEnumerator GetRequest(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
