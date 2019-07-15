@@ -19,9 +19,4 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync(UnloadedSceneIndex);
     }
-
-    public static void RemoveComponent(GameObject gameObject)
-    {
-        Destroy(gameObject);
-    }
 }
