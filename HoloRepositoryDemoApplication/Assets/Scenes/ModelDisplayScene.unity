@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uri: https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb
+  SceneIndex: 3
 --- !u!4 &196339956
 Transform:
   m_ObjectHideFlags: 0
