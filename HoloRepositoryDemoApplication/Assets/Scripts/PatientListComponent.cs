@@ -8,19 +8,19 @@ using UnityEngine.SceneManagement;
 public class PatientListComponent : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI Patientinfo;
+    private TextMeshProUGUI PatientInfo;
     [SerializeField]
     private Text PatientID;
     public static List<HoloGrams> HologramsList = new List<HoloGrams>();
 
     private void Start()
     {
-        Patientinfo = GetComponent<TextMeshProUGUI>();
+        PatientInfo = GetComponent<TextMeshProUGUI>();
     }
 
     public void SetText(string Patientinformation)
     {
-        Patientinfo.text = Patientinformation;
+        PatientInfo.text = Patientinformation;
     }
     public void SetID(string id)
     {

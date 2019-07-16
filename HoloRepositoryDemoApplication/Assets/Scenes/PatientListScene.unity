@@ -322,7 +322,7 @@ PrefabInstance:
     - target: {fileID: 6805695222421430641, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000025697871
+      value: -0.000037392256
       objectReference: {fileID: 0}
     - target: {fileID: 6805518110635639303, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -677,12 +677,12 @@ PrefabInstance:
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -697,7 +697,7 @@ PrefabInstance:
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToDetailScene
+      value: UnloadScene
       objectReference: {fileID: 0}
     - target: {fileID: 3294745102775489021, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40478a3e28ebd4242b385ffc0cd76ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Patientinfo: {fileID: 34065465}
+  PatientInfo: {fileID: 34065465}
   PatientID: {fileID: 562133863}
 --- !u!224 &34065470 stripped
 RectTransform:
