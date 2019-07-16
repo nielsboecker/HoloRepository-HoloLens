@@ -9,8 +9,6 @@ public class HoloGramsList : MonoBehaviour
     [SerializeField]
     private GameObject buttonTemplates;
 
-    private List<HoloGrams> HologramsList = new List<HoloGrams>();
-
     public void Start()
     {
         foreach (HoloGrams hologram in PatientListComponent.HologramsList)
