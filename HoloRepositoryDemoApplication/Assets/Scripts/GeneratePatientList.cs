@@ -10,7 +10,7 @@ public class GeneratePatientList : MonoBehaviour
     [SerializeField]
     private GameObject buttonTemplates;
 
-    private List<PatientInfo> patientList = new List<PatientInfo>();
+    public static List<PatientInfo> patientList = new List<PatientInfo>();
     //private List<employee> employeeList = new List<employee>();
 
     /*IEnumerator GetRequest(string uri)
@@ -54,8 +54,10 @@ public class GeneratePatientList : MonoBehaviour
 
     public void ReadJsonFile()
     {
-        StreamReader reader = new StreamReader("./Assets/Sample/samplePatients.json");
+        StreamReader reader = new StreamReader("./Assets/Sample/samplePatientsWithHolograms.json");
         string json = reader.ReadToEnd();
+
+        patientList.Clear();
 
         JsonData jsonData = JsonMapper.ToObject(json);
         for (int i = 0; i < jsonData.Count; i++)

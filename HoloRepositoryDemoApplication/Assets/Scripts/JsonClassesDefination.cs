@@ -18,7 +18,7 @@ public class HoloGrams
     public string title;
     public Subject subject;
     public Author author;
-    public string createDate;
+    public string createdDate;
     public int fileSizeInkb;
     public string imagingStudySeriesId;
 }

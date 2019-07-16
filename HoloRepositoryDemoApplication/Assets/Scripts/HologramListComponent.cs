@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HoloGramsListComponent : MonoBehaviour
+public class HologramListComponent : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI HologramInfo;

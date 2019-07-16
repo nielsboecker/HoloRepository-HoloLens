@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PatientListScene.unity
     guid: c35c87114217f004e9e3658567a03754
   - enabled: 1
+    path: Assets/Scenes/HologramListScene.unity
+    guid: da4e6397b6efbfa438c2e12c85da9e13
+  - enabled: 1
     path: Assets/Scenes/ModelDisplayScene.unity
     guid: 84226ae0a4808ff4bb6b846d27fe4a73
   m_configObjects: {}

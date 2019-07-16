@@ -24,7 +24,8 @@ public class LoginAuthentication : MonoBehaviour
         if (PIN.text == "3825")
         {
             Destroy(PINPad);
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);   
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
         }
         else
         {
