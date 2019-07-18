@@ -1,4 +1,4 @@
-﻿public class PatientInfo
+﻿public class Patient
 {
     public string pid;
     public PersonName name;
@@ -9,10 +9,10 @@
     public string pictureUrl;
     public Address address;
     public string[] imagingStudySeries;
-    public HoloGrams[] holograms;
+    public Hologram[] holograms;
 }
 
-public class HoloGrams
+public class Hologram
 {
     public string hid;
     public string title;
@@ -49,13 +49,4 @@ public class Author
 {
     public string aid;
     public PersonName name;
-}
-
-public class employee
-{
-    public string id;
-    public string employee_name;
-    public string emloyee_salary;
-    public string employee_age;
-    public string profile_image;
 }

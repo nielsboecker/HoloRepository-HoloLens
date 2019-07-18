@@ -5,13 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class PatientListComponent : MonoBehaviour
+public class PatientListItem : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI PatientInfo;
     [SerializeField]
     private Text PatientID;
-    public static List<HoloGrams> HologramsList = new List<HoloGrams>();
+    public static List<Hologram> HologramsList = new List<Hologram>();
 
     private void Start()
     {
@@ -30,11 +30,11 @@ public class PatientListComponent : MonoBehaviour
     public void TurnToHologramPage()
     {
         HologramsList.Clear();
-        foreach (PatientInfo patient in GeneratePatientList.patientList)
+        foreach (Patient patient in PatientList.patientList)
         {
             if (patient.pid == PatientID.text)
             {
-                foreach (HoloGrams hologram in patient.holograms)
+                foreach (Hologram hologram in patient.holograms)
                 {
                     HologramsList.Add(hologram);
                 }
