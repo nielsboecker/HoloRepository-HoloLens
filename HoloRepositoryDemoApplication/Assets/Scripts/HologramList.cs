@@ -8,25 +8,21 @@ public class HologramList : MonoBehaviour
 {
     [SerializeField]
     private GameObject buttonTemplates;
+    [SerializeField]
+    private TextMeshProUGUI Message;
     public static bool InitialFlag = true;
 
     public void Start()
     {
         if (InitialFlag)
         {
-            GameObject button = Instantiate(buttonTemplates) as GameObject;
-            button.SetActive(true);
-            button.GetComponent<HologramListItem>().SetText("Please select a patient to check the Holograms");
-            button.transform.SetParent(buttonTemplates.transform.parent, false);
+            Message.text = "Please select a patient to check the Hologram";
         }
         else
         {
             if (PatientListItem.HologramsList.Count == 0)
             {
-                GameObject button = Instantiate(buttonTemplates) as GameObject;
-                button.SetActive(true);
-                button.GetComponent<HologramListItem>().SetText("There is no Holograms for this patient");
-                button.transform.SetParent(buttonTemplates.transform.parent, false);
+                Message.text = "There is no Holograms for this patient";
             }
 
             foreach (Hologram hologram in PatientListItem.HologramsList)
