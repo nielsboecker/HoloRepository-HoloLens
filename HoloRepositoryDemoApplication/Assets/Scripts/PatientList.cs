@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using LitJson;
+using TMPro;
 using UnityEngine.Networking;
 
 public class PatientList : MonoBehaviour
@@ -31,7 +32,8 @@ public class PatientList : MonoBehaviour
             button.SetActive(true);
 
             button.GetComponent<PatientListItem>().SetID(patient.pid);
-            string Info = string.Format("Patient name: {0}\nGender: {1}\nDate of birth: {2}", patient.name.full, patient.gender, patient.birthDate.Substring(0, 10));
+            button.GetComponent<PatientListItem>().SetName(patient.name.full);
+            string Info = string.Format("Gender: {0}\nDate of birth: {1}", patient.gender, patient.birthDate.Substring(0, 10));
             button.GetComponent<PatientListItem>().SetText(Info);
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
