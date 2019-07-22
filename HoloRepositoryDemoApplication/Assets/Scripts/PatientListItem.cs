@@ -37,6 +37,7 @@ public class PatientListItem : MonoBehaviour
     public void TurnToHologramPage()
     {
         HologramsList.Clear();
+        HologramList.InitialFlag = false;
         foreach (Patient patient in PatientList.patientList)
         {
             if (patient.pid == PatientID.text)

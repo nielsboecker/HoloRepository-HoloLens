@@ -8,27 +8,38 @@ public class HologramList : MonoBehaviour
 {
     [SerializeField]
     private GameObject buttonTemplates;
+    public static bool InitialFlag = true;
 
     public void Start()
     {
-        if (PatientListItem.HologramsList.Count == 0)
+        if (InitialFlag)
         {
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
-            button.GetComponent<HologramListItem>().SetText("There is no Holograms for this patient");
+            button.GetComponent<HologramListItem>().SetText("Please select a patient to check the Holograms");
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
-
-        foreach (Hologram hologram in PatientListItem.HologramsList)
+        else
         {
-            GameObject button = Instantiate(buttonTemplates) as GameObject;
-            button.SetActive(true);
+            if (PatientListItem.HologramsList.Count == 0)
+            {
+                GameObject button = Instantiate(buttonTemplates) as GameObject;
+                button.SetActive(true);
+                button.GetComponent<HologramListItem>().SetText("There is no Holograms for this patient");
+                button.transform.SetParent(buttonTemplates.transform.parent, false);
+            }
 
-            button.GetComponent<HologramListItem>().SetID(hologram.hid);
-            string Info = string.Format("Hologram name: {0}\nTitle: {1}\nDate of Creation: {2}", hologram.subject.name.full, hologram.title, hologram.createdDate.Substring(0, 10));
-            button.GetComponent<HologramListItem>().SetText(Info);
+            foreach (Hologram hologram in PatientListItem.HologramsList)
+            {
+                GameObject button = Instantiate(buttonTemplates) as GameObject;
+                button.SetActive(true);
 
-            button.transform.SetParent(buttonTemplates.transform.parent, false);
-        }
+                button.GetComponent<HologramListItem>().SetID(hologram.hid);
+                string Info = string.Format("Hologram name: {0}\nTitle: {1}\nDate of Creation: {2}", hologram.subject.name.full, hologram.title, hologram.createdDate.Substring(0, 10));
+                button.GetComponent<HologramListItem>().SetText(Info);
+
+                button.transform.SetParent(buttonTemplates.transform.parent, false);
+            }
+        }        
     }
 }
