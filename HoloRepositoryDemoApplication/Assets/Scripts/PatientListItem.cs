@@ -49,6 +49,6 @@ public class PatientListItem : MonoBehaviour
             }
         }
         SceneManager.UnloadSceneAsync("HologramListScene");
-        SceneManager.LoadScene("HologramListScene");
+        SceneManager.LoadScene("HologramListScene", LoadSceneMode.Additive);
     }
 }
