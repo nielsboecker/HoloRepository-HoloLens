@@ -11,6 +11,14 @@ public class HologramList : MonoBehaviour
 
     public void Start()
     {
+        if (PatientListItem.HologramsList.Count == 0)
+        {
+            GameObject button = Instantiate(buttonTemplates) as GameObject;
+            button.SetActive(true);
+            button.GetComponent<HologramListItem>().SetText("There is no Holograms for this patient");
+            button.transform.SetParent(buttonTemplates.transform.parent, false);
+        }
+
         foreach (Hologram hologram in PatientListItem.HologramsList)
         {
             GameObject button = Instantiate(buttonTemplates) as GameObject;
