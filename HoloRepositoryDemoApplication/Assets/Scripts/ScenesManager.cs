@@ -14,4 +14,9 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync(SceneIndex);
     }
+    public static void RefreshScene(string SceneIndex)
+    {
+        SceneManager.UnloadSceneAsync(SceneIndex);
+        SceneManager.LoadScene(SceneIndex, LoadSceneMode.Additive);
+    }
 }
