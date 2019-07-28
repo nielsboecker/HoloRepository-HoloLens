@@ -36,7 +36,7 @@ This demo application is developed by Unity3D, please setup the environment befo
 The detail of related development tools could be found in [microsoft mixed reality offical site](https://docs.microsoft.com/en-us/windows/mixed-reality/install-the-tools).
 
 
-### Start to run the App
+### Start to run the app
 Before you start to run the HoloLens App, there are some settings are required in Unity. First, if you pull the application properly from this GitHub, the menu bar should contain the MRTK option. if not, please remove the local files and pull it gain.
 
 <p align="center">
@@ -62,7 +62,7 @@ Meanwhile, Please select **Visual Reality Supported** in XR Settings
 </p>
 
 
-### Run the App in Game mode
+### Run the app in Game mode
 If you have setup the environment and settings, please open the **BaseScene** in Scenes folder, and press Play Button to try it.
 
 
@@ -71,7 +71,7 @@ If you have setup the environment and settings, please open the **BaseScene** in
 
 
 ## Code organisation
-The rest of the components of the overall project are kept in the [HoloRepository-HoloLens](https://github.com/nbckr/HoloRepository-HoloLens) mono-repository. The only exception are the components that are developed in Unity/C#, they are separately kept in this [HoloRepository-HoloLens](https://github.com/nbckr/HoloRepository-HoloLens) repository.
+The rest of the components of the overall project are kept in the [HoloRepository-Core](https://github.com/nbckr/HoloRepository-Core) mono-repository. The only exception are the components that are developed in Unity/C#, they are separately kept in this [HoloRepository-HoloLens](https://github.com/nbckr/HoloRepository-HoloLens) repository.
 
 
 ## Contact and support
