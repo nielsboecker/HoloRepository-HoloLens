@@ -25,7 +25,7 @@ To our best knowledge, there have been no projects that combine medical hologram
 ### Setup the environment
 This demo application is developed by Unity3D, please setup the environment before running the App:
 
-|<img width="200">||
+|Tools|<center>Prerequisites </center>|
 | :--- | :--- | 
 | ![Windows SDK 18362+](./HoloRepositoryDemoApplication/Images/windows10_logo.png)| **Windows 10 SDK:** To run the HoloLens App, please make sure you have installed the Windows 10 SDK version 18362 or later [Download Link](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk)|
 |![Unity](./HoloRepositoryDemoApplication/Images/unity_logo.png) | **Unity3D:** The current recommendation is to use Unity 2018.4.x, which is the LTS build required for MRTK v2, The version we used to develop the App is **2018.4.2f1**, which you can download [here](https://unity3d.com/unity/whats-new/2018.4.2). Meanwhile, please make sure you have installed the **Universal Windows Platform (UWP)** and **.NET** support for unity.|
