@@ -67,7 +67,17 @@ If you have setup the environment and settings, please open the **BaseScene** in
 
 
 ## Build and deployment
-> TODO: Please add this section.
+You can build and deploy the application both in HoloLens emulator and the HoloLens devices.
+
+Go to **Menu bar -> File -> Build setting**, before you build the application, please make sure all the compile errors are fixed and all environment setting is correct. Then select **Build** button and choose a folder to store the generated solution.
+
+Use Visual Studio to open the generated **.sln** file, then Select an **x86** build configuration for the app, you can both select **Remote Machine** or **HoloLens Emulator** as the target device, if you select remote machine, it requires the IP address of your HoloLens to make the connection. Finally, Select **Debug -> Start debugging** to deploy your app and start debugging.
+
+<p align="center">
+    <img src="./HoloRepositoryDemoApplication/Images/Deploy.png" height="200">
+</p>
+
+The details of the deployment steps and other deploy methods are available in [microsoft mixed reality offical site](https://docs.microsoft.com/en-us/windows/mixed-reality/using-visual-studio).
 
 
 ## Code organisation
