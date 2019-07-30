@@ -17,7 +17,7 @@ using HoloRepository;
 
 |Method|Description|
 | :--- | :--- | 
-|`GetMultiplePatient(List<Patient> List, string IDs)`|Retrieve multiple patients meta data from HoloStorage server, parameter "IDs" can be |
+|`GetMultiplePatient(List<Patient> List, string IDs)`|Retrieve multiple patients meta data from HoloStorage server|
 |`GetPatient(Patient patient, string patientID)`|Retrieve a single patient meta data by patient ID|
 |`GetMultipleHologram(List<Hologram> List, string IDs)`|Retrieve multiple Holograms meta data from HoloStorage server|
 |`GetHologram(Hologram hologram, string HolgramID)`|Retrieve a single Hologram meta data by hologram ID|
