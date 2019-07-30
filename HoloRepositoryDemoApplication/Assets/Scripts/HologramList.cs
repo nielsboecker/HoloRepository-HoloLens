@@ -7,9 +7,9 @@ using TMPro;
 public class HologramList : MonoBehaviour
 {
     [SerializeField]
-    private GameObject buttonTemplates;
+    private GameObject buttonTemplates = null;
     [SerializeField]
-    private TextMeshProUGUI Message;
+    private TextMeshProUGUI Message = null;
     public static bool InitialFlag = true;
 
     public void Start()

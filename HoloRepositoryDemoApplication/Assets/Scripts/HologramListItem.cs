@@ -7,9 +7,9 @@ using TMPro;
 public class HologramListItem : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI HologramInfo;
+    private TextMeshProUGUI HologramInfo = null;
     [SerializeField]
-    private Text HologramID;
+    private Text HologramID = null;
 
     private void Start()
     {

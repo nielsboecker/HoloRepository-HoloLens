@@ -8,11 +8,11 @@ using UnityEngine.SceneManagement;
 public class PatientListItem : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI PatientInfo;
+    private TextMeshProUGUI PatientInfo = null;
     [SerializeField]
-    private Text PatientID;
+    private Text PatientID = null;
     [SerializeField]
-    private TextMeshProUGUI PatientName;
+    private TextMeshProUGUI PatientName = null;
     public static List<Hologram> HologramsList = new List<Hologram>();
 
     private void Start()

@@ -9,7 +9,7 @@ using UnityEngine.Networking;
 public class PatientList : MonoBehaviour
 {
     [SerializeField]
-    private GameObject buttonTemplates;
+    private GameObject buttonTemplates = null;
 
     public static List<Patient> patientList = new List<Patient>();
 
