@@ -14,6 +14,7 @@ using HoloRepository;
 
 ## StorageConnectionServer
 `StorageConnectionServer` script provided multiple methods to retrieve data from Storage server. For now, you could retieve the meta data of patient and holograms based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard-code uri.
+
 |Method|Description|
 | :--- | :--- | 
 |`GetMultiplePatient(List<Patient> List, string IDs)`|Retrieve multiple patients meta data from HoloStorage server, parameter "IDs" can be |
@@ -21,6 +22,7 @@ using HoloRepository;
 |`GetMultipleHologram(List<Hologram> List, string IDs)`|Retrieve multiple Holograms meta data from HoloStorage server|
 |`GetHologram(Hologram hologram, string HolgramID)`|Retrieve a single Hologram meta data by hologram ID|
 |`LoadHologram(string HologramID)`|Load a Hologram object to scene by ID|
+
 Example usage:
 ```
 StartCoroutine(Query());
@@ -39,6 +41,7 @@ StorageConnectionServer.LoadHologram("hololensid");
 ```
 ## ModelSetting
 `ModelSetting` script allow users to set the transform settings before load the 3D object from server, for example, set the position, rotation and scale of the 3D object, you can also determine whether the object could be manipulated or which scene you want to load.
+
 |Method|Description|
 | :--- | :--- | 
 |`SetModelName(string name)`|Set a name for the loaded model|
@@ -47,6 +50,7 @@ StorageConnectionServer.LoadHologram("hololensid");
 |`SetSize(float size)`|Set size for the loaded model, |
 |`SetManipulable(bool manipulable)`|Determine whether the object could be manipulated, default setting is true|
 |`SetSeceneName(string scenename)`|Determine which scene you want to load the object|
+
 Example usage:
 ```
 void LoadModel()
@@ -62,6 +66,7 @@ void LoadModel()
 
 ## ClassesDefination
 `ClassesDefination` script is used to define the related class, make it easier to map the information from json data. 
+
 |Class|Description|
 | :--- | :--- | 
 |`Patient`|Patient object, contains the basic information of the patient, like name date od birth and adress|
