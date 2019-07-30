@@ -1,4 +1,4 @@
-﻿public class Patient
+﻿/*public class Patient
 {
     public string pid;
     public PersonName name;
@@ -49,4 +49,4 @@ public class Author
 {
     public string aid;
     public PersonName name;
-}
+}*/
