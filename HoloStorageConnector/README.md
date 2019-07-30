@@ -76,7 +76,7 @@ This package also provided some prefabs to save your development time, Which cou
 
 ## Demo scene
 <p align="center">
-    <img src="../HoloRepositoryDemoApplication/Images/DemoScene.png" height="200">
+    <img src="../HoloRepositoryDemoApplication/Images/DemoScene.png" height="400">
 </p>
 
 This pckage also provided a Demo scene to guide the developer how to use this package, which you can find [here](https://github.com/nbckr/HoloRepository-HoloLens/tree/LENS/Connector-Scripts/HoloStorageConnector/HoloRpository/Demo).
