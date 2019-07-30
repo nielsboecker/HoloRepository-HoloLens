@@ -1,7 +1,7 @@
 # HoloRepository
 The COMP0111 project MSGOSHHOLO, where we develop a software engineering solution for Microsoft and GOSH.
 # HoloRepository Connector package
-Connector assets package is used to provide , to facilitate the development of HoloLens app with HoloStorage. This package make connection with HoloStorage based on the [HoloStorage Accessor API](https://app.swaggerhub.com/apis/boonwj/HoloRepository/1.0.0#/default/get_patients). As the development of HoloStorage is still in progress, you could test the Connector package with the HoloRepositoryUI backend server, details could be found in our [main GitHub repo](https://github.com/nbckr/HoloRepository-Core).
+HoloRepository Connector is used to provide a importable Unity asset package, to facilitate the development of HoloLens app with HoloStorage. This package make connection with HoloStorage based on the [HoloStorage Accessor API](https://app.swaggerhub.com/apis/boonwj/HoloRepository/1.0.0#/default/get_patients). As the development of HoloStorage is still in progress, you could test the Connector package with the HoloRepositoryUI backend server, details could be found in our [main GitHub repo](https://github.com/nbckr/HoloRepository-Core).
 
 Currently, the HoloRepositoryConnector script is developed inside the DemoApplication, it provides some scripts allow developers use it to retrieve data and load 3D objects from Storage server. It also provided a Demo scene to guide developer use this package. The detail of methods and usage of each scripts are listed below.
 
