@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using SimpleJSON;
 
-
 namespace HoloRepository
 {
     public class StorageConnectionServer : MonoBehaviour
@@ -24,7 +23,7 @@ namespace HoloRepository
             BaseUri = Uri;
         }
 
-        public static IEnumerator GetMultiplePatient(List<PatientInfo> patientList, string IDs)
+        public static IEnumerator GetMultiplePatient(List<Patient> patientList, string IDs)
         {
             //string MultiplePatientUri = BaseUri + "/patients?=" + "IDs";
             string MultiplePatientUri = BaseUri + "/patients";
@@ -37,7 +36,7 @@ namespace HoloRepository
                 JSONArray JsonArray = InitialJsonData.AsArray;
                 foreach (JSONNode PatientJson in JsonArray)
                 {
-                    PatientInfo patient = JsonToPatient(PatientJson);
+                    Patient patient = JsonToPatient(PatientJson);
                     if (patient.pid != null)
                     {
                         patientList.Add(patient);
@@ -46,14 +45,14 @@ namespace HoloRepository
             }
         }
 
-        public static IEnumerator GetPatient(PatientInfo patient, string patientID)
+        public static IEnumerator GetPatient(Patient patient, string patientID)
         {
             string GetPatientUri = BaseUri + "/patients/" + patientID;
             yield return GetRequest(GetPatientUri);
             try
             {
                 JSONNode PatientJson = JSON.Parse(WebRequestReturnData);
-                PatientInfo Patient = JsonToPatient(PatientJson);
+                Patient Patient = JsonToPatient(PatientJson);
                 CopyProperties(Patient, patient);
             }
             catch (Exception e)
@@ -62,7 +61,7 @@ namespace HoloRepository
             }                      
         }
 
-        public static IEnumerator GetMultipleHologram(List<HoloGrams> hologramList, string IDs)
+        public static IEnumerator GetMultipleHologram(List<Hologram> hologramList, string IDs)
         {
             //string MultipleHolgramUri = BaseUri + "/holograms?=" + "IDs";
             string MultipleHologramUri = BaseUri + "/holograms";
@@ -75,7 +74,7 @@ namespace HoloRepository
                 JSONArray JsonArray = InitialJsonData.AsArray;
                 foreach (JSONNode HologramJson in JsonArray)
                 {
-                    HoloGrams hologram = JsonToHologram(HologramJson);
+                    Hologram hologram = JsonToHologram(HologramJson);
                     if (hologram.hid != null)
                     {
                         hologramList.Add(hologram);
@@ -84,14 +83,14 @@ namespace HoloRepository
             }
         }
 
-        public static IEnumerator GetHologram(HoloGrams hologram, string HolgramID)
+        public static IEnumerator GetHologram(Hologram hologram, string HolgramID)
         {
             string GetHologramUri = BaseUri + "/holograms/" + HolgramID;
             yield return GetRequest(GetHologramUri);
             try
             {
                 JSONNode HologramJson = JSON.Parse(WebRequestReturnData);
-                HoloGrams Hologram = JsonToHologram(HologramJson);
+                Hologram Hologram = JsonToHologram(HologramJson);
                 CopyProperties(Hologram, hologram);
             }
             catch (Exception e)
@@ -104,8 +103,7 @@ namespace HoloRepository
         {
             WebRequestReturnData = null;
             //string GetHologramUri = BaseUri + "/holograms/" + HologramID + "/download";
-            //string GetHologramUri = "https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb";
-            string GetHologramUri = "https://dl.dropboxusercontent.com/s/uqfzst339hsyosf/500_abdomen_190mb.glb";         
+            string GetHologramUri = "https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb";      
 
             Response response = new Response();
             try
@@ -166,9 +164,9 @@ namespace HoloRepository
             }
         }
 
-        private static PatientInfo JsonToPatient(JSONNode Json)
+        private static Patient JsonToPatient(JSONNode Json)
         {
-            PatientInfo patient = new PatientInfo();
+            Patient patient = new Patient();
 
             if (Json["pid"].Value == "")
             {
@@ -199,20 +197,6 @@ namespace HoloRepository
                 address.state = Json["address"]["state"].Value;
                 address.postcode = Json["address"]["postcode"].AsInt;
                 patient.address = address;
-
-                /*
-                patient.pid = Json["pid"].Value;
-                patient.gender = Json["gender"].Value;
-                patient.birthDate = Json["birthDate"].Value;
-
-                PersonName name = new PersonName();
-                name.title = Json["name"]["title"].Value;
-                name.full = Json["name"]["full"].Value;
-                name.given = Json["name"]["given"].Value;
-                name.family = Json["name"]["family"].Value;
-                patient.name = name;
-                 */
-
             }
             catch (Exception e)
             {
@@ -222,9 +206,9 @@ namespace HoloRepository
             return patient;
         }
 
-        private static HoloGrams JsonToHologram(JSONNode Json)
+        private static Hologram JsonToHologram(JSONNode Json)
         {
-            HoloGrams hologram = new HoloGrams();
+            Hologram hologram = new Hologram();
 
             if (Json["bodySite"].Value == "")
             {
@@ -260,21 +244,6 @@ namespace HoloRepository
                 hologram.createdDate = Json["createdDate"].Value;
                 hologram.fileSizeInkb = Json["fileSizeInkb"].AsInt;
                 hologram.imagingStudySeriesId = Json["imagingStudySeriesId"].Value;
-
-                /*                   
-                hologram.hid = Json["hid"].Value;
-                hologram.title = Json["title"].Value;
-                hologram.description = Json["description"].Value;
-                hologram.contentType = Json["contentType"].Value;
-                hologram.fileSizeInkb = Json["fileSizeInkb"].AsInt;
-                hologram.bodySite = Json["bodySite"].Value;
-                hologram.dateOfImaging = Json["dateOfImaging"].Value;
-                hologram.creationDate = Json["creationDate"].Value;
-                hologram.creationMode = Json["creationMode"].Value;
-                hologram.creationDescription = Json["creationDescription"].Value;
-                hologram.aid = Json["aid"].Value;
-                hologram.pid = Json["pid"].Value;
-                 */
             }
             catch (Exception e)
             {
