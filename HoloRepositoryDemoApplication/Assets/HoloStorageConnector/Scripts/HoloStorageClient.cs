@@ -8,6 +8,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using SimpleJSON;
 
+
+/// <summary>
+/// Class <c>HoloStorageClient</c> provided multiple methods to retrieve data from Storage server.
+/// </summary>
 namespace HoloStorageConnector
 {
     public class HoloStorageClient : MonoBehaviour
@@ -23,6 +27,13 @@ namespace HoloStorageConnector
             BaseUri = Uri;
         }
 
+        /// <summary>
+        /// Method <c>GetMultiplePatients</c> is used to retrieve multiple patient meta data from Storage server 
+        /// Result will be store in the parameter list 
+        /// </summary>
+        /// <param name="patientList">Patient object list, used to store information</param>
+        /// <param name="IDs">IDs of querying patients</param>
+        /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
             //string MultiplePatientUri = BaseUri + "/patients?=" + "IDs";
@@ -45,6 +56,12 @@ namespace HoloStorageConnector
             }
         }
 
+        /// <summary>
+        /// Method <c>GetPatient</c> allows user retrieve single patient meta data from Storage server by patient ID. 
+        /// </summary>
+        /// <param name="patient">Patient object, used to store information</param>
+        /// <param name="patientID">ID of querying patient</param>
+        /// <returns></returns>
         public static IEnumerator GetPatient(Patient patient, string patientID)
         {
             string GetPatientUri = BaseUri + "/patients/" + patientID;
@@ -61,6 +78,12 @@ namespace HoloStorageConnector
             }                      
         }
 
+        /// <summary>
+        /// Method <c>GetMultipleHolograms</c> is used to retrieve multiple hologram meta data from Storage server
+        /// </summary>
+        /// <param name="hologramList">Hologram object list, used to store information</param>
+        /// <param name="IDs">IDs of querying holograms</param>
+        /// <returns></returns>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
         {
             //string MultipleHolgramUri = BaseUri + "/holograms?=" + "IDs";
@@ -83,6 +106,12 @@ namespace HoloStorageConnector
             }
         }
 
+        /// <summary>
+        /// Method <c>GetHologram</c> allows user retrieve single hologram from Storage server by hologram ID
+        /// </summary>
+        /// <param name="hologram">Hologram object, used to store information</param>
+        /// <param name="HolgramID">ID of querying hologram</param>
+        /// <returns></returns>
         public static IEnumerator GetHologram(Hologram hologram, string HolgramID)
         {
             string GetHologramUri = BaseUri + "/holograms/" + HolgramID;
@@ -99,6 +128,11 @@ namespace HoloStorageConnector
             }               
         }
 
+        /// <summary>
+        /// Method <c>LoadHologram</c> is used to load hologram from Storage server
+        /// It requires thehologram ID as the parameter 
+        /// </summary>
+        /// <param name="HologramID">ID of Hologram</param>
         public static async void LoadHologram(string HologramID)
         {
             WebRequestReturnData = null;
@@ -137,6 +171,11 @@ namespace HoloStorageConnector
         #endregion Public Method
 
         #region Private Common Method
+        /// <summary>
+        /// Common method <c>GetRequest</c> is used to handle web request 
+        /// </summary>
+        /// <param name="uri">Endpoint for the web request</param>
+        /// <returns></returns>
         private static IEnumerator GetRequest(string uri)
         {
             using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
@@ -154,6 +193,11 @@ namespace HoloStorageConnector
             }
         }
 
+        /// <summary>
+        /// Common method <c>CopyProperties</c> is used to map the preoperties between two objects 
+        /// </summary>
+        /// <param name="source">Source object</param>
+        /// <param name="destination">Target object</param>
         private static void CopyProperties(object source, object destination)
         {
             PropertyInfo[] destinationProperties = destination.GetType().GetProperties();
@@ -164,6 +208,11 @@ namespace HoloStorageConnector
             }
         }
 
+        /// <summary>
+        /// Method <c>JsonToPatient</c> map the json data into Patient object 
+        /// </summary>
+        /// <param name="Json">Initial json data</param>
+        /// <returns>Patient object with retrieved information</returns>
         private static Patient JsonToPatient(JSONNode Json)
         {
             Patient patient = new Patient();
@@ -206,6 +255,11 @@ namespace HoloStorageConnector
             return patient;
         }
 
+        /// <summary>
+        /// Method <c>JsonToHologram</c> map the json data into Hologram object
+        /// </summary>
+        /// <param name="Json">Initial json data</param>
+        /// <returns>Hologram object with retrieved information</returns>
         private static Hologram JsonToHologram(JSONNode Json)
         {
             Hologram hologram = new Hologram();

@@ -1,4 +1,9 @@
-﻿namespace HoloStorageConnector
+﻿/// <summary>
+/// This script is used to define the related HoloStorage entities, make it easier to map the information from json data. 
+/// Currentlly, it is based on HoloStorage Accessor API version 0.1.0
+/// With the development of the package, this script will be modified to map HoloStorage Accessor API 1.0
+/// </summary>
+namespace HoloStorageConnector
 {
     public class Patient
     {

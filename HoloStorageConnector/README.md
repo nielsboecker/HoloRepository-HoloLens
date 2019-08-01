@@ -45,8 +45,8 @@ HoloStorageClient.LoadHologram("hololensid");
 |Method|Description|
 | :--- | :--- | 
 |`SetModelName(string name)`|Set a name for the loaded model|
-|`SetPostition(Vector3 position)`|Set load position for the loaded model, the parameter should be a Vector3 object|
-|`SetRotation(Vector3 rotation)`|Set load rotation for the loaded model, the parameter should be a Vector3 object|
+|`SetPostition(Vector3 position)`|Set position for the loaded model, the parameter should be a Vector3 object|
+|`SetRotation(Vector3 rotation)`|Set rotation for the loaded model, the parameter should be a Vector3 object|
 |`SetSize(float size)`|Set size for the loaded model, |
 |`SetManipulable(bool manipulable)`|Determine whether the object could be manipulated, default setting is true|
 |`SetSeceneName(string scenename)`|Determine which scene you want to load the object|
