@@ -1,27 +1,25 @@
-# HoloRepository
-The COMP0111 project MSGOSHHOLO, where we develop a software engineering solution for Microsoft and GOSH.
-# HoloRepository Connector package
-HoloRepository Connector is used to provide a importable Unity asset package, to facilitate the development of HoloLens app with HoloStorage. This package make connection with HoloStorage based on the [HoloStorage Accessor API](https://app.swaggerhub.com/apis/boonwj/HoloRepository/1.0.0#/default/get_patients). As the development of HoloStorage is still in progress, you could test the Connector package with the HoloRepositoryUI backend server, details could be found in our [main GitHub repo](https://github.com/nbckr/HoloRepository-Core).
+# HoloStorageConnector
+HoloStorageConnector is used to provide an importable Unity asset package, to facilitate the development of HoloLens app with HoloStorage. This package make connection with HoloStorage based on the [HoloStorage Accessor API](https://app.swaggerhub.com/apis/boonwj/HoloRepository/1.0.0#/default/get_patients). As the development of HoloStorage is still in progress, you could test the Connector package with the HoloRepositoryUI backend server, details could be found in our [main GitHub repo](https://github.com/nbckr/HoloRepository-Core).
 
-**Important note**: Currently, the HoloRepositoryConnector script is developed inside the DemoApplication. This folder only contains a symbolic link to the package inside that applicatiton's `Assets/` in order to prevent duplicate code. Ideally, it would be the other way around. However, due to inconsistencies in how Windows supports symlinks, this can break the build (if the symlink is not recognised in a Windows development environment, the Connector namespace is missing in the demo app). For 3rd party developers to obtain the package they can copy the folder or, which is the recommended way, download the AssetPackage from a GitHub release. 
+**Important note**: Currently, the HoloStorageConnector script is developed inside the DemoApplication. This folder only contains a symbolic link to the package inside that applicatiton's `Assets/` in order to prevent duplicate code. Ideally, it would be the other way around. However, due to inconsistencies in how Windows supports symlinks, this can break the build (if the symlink is not recognised in a Windows development environment, the Connector namespace is missing in the demo app). For 3rd party developers to obtain the package they can copy the folder or, which is the recommended way, download the AssetPackage from a GitHub release. 
 
 This package provides some scripts allow developers use it to retrieve data and load 3D objects from Storage server. It also provided a Demo scene to guide developer use this package. The detail of methods and usage of each scripts are listed below.
 
-**Remind: Current script is based on HoloRepositoryUI backend server, some method and class defination will be modified later.**
+**Remind: Current script is based on HoloRepositoryUI backend server, some method and class definition will be modified later.**
 
-To use the HoloConnector, after you import the assest package, you could import the namespcae like this:
+To use the HoloStorageConnector, after you import the asset package, you could import the namespace like this:
 ```
 using HoloRepository;
 ```
 
 ## StorageConnectionServer
-`StorageConnectionServer` script provided multiple methods to retrieve data from Storage server. For now, you could retieve the meta data of patient and holograms based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard-code uri.
+`StorageConnectionServer` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patient and holograms based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri.
 
 |Method|Description|
 | :--- | :--- | 
-|`GetMultiplePatient(List<Patient> List, string IDs)`|Retrieve multiple patients meta data from HoloStorage server|
+|`GetMultiplePatients(List<Patient> List, string IDs)`|Retrieve multiple patients meta data from HoloStorage server|
 |`GetPatient(Patient patient, string patientID)`|Retrieve a single patient meta data by patient ID|
-|`GetMultipleHologram(List<Hologram> List, string IDs)`|Retrieve multiple Holograms meta data from HoloStorage server|
+|`GetMultipleHolograms(List<Hologram> List, string IDs)`|Retrieve multiple Holograms meta data from HoloStorage server|
 |`GetHologram(Hologram hologram, string HolgramID)`|Retrieve a single Hologram meta data by hologram ID|
 |`LoadHologram(string HologramID)`|Load a Hologram object to scene by ID|
 
@@ -31,9 +29,9 @@ StartCoroutine(Query());
 IEnumerator Query()
 {        
     List<Patient> patientList = new List<PatientInfo>();
-    yield return StorageConnectionServer.GetMultiplePatient(patientList, "IDs");
+    yield return StorageConnectionServer.GetMultiplePatients(patientList, "IDs");
     //Do something here...
-    foreach (PatientInfo patient in patientList)
+    foreach (Patient patient in patientList)
     {
         Debug.Log(patient.name.full);
     }
@@ -66,12 +64,12 @@ void LoadModel()
 }
 ```
 
-## ClassesDefination
-`ClassesDefination` script is used to define the related class, make it easier to map the information from json data. 
+## HoloStorageEntities
+`HoloStorageEntities` script is used to define the related HoloStorage entities, make it easier to map the information from json data. 
 
 |Class|Description|
 | :--- | :--- | 
-|`Patient`|Patient object, contains the basic information of the patient, like name date od birth and adress|
+|`Patient`|Patient object, contains the basic information of the patient, like name date od birth and address|
 |`Hologram`|Hologram object, contains the basic information of the hologram, like title, create date and author|
 |`PersonName`|Name for a person, contains title, full name, first name and last name|
 |`Address`|Contains street, city state and postcode properties|
@@ -79,11 +77,11 @@ void LoadModel()
 |`Author`|Author of the Hologram|
 
 ## Prefabs
-This package also provided some prefabs to save your development time, Which could be foud in Prefabs folder, include a Canvas for HoloLens app and a numer pad for D3D type HoloLens app.
+This package also provided some prefabs to save your development time, which could be found in Prefabs folder, include a Canvas for HoloLens app and a number pad for D3D type HoloLens app.
 
 ## Demo scene
 <p align="center">
     <img src="../HoloRepositoryDemoApplication/Images/DemoScene.png" height="400">
 </p>
 
-This pckage also provided a Demo scene to guide the developer how to use this package, which you can find [here](https://github.com/nbckr/HoloRepository-HoloLens/tree/LENS/Connector-Scripts/HoloStorageConnector/HoloRpository/Demo).
+This package also provided a Demo scene to guide the developer how to use this package, which you can find [here](https://github.com/nbckr/HoloRepository-HoloLens/tree/LENS/Connector-Scripts/HoloStorageConnector/HoloRpository/Demo).
