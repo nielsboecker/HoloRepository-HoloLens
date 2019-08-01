@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class LoginAuthentication : MonoBehaviour
 {
     [SerializeField]
+    private bool DevelopMode = false;
+    [SerializeField]
     private TMP_InputField PIN = null;
     [SerializeField]
     private TextMeshProUGUI WarningInfo = null;
@@ -21,7 +23,7 @@ public class LoginAuthentication : MonoBehaviour
 
     public void Auth()
     {
-        if (PIN.text == "3825")
+        if (DevelopMode)
         {
             Destroy(PINPad);
             SceneManager.LoadScene("PatientListScene", LoadSceneMode.Additive);
@@ -29,9 +31,18 @@ public class LoginAuthentication : MonoBehaviour
         }
         else
         {
-            WarningInfo.text = "The PIN is wrong!";
-            PIN.Select();
-            PIN.text = "";
+            if (PIN.text == "3825")
+            {
+                Destroy(PINPad);
+                SceneManager.LoadScene("PatientListScene", LoadSceneMode.Additive);
+                SceneManager.LoadScene("HologramListScene", LoadSceneMode.Additive);
+            }
+            else
+            {
+                WarningInfo.text = "The PIN is wrong!";
+                PIN.Select();
+                PIN.text = "";
+            }
         }
     }
 
