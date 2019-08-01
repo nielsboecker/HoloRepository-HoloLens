@@ -10,7 +10,7 @@ using SimpleJSON;
 
 namespace HoloRepository
 {
-    public class StorageConnectionServer : MonoBehaviour
+    public class HoloStorageClient : MonoBehaviour
     {
         #region Properties
         private static string BaseUri = "http://localhost:3001/api/v1";
@@ -57,7 +57,7 @@ namespace HoloRepository
             }
             catch (Exception e)
             {
-                Debug.Log("Failed to get the patient from server! \n[Error message]:" + e.Message);
+                Debug.LogError("Failed to get the patient from server! \n[Error message]:" + e.Message);
             }                      
         }
 
@@ -95,7 +95,7 @@ namespace HoloRepository
             }
             catch (Exception e)
             {
-                Debug.Log("Failed to get the hologram from server! \n[Error message]: " + e.Message);
+                Debug.LogError("Failed to get the hologram from server! \n[Error message]: " + e.Message);
             }               
         }
 
@@ -145,7 +145,7 @@ namespace HoloRepository
                 WebRequestReturnData = null;
                 if (webRequest.isNetworkError)
                 {
-                    Debug.Log("Web request Error! [Error message]: " + webRequest.error);
+                    Debug.LogError("Web request Error! [Error message]: " + webRequest.error);
                 }
                 else
                 {
@@ -170,7 +170,7 @@ namespace HoloRepository
 
             if (Json["pid"].Value == "")
             {
-                Debug.Log("No response from server with this patient ID!");
+                Debug.LogError("No response from server with this patient ID!");
                 return patient;
             }
 
@@ -200,7 +200,7 @@ namespace HoloRepository
             }
             catch (Exception e)
             {
-                Debug.Log("Failed to map patient from response data! \n[Error message]: " + e);
+                Debug.LogError("Failed to map patient from response data! \n[Error message]: " + e);
             }
                     
             return patient;
@@ -212,7 +212,7 @@ namespace HoloRepository
 
             if (Json["bodySite"].Value == "")
             {
-                Debug.Log("No response from server with this hologram ID!");
+                Debug.LogError("No response from server with this hologram ID!");
                 return hologram;
             }
 
@@ -247,7 +247,7 @@ namespace HoloRepository
             }
             catch (Exception e)
             {
-                Debug.Log("Failed to map hologram from response data! \n[Error message]: " + e);
+                Debug.LogError("Failed to map hologram from response data! \n[Error message]: " + e);
             }            
             return hologram;
         }

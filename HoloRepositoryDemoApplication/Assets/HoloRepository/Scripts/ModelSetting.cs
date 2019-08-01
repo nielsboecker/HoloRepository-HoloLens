@@ -42,9 +42,9 @@ namespace HoloRepository
         {
             Manipulable = manipulable;
         }
-        public static void SetSeceneName(string scenename)
+        public static void SetSceneName(string sceneName)
         {
-            SceneName = scenename;
+            SceneName = sceneName;
         }
         #endregion Set Method
 
@@ -78,7 +78,7 @@ namespace HoloRepository
                 }
                 catch (Exception e)
                 {
-                    Debug.Log("Failed to move the object to specific scene! \n[Error message]: " + e.Message);
+                    Debug.LogError("Failed to move the object to specific scene! \n[Error message]: " + e.Message);
                 }              
             }
         }

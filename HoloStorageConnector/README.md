@@ -12,8 +12,8 @@ To use the HoloStorageConnector, after you import the asset package, you could i
 using HoloRepository;
 ```
 
-## StorageConnectionServer
-`StorageConnectionServer` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patient and holograms based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri.
+## HoloStorageClient
+`HoloStorageClient` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patient and holograms based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri.
 
 |Method|Description|
 | :--- | :--- | 
@@ -29,7 +29,7 @@ StartCoroutine(Query());
 IEnumerator Query()
 {        
     List<Patient> patientList = new List<PatientInfo>();
-    yield return StorageConnectionServer.GetMultiplePatients(patientList, "IDs");
+    yield return HoloStorageClient.GetMultiplePatients(patientList, "IDs");
     //Do something here...
     foreach (Patient patient in patientList)
     {
@@ -37,7 +37,7 @@ IEnumerator Query()
     }
 }
 ...
-StorageConnectionServer.LoadHologram("hololensid");
+HoloStorageClient.LoadHologram("hololensid");
 ```
 ## ModelSetting
 `ModelSetting` script allow users to set the transform settings before load the 3D object from server, for example, set the position, rotation and scale of the 3D object, you can also determine whether the object could be manipulated or which scene you want to load.
@@ -60,7 +60,7 @@ void LoadModel()
     ModelSetting.SetRotation(new Vector3(0, 180, 0));
     ModelSetting.SetPostition(new Vector3(0, 0, 2f));
     ModelSetting.SetSize(1f);
-    StorageConnectionServer.LoadHologram("hololensid");
+    HoloStorageClient.LoadHologram("hololensid");
 }
 ```
 

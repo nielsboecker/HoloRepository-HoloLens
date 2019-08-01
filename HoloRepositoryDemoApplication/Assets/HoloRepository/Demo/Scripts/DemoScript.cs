@@ -26,7 +26,7 @@ public class DemoScript : MonoBehaviour
     IEnumerator getAllPateint()
     {
         List<Patient> patientList = new List<Patient>();
-        yield return StorageConnectionServer.GetMultiplePatient(patientList,"IDs");
+        yield return HoloStorageClient.GetMultiplePatient(patientList,"IDs");
         All.SetActive(true);
         foreach (Patient patient in patientList)
         {
@@ -45,7 +45,7 @@ public class DemoScript : MonoBehaviour
     IEnumerator getPateintByID()
     {
         Patient patient = new Patient();
-        yield return StorageConnectionServer.GetPatient(patient, "666da72f-1dfa-427a-96a9-c9fb30bf7296");
+        yield return HoloStorageClient.GetPatient(patient, "666da72f-1dfa-427a-96a9-c9fb30bf7296");
         Single.SetActive(true);
         try
         {
@@ -63,7 +63,7 @@ public class DemoScript : MonoBehaviour
         ModelSetting.SetRotation(new Vector3(0, 180, 0));
         ModelSetting.SetPostition(new Vector3(0.22f, -0.2f, 0.8f));
         ModelSetting.SetSize(0.12f);
-        StorageConnectionServer.LoadHologram("hololensid");
+        HoloStorageClient.LoadHologram("hololensid");
     }
 
     public void SetText(string name)
