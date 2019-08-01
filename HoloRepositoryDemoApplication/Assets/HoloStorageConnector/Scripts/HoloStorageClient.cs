@@ -17,7 +17,9 @@ namespace HoloStorageConnector
     public class HoloStorageClient : MonoBehaviour
     {
         #region Properties
-        private static string BaseUri = "http://localhost:3001/api/v1";
+        private static string BaseUri = "http://localhost:3001";
+        private static int apiVersion = 1;
+        private static string apiPrefix = $"/api/v{apiVersion}";
         private static string WebRequestReturnData = null;
         #endregion Properties
 
@@ -25,6 +27,10 @@ namespace HoloStorageConnector
         public static void SetBaseUri(string Uri)
         {
             BaseUri = Uri;
+        }
+        public static void SetAPIVersion(int version)
+        {
+            apiVersion = version;
         }
 
         /// <summary>
@@ -36,8 +42,8 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
-            //string MultiplePatientUri = BaseUri + "/patients?=" + "IDs";
-            string MultiplePatientUri = BaseUri + "/patients";
+            //string MultiplePatientUri = $"{BaseUri}{apiPrefix}/patients?={IDs}";
+            string MultiplePatientUri = $"{BaseUri}{apiPrefix}/patients";
             yield return GetRequest(MultiplePatientUri);
 
             patientList.Clear();
@@ -64,7 +70,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetPatient(Patient patient, string patientID)
         {
-            string GetPatientUri = BaseUri + "/patients/" + patientID;
+            string GetPatientUri = $"{BaseUri}{apiPrefix}/patients/{patientID}";
             yield return GetRequest(GetPatientUri);
             try
             {
@@ -86,8 +92,8 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
         {
-            //string MultipleHolgramUri = BaseUri + "/holograms?=" + "IDs";
-            string MultipleHologramUri = BaseUri + "/holograms";
+            //string MultipleHologramUri = $"{BaseUri}{apiPrefix}/holograms?={IDs}";        
+            string MultipleHologramUri = $"{BaseUri}{apiPrefix}/holograms";
             yield return GetRequest(MultipleHologramUri);
 
             hologramList.Clear();
@@ -114,7 +120,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetHologram(Hologram hologram, string HolgramID)
         {
-            string GetHologramUri = BaseUri + "/holograms/" + HolgramID;
+            string GetHologramUri = $"{BaseUri}{apiPrefix}/holograms/{HolgramID}";
             yield return GetRequest(GetHologramUri);
             try
             {
