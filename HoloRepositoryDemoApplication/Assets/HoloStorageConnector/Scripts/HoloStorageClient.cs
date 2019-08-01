@@ -210,7 +210,7 @@ namespace HoloStorageConnector
         {
             Hologram hologram = new Hologram();
 
-            if (Json["bodySite"].Value == "")
+            if (Json["hid"].Value == "")
             {
                 Debug.LogError("No response from server with this hologram ID!");
                 return hologram;

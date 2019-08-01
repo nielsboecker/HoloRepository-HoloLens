@@ -53,7 +53,7 @@ public class DemoScript : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log("Failed to set the text! \n[Error message]" + e.Message);
+            Debug.LogError("Failed to set the text! \n[Error message]" + e.Message);
         }    
     }
 
