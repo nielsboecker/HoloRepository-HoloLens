@@ -1,4 +1,4 @@
-﻿namespace HoloRepository
+﻿namespace HoloStorageConnector
 {
     public class Patient
     {

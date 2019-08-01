@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using SimpleJSON;
 
-namespace HoloRepository
+namespace HoloStorageConnector
 {
     public class HoloStorageClient : MonoBehaviour
     {

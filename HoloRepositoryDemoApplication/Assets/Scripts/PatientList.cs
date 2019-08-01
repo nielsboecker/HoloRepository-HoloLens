@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using LitJson;
-using HoloRepository;
+using HoloStorageConnector;
 using TMPro;
 using UnityEngine.Networking;
 

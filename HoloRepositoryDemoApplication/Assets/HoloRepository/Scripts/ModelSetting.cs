@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System;
 
-namespace HoloRepository
+namespace HoloStorageConnector
 {
     public class ModelSetting : MonoBehaviour
     {
