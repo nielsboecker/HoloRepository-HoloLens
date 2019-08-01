@@ -18,15 +18,15 @@ public class DemoScript : MonoBehaviour
     [SerializeField]
     private GameObject Single = null;
 
-    public void GetAllPAteint()
+    public void GetAllPatients()
     {
-        StartCoroutine(getAllPateint());
+        StartCoroutine(getAllPateints());
     }
 
-    IEnumerator getAllPateint()
+    IEnumerator getAllPateints()
     {
         List<Patient> patientList = new List<Patient>();
-        yield return HoloStorageClient.GetMultiplePatient(patientList,"IDs");
+        yield return HoloStorageClient.GetMultiplePatients(patientList,"IDs");
         All.SetActive(true);
         foreach (Patient patient in patientList)
         {
@@ -39,10 +39,10 @@ public class DemoScript : MonoBehaviour
 
     public void GetPatientByID()
     {
-        StartCoroutine(getPateintByID());
+        StartCoroutine(getPatientByID());
     }
 
-    IEnumerator getPateintByID()
+    IEnumerator getPatientByID()
     {
         Patient patient = new Patient();
         yield return HoloStorageClient.GetPatient(patient, "666da72f-1dfa-427a-96a9-c9fb30bf7296");
@@ -63,7 +63,7 @@ public class DemoScript : MonoBehaviour
         ModelSetting.SetRotation(new Vector3(0, 180, 0));
         ModelSetting.SetPostition(new Vector3(0.22f, -0.2f, 0.8f));
         ModelSetting.SetSize(0.12f);
-        HoloStorageClient.LoadHologram("hololensid");
+        HoloStorageClient.LoadHologram("hid");
     }
 
     public void SetText(string name)

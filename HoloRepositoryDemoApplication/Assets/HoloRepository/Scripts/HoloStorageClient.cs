@@ -23,7 +23,7 @@ namespace HoloRepository
             BaseUri = Uri;
         }
 
-        public static IEnumerator GetMultiplePatient(List<Patient> patientList, string IDs)
+        public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
             //string MultiplePatientUri = BaseUri + "/patients?=" + "IDs";
             string MultiplePatientUri = BaseUri + "/patients";
@@ -61,7 +61,7 @@ namespace HoloRepository
             }                      
         }
 
-        public static IEnumerator GetMultipleHologram(List<Hologram> hologramList, string IDs)
+        public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
         {
             //string MultipleHolgramUri = BaseUri + "/holograms?=" + "IDs";
             string MultipleHologramUri = BaseUri + "/holograms";
