@@ -12,6 +12,7 @@ public class HologramList : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI Message = null;
     public static bool InitialFlag = true;
+    private List<Hologram> hologramList = new List<Hologram>();
 
     public void Start()
     {
@@ -26,8 +27,7 @@ public class HologramList : MonoBehaviour
     }
 
     IEnumerator getAllHolograms()
-    {
-        List<Hologram> hologramList = new List<Hologram>();
+    {       
         yield return HoloStorageClient.GetMultipleHolograms(hologramList, "IDs");
         if (hologramList.Count == 0)
         {

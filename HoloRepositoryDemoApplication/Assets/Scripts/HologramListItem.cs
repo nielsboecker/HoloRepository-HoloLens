@@ -34,6 +34,6 @@ public class HologramListItem : MonoBehaviour
         setting.Position = new Vector3(0f, 0f, 2f);
         setting.SceneName = "ModelDisplayScene";
         setting.Size = 0.5f;
-        HoloStorageClient.LoadHologram(setting, "hid");
+        HoloStorageClient.LoadHologram("hid", setting);
     }
 }

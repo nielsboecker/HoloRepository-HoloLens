@@ -20,10 +20,10 @@ public class DemoScript : MonoBehaviour
 
     public void GetAllPatients()
     {
-        StartCoroutine(getAllPateints());
+        StartCoroutine(getAllPatients());
     }
 
-    IEnumerator getAllPateints()
+    IEnumerator getAllPatients()
     {
         List<Patient> patientList = new List<Patient>();
         yield return HoloStorageClient.GetMultiplePatients(patientList,"IDs");
@@ -64,7 +64,7 @@ public class DemoScript : MonoBehaviour
         setting.Rotation = new Vector3(0, 180, 0);
         setting.Position = new Vector3(0.22f, -0.2f, 0.8f);
         setting.Size = 0.12f;
-        HoloStorageClient.LoadHologram(setting, "hid");
+        HoloStorageClient.LoadHologram("hid", setting);
     }
 
     public void SetText(string name)

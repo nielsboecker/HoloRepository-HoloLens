@@ -139,8 +139,13 @@ namespace HoloStorageConnector
         /// It requires thehologram ID as the parameter 
         /// </summary>
         /// <param name="HologramID">ID of Hologram</param>
-        public static async void LoadHologram(HologramInstantiationSettings setting, string HologramID)
+        public static async void LoadHologram(string HologramID, HologramInstantiationSettings setting = null)
         {
+            if (setting == null)
+            {
+                setting = new HologramInstantiationSettings();
+            }
+
             WebRequestReturnData = null;
             //string GetHologramUri = $"{BaseUri}{apiPrefix}/holograms/{HolgramID}/download";
             string GetHologramUri = "https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb";      
