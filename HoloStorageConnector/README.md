@@ -5,6 +5,8 @@ HoloStorageConnector is used to provide an importable Unity asset package, to fa
 
 This package provides some scripts allow developers use it to retrieve data and load 3D objects from Storage server. It also provided a Demo scene to guide developer use this package. The detail of methods and usage of each scripts are listed below.
 
+**Important: If you get MRTK related errors or missing some materials and components, please import the [MRTK2](https://github.com/microsoft/MixedRealityToolkit-Unity/releases) again (Please import the version Microsoft Mixed Reality Toolkit v2.0.0 RC2.1).**
+
 **Remind: Current script is based on HoloRepositoryUI backend server, some method and class definition will be modified later.**
 
 To use the HoloStorageConnector, after you import the asset package, you could import the namespace like this:
@@ -46,7 +48,7 @@ HoloStorageClient.LoadHologram(setting, "hid");
 |Properties|Description|
 | :--- | :--- | 
 |`Name`|Set a name for the loaded model|
-|`Postition`|Set position for the loaded model, the value should be a Vector3 object|
+|`Position`|Set position for the loaded model, the value should be a Vector3 object|
 |`Rotation`|Set rotation for the loaded model, the parameter should be a Vector3 object|
 |`Size`|Real size in the scene, The longest side of the loaded object will be set to this value |
 |`Manipulable`|Determine whether the object could be manipulated, default setting is true|
@@ -87,4 +89,4 @@ This package also provided some prefabs to save your development time, which cou
     <img src="../HoloRepositoryDemoApplication/Images/DemoScene.png" height="400">
 </p>
 
-This package also provided a Demo scene to guide the developer how to use this package, which you can find [here](https://github.com/nbckr/HoloRepository-HoloLens/tree/LENS/Connector-Scripts/HoloStorageConnector/HoloRpository/Demo).
+This package also provided a Demo scene to guide the developer how to use this package, which you can find [here](../HoloRepositoryDemoApplication/Assets/HoloStorageConnector/Demo).
