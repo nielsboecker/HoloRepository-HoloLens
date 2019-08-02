@@ -8,11 +8,29 @@ namespace HoloStorageConnector
     public class HologramInstantiationSettings
     {
         #region Properties
+        /// <summary>
+        /// Set a name for the loaded model
+        /// </summary>
         public string Name { get; set; } = "LoadedModel";
+        /// <summary>
+        /// Set position for the loaded model, the parameter should be a Vector3 value
+        /// </summary>
         public Vector3 Position { get; set; } = new Vector3(0f, 0f, 0f);
+        /// <summary>
+        /// Set rotation for the loaded model, the parameter should be a Vector3 value
+        /// </summary>
         public Vector3 Rotation { get; set; } = new Vector3(0f, 0f, 0f);
+        /// <summary>
+        /// Real size in the scene, The longest side of the loaded object will be set to this value
+        /// </summary>
         public float Size { get; set; } = 1f;
+        /// <summary>
+        /// Determine whether the object could be manipulated
+        /// </summary>
         public bool Manipulable { get; set; } = true;
+        /// <summary>
+        /// Determine which scene you want to load the object
+        /// </summary>
         public string SceneName { get; set; } = null;
         #endregion Properties
 
