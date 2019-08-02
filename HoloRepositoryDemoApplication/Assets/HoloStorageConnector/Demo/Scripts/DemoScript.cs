@@ -49,7 +49,7 @@ public class DemoScript : MonoBehaviour
         Single.SetActive(true);
         try
         {
-            SinglePatientInfo.text = string.Format("Patient name: \n{0}\nGender: {1}\nDate of Birth: \n{2}", patient.name.full, patient.gender, patient.birthDate.Substring(0, 10));
+            SinglePatientInfo.text = $"Patient name: \n{patient.name.full}\nGender: {patient.gender}\nDate of Birth: \n{ patient.birthDate.Substring(0, 10)}";
         }
         catch (Exception e)
         {
