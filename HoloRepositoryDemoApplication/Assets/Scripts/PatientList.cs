@@ -14,23 +14,10 @@ public class PatientList : MonoBehaviour
 
     public static List<Patient> patientList = new List<Patient>();
 
-    public void ReadJsonFile()
+    IEnumerator getAllPateints()
     {
-        StreamReader reader = new StreamReader("./Assets/Sample/samplePatientsWithHolograms.json");
-        string json = reader.ReadToEnd();
-
-        patientList.Clear();
-
-        JSONNode InitialJsonData = JSON.Parse(json);
-        JSONArray JsonArray = InitialJsonData.AsArray;
-        foreach (JSONNode PatientJson in JsonArray)
-        {
-            Patient patient = HoloStorageClient.JsonToPatient(PatientJson);
-            if (patient.pid != null)
-            {
-                patientList.Add(patient);
-            }
-        }
+        List<Patient> patientList = new List<Patient>();
+        yield return HoloStorageClient.GetMultiplePatients(patientList, "IDs");
         foreach (Patient patient in patientList)
         {
             GameObject button = Instantiate(buttonTemplates) as GameObject;
@@ -47,6 +34,6 @@ public class PatientList : MonoBehaviour
 
     void Start()
     {
-        ReadJsonFile();  
+        StartCoroutine(getAllPateints());
     }
 }

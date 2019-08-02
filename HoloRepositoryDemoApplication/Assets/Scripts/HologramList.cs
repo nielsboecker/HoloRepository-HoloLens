@@ -21,24 +21,31 @@ public class HologramList : MonoBehaviour
         }
         else
         {
-            if (PatientListItem.HologramsList.Count == 0)
-            {
-                Message.text = "There is no Holograms for this patient";
-            }
-            else
-            {
-                foreach (Hologram hologram in PatientListItem.HologramsList)
-                {
-                    GameObject button = Instantiate(buttonTemplates) as GameObject;
-                    button.SetActive(true);
-
-                    button.GetComponent<HologramListItem>().SetID(hologram.hid);
-                    string Info = string.Format("Hologram name: {0}\nTitle: {1}\nDate of Creation: {2}", hologram.subject.name.full, hologram.title, hologram.createdDate.Substring(0, 10));
-                    button.GetComponent<HologramListItem>().SetText(Info);
-
-                    button.transform.SetParent(buttonTemplates.transform.parent, false);
-                }
-            }            
+            StartCoroutine(getAllHolograms());
         }        
+    }
+
+    IEnumerator getAllHolograms()
+    {
+        List<Hologram> hologramList = new List<Hologram>();
+        yield return HoloStorageClient.GetMultipleHolograms(hologramList, "IDs");
+        if (hologramList.Count == 0)
+        {
+            Message.text = "There is no Holograms for this patient";
+        }
+        else
+        {
+            foreach (Hologram hologram in hologramList)
+            {
+                GameObject button = Instantiate(buttonTemplates) as GameObject;
+                button.SetActive(true);
+
+                button.GetComponent<HologramListItem>().SetID(hologram.hid);
+                //string Info = string.Format("Hologram name: {0}\nTitle: {1}\nDate of Creation: {2}", hologram.subject.name.full, hologram.title, hologram.createdDate.Substring(0, 10));
+                button.GetComponent<HologramListItem>().SetText($"Subject patient ID: {hologram.subject.pid}");
+
+                button.transform.SetParent(buttonTemplates.transform.parent, false);
+            }
+        }
     }
 }

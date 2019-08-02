@@ -104,10 +104,10 @@ namespace HoloStorageConnector
                 foreach (JSONNode HologramJson in JsonArray)
                 {
                     Hologram hologram = JsonToHologram(HologramJson);
-                    if (hologram.hid != null)
-                    {
+                    //if (hologram.hid != null)
+                    //{
                         hologramList.Add(hologram);
-                    }
+                    //}
                 }
             }
         }
@@ -270,7 +270,7 @@ namespace HoloStorageConnector
         {
             Hologram hologram = new Hologram();
 
-            if (Json["hid"].Value == "")
+            if (Json["bodySite"].Value == "")
             {
                 Debug.LogError("No response from server with this hologram ID!");
                 return hologram;
