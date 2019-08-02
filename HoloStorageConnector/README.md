@@ -59,7 +59,7 @@ You need to create a HologramInstantiationSettings instance before you load the 
 void LoadModel()
 {
     HologramInstantiationSettings setting = new HologramInstantiationSettings();
-    setting.Name = "ModelDisplayScene";
+    setting.Name = "Loaded Model";
     setting.Rotation = new Vector3(0, 180, 0);
     setting.Position = new Vector3(0f, 0f, 2f);
     setting.Size = 0.5f;
