@@ -176,7 +176,7 @@ namespace HoloStorageConnector
         }
         #endregion Public Method
 
-        #region Private Common Method
+        #region Common Method
         /// <summary>
         /// Common method <c>GetRequest</c> is used to handle web request 
         /// </summary>
@@ -219,7 +219,7 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="Json">Initial json data</param>
         /// <returns>Patient object with retrieved information</returns>
-        private static Patient JsonToPatient(JSONNode Json)
+        public static Patient JsonToPatient(JSONNode Json)
         {
             Patient patient = new Patient();
 
@@ -266,7 +266,7 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="Json">Initial json data</param>
         /// <returns>Hologram object with retrieved information</returns>
-        private static Hologram JsonToHologram(JSONNode Json)
+        public static Hologram JsonToHologram(JSONNode Json)
         {
             Hologram hologram = new Hologram();
 
@@ -311,6 +311,6 @@ namespace HoloStorageConnector
             }            
             return hologram;
         }
-        #endregion Private Commom Method
+        #endregion Commom Method
     }
 }

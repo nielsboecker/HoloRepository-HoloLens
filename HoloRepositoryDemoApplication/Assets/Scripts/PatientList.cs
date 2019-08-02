@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using LitJson;
+using SimpleJSON;
 using HoloStorageConnector;
 using TMPro;
 using UnityEngine.Networking;
@@ -21,11 +21,15 @@ public class PatientList : MonoBehaviour
 
         patientList.Clear();
 
-        JsonData jsonData = JsonMapper.ToObject(json);
-        for (int i = 0; i < jsonData.Count; i++)
+        JSONNode InitialJsonData = JSON.Parse(json);
+        JSONArray JsonArray = InitialJsonData.AsArray;
+        foreach (JSONNode PatientJson in JsonArray)
         {
-            Patient patient = JsonMapper.ToObject<Patient>(jsonData[i].ToJson());
-            patientList.Add(patient);
+            Patient patient = HoloStorageClient.JsonToPatient(PatientJson);
+            if (patient.pid != null)
+            {
+                patientList.Add(patient);
+            }
         }
         foreach (Patient patient in patientList)
         {
