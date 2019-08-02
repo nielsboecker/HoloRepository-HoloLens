@@ -139,10 +139,10 @@ namespace HoloStorageConnector
         /// It requires thehologram ID as the parameter 
         /// </summary>
         /// <param name="HologramID">ID of Hologram</param>
-        public static async void LoadHologram(string HologramID)
+        public static async void LoadHologram(HologramInstantiationSettings setting, string HologramID)
         {
             WebRequestReturnData = null;
-            //string GetHologramUri = BaseUri + "/holograms/" + HologramID + "/download";
+            //string GetHologramUri = $"{BaseUri}{apiPrefix}/holograms/{HolgramID}/download";
             string GetHologramUri = "https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb";      
 
             Response response = new Response();
@@ -166,7 +166,7 @@ namespace HoloStorageConnector
             try
             {
                 GameObject loadedObject = await gltfObject.ConstructAsync();
-                ModelSetting.Initialize(loadedObject);
+                HologramInstantiationSettings.Initialize(loadedObject, setting);
             }
             catch (Exception e)
             {

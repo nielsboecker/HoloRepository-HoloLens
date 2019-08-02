@@ -28,11 +28,11 @@ public class HologramListItem : MonoBehaviour
 
     public void LoadHologram()
     {
-        ModelSetting.SetSceneName("ModelDisplayScene");
-        ModelSetting.SetManipulable(true);
-        ModelSetting.SetRotation(new Vector3(0, 180, 0));
-        ModelSetting.SetPostition(new Vector3(0f, 0f, 2f));
-        ModelSetting.SetSize(0.5f);
-        HoloStorageClient.LoadHologram("hid");
+        HologramInstantiationSettings setting = new HologramInstantiationSettings();
+        setting.Name = "ModelDisplayScene";
+        setting.Rotation = new Vector3(0, 180, 0);
+        setting.Position = new Vector3(0f, 0f, 2f);
+        setting.Size = 0.5f;
+        HoloStorageClient.LoadHologram(setting, "hid");
     }
 }

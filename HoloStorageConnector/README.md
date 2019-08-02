@@ -9,7 +9,7 @@ This package provides some scripts allow developers use it to retrieve data and 
 
 To use the HoloStorageConnector, after you import the asset package, you could import the namespace like this:
 ```
-using HoloRepository;
+using HoloStorageConnector;
 ```
 
 ## HoloStorageClient
@@ -21,53 +21,56 @@ using HoloRepository;
 |`GetPatient(Patient patient, string patientID)`|Retrieve a single patient meta data by patient ID|
 |`GetMultipleHolograms(List<Hologram> List, string IDs)`|Retrieve multiple Holograms meta data from HoloStorage server|
 |`GetHologram(Hologram hologram, string HolgramID)`|Retrieve a single Hologram meta data by hologram ID|
-|`LoadHologram(string HologramID)`|Load a Hologram object to scene by ID|
+|`LoadHologram(HologramInstantiationSettings setting, string HologramID)`|Load a Hologram object to scene by ID, requires Hologram instantiation settings|
 
 Example usage:
 ```
-StartCoroutine(Query());
-IEnumerator Query()
+StartCoroutine(RetrievePatients());
+IEnumerator RetrievePatients()
 {        
     List<Patient> patientList = new List<PatientInfo>();
     yield return HoloStorageClient.GetMultiplePatients(patientList, "IDs");
     //Do something here...
+    //For example:
     foreach (Patient patient in patientList)
     {
         Debug.Log(patient.name.full);
     }
 }
 ...
-HoloStorageClient.LoadHologram("hololensid");
+HoloStorageClient.LoadHologram(setting, "hid");
 ```
-## ModelSetting
-`ModelSetting` script allow users to set the transform settings before load the 3D object from server, for example, set the position, rotation and scale of the 3D object, you can also determine whether the object could be manipulated or which scene you want to load.
+## HologramInstantiationSettings
+`HologramInstantiationSettings` script allow users to set the transform settings before load the 3D object from server, for example, set the position, rotation and scale of the 3D object, you can also determine whether the object could be manipulated or which scene you want to load.
 
-|Method|Description|
+|Properties|Description|
 | :--- | :--- | 
-|`SetModelName(string name)`|Set a name for the loaded model|
-|`SetPostition(Vector3 position)`|Set position for the loaded model, the parameter should be a Vector3 object|
-|`SetRotation(Vector3 rotation)`|Set rotation for the loaded model, the parameter should be a Vector3 object|
-|`SetSize(float size)`|Set size for the loaded model, |
-|`SetManipulable(bool manipulable)`|Determine whether the object could be manipulated, default setting is true|
-|`SetSeceneName(string scenename)`|Determine which scene you want to load the object|
+|`Name`|Set a name for the loaded model|
+|`Postition`|Set position for the loaded model, the value should be a Vector3 object|
+|`Rotation`|Set rotation for the loaded model, the parameter should be a Vector3 object|
+|`Size`|Real size in the scene, The longest side of the loaded object will be set to this value |
+|`Manipulable`|Determine whether the object could be manipulated, default setting is true|
+|`SeceneName`|Determine which scene you want to load the object|
 
 Example usage:
+
+You need to create a HologramInstantiationSettings instance before you load the hologram, and pass the settings as a parameter when call the LoadHologram method.
 ```
 void LoadModel()
 {
-    ModelSetting.SetName("LoadedModel");
-    ModelSetting.SetManipulable(true);
-    ModelSetting.SetRotation(new Vector3(0, 180, 0));
-    ModelSetting.SetPostition(new Vector3(0, 0, 2f));
-    ModelSetting.SetSize(1f);
-    HoloStorageClient.LoadHologram("hololensid");
+    HologramInstantiationSettings setting = new HologramInstantiationSettings();
+    setting.Name = "ModelDisplayScene";
+    setting.Rotation = new Vector3(0, 180, 0);
+    setting.Position = new Vector3(0f, 0f, 2f);
+    setting.Size = 0.5f;
+    HoloStorageClient.LoadHologram(setting, "hid");
 }
 ```
 
 ## HoloStorageEntities
 `HoloStorageEntities` script is used to define the related HoloStorage entities, make it easier to map the information from json data. 
 
-|Class|Description|
+|Classes|Description|
 | :--- | :--- | 
 |`Patient`|Patient object, contains the basic information of the patient, like name date od birth and address|
 |`Hologram`|Hologram object, contains the basic information of the hologram, like title, create date and author|
@@ -77,7 +80,7 @@ void LoadModel()
 |`Author`|Author of the Hologram|
 
 ## Prefabs
-This package also provided some prefabs to save your development time, which could be found in Prefabs folder, include a Canvas for HoloLens app and a number pad for D3D type HoloLens app.
+This package also provided some prefabs to save your development time, which could be found in Prefabs folder.
 
 ## Demo scene
 <p align="center">
