@@ -1,23 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using SimpleJSON;
 using HoloStorageConnector;
-using TMPro;
-using UnityEngine.Networking;
 
 public class PatientList : MonoBehaviour
 {
     [SerializeField]
     private GameObject buttonTemplates = null;
-
     public static List<Patient> patientList = new List<Patient>();
+    public static bool InitialFlag = true;
+
+    void Start()
+    {
+        if (InitialFlag)
+        {
+            InitialFlag = false;
+            StartCoroutine(getAllPateints());
+        }
+        else
+        {
+            GenerateListView(patientList);
+        }      
+    }
 
     IEnumerator getAllPateints()
     {
-        List<Patient> patientList = new List<Patient>();
         yield return HoloStorageClient.GetMultiplePatients(patientList, "IDs");
+        GenerateListView(patientList);
+    }
+
+    private void GenerateListView(List<Patient> patientList)
+    {
         foreach (Patient patient in patientList)
         {
             GameObject button = Instantiate(buttonTemplates) as GameObject;
@@ -30,10 +43,5 @@ public class PatientList : MonoBehaviour
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
-    }
-
-    void Start()
-    {
-        StartCoroutine(getAllPateints());
     }
 }

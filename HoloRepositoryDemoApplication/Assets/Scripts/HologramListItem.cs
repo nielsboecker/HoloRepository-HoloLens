@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using HoloStorageConnector;
@@ -28,6 +26,7 @@ public class HologramListItem : MonoBehaviour
 
     public void LoadHologram()
     {
+        HologramList.SceneSwitchFlag = true;
         HologramInstantiationSettings setting = new HologramInstantiationSettings();
         setting.Name = "Loaded Model";
         setting.Rotation = new Vector3(0, 180, 0);

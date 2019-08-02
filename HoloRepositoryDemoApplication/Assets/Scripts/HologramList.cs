@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using HoloStorageConnector;
 
@@ -12,18 +11,24 @@ public class HologramList : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI Message = null;
     public static bool InitialFlag = true;
-    private List<Hologram> hologramList = new List<Hologram>();
+    public static bool SceneSwitchFlag = false;
+    public static List<Hologram> hologramList = new List<Hologram>();
 
     public void Start()
     {
         if (InitialFlag)
         {
             Message.text = "Please select a patient to check the Hologram";
+            return;
         }
-        else
+        if (SceneSwitchFlag)
         {
-            StartCoroutine(getAllHolograms());
-        }        
+            GenerateListView(hologramList);
+            SceneSwitchFlag = false;
+            return;
+        }
+
+        StartCoroutine(getAllHolograms());
     }
 
     IEnumerator getAllHolograms()
@@ -35,17 +40,22 @@ public class HologramList : MonoBehaviour
         }
         else
         {
-            foreach (Hologram hologram in hologramList)
-            {
-                GameObject button = Instantiate(buttonTemplates) as GameObject;
-                button.SetActive(true);
-
-                button.GetComponent<HologramListItem>().SetID(hologram.hid);
-                //string Info = string.Format("Hologram name: {0}\nTitle: {1}\nDate of Creation: {2}", hologram.subject.name.full, hologram.title, hologram.createdDate.Substring(0, 10));
-                button.GetComponent<HologramListItem>().SetText($"Subject patient ID: {hologram.subject.pid}");
-
-                button.transform.SetParent(buttonTemplates.transform.parent, false);
-            }
+            GenerateListView(hologramList);
         }
     }
+
+    private void GenerateListView(List<Hologram> hologramList)
+    {
+        foreach (Hologram hologram in hologramList)
+        {
+            GameObject button = Instantiate(buttonTemplates) as GameObject;
+            button.SetActive(true);
+
+            button.GetComponent<HologramListItem>().SetID(hologram.hid);
+            //string Info = string.Format("Hologram name: {0}\nTitle: {1}\nDate of Creation: {2}", hologram.subject.name.full, hologram.title, hologram.createdDate.Substring(0, 10));
+            button.GetComponent<HologramListItem>().SetText($"Subject patient ID: {hologram.subject.pid}");
+
+            button.transform.SetParent(buttonTemplates.transform.parent, false);
+        }
+    } 
 }
