@@ -63,8 +63,8 @@ namespace HoloStorageConnector
             {
                 try
                 {
-                    Scene ModelDisplayScene = SceneManager.GetSceneByName(setting.SceneName);
-                    SceneManager.MoveGameObjectToScene(gameobject, ModelDisplayScene);
+                    Scene HologramDisplayScene = SceneManager.GetSceneByName(setting.SceneName);
+                    SceneManager.MoveGameObjectToScene(gameobject, HologramDisplayScene);
                 }
                 catch (Exception e)
                 {
