@@ -23,7 +23,7 @@ namespace HoloStorageConnector
         /// <summary>
         /// Real size in the scene, The longest side of the loaded object will be set to this value
         /// </summary>
-        public float Size { get; set; } = 1f;
+        public float Size { get; set; } = 0.5f;
         /// <summary>
         /// Determine whether the object could be manipulated
         /// </summary>
