@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
 public class LoginAuthentication : MonoBehaviour
 {
     [SerializeField]
-    private TMP_InputField PIN;
+    private bool DevelopMode = false;
     [SerializeField]
-    private TextMeshProUGUI WarningInfo;
+    private TMP_InputField PIN = null;
     [SerializeField]
-    private GameObject PINPad;
+    private TextMeshProUGUI WarningInfo = null;
+    [SerializeField]
+    private GameObject PINPad = null;
 
     private void Start()
     {
@@ -21,7 +20,7 @@ public class LoginAuthentication : MonoBehaviour
 
     public void Auth()
     {
-        if (PIN.text == "3825")
+        if (DevelopMode)
         {
             Destroy(PINPad);
             SceneManager.LoadScene("PatientListScene", LoadSceneMode.Additive);
@@ -29,9 +28,18 @@ public class LoginAuthentication : MonoBehaviour
         }
         else
         {
-            WarningInfo.text = "The PIN is wrong!";
-            PIN.Select();
-            PIN.text = "";
+            if (PIN.text == "3825")
+            {
+                Destroy(PINPad);
+                SceneManager.LoadScene("PatientListScene", LoadSceneMode.Additive);
+                SceneManager.LoadScene("HologramListScene", LoadSceneMode.Additive);
+            }
+            else
+            {
+                WarningInfo.text = "The PIN is wrong!";
+                PIN.Select();
+                PIN.text = "";
+            }
         }
     }
 

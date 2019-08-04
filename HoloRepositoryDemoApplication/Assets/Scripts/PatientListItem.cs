@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
+using HoloStorageConnector;
 
 public class PatientListItem : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI PatientInfo;
+    private TextMeshProUGUI PatientInfo = null;
     [SerializeField]
-    private Text PatientID;
+    private Text PatientID = null;
     [SerializeField]
-    private TextMeshProUGUI PatientName;
+    private TextMeshProUGUI PatientName = null;
     public static List<Hologram> HologramsList = new List<Hologram>();
 
     private void Start()
@@ -36,18 +35,7 @@ public class PatientListItem : MonoBehaviour
 
     public void TurnToHologramPage()
     {
-        HologramsList.Clear();
         HologramList.InitialFlag = false;
-        foreach (Patient patient in PatientList.patientList)
-        {
-            if (patient.pid == PatientID.text)
-            {
-                foreach (Hologram hologram in patient.holograms)
-                {
-                    HologramsList.Add(hologram);
-                }
-            }
-        }
         ScenesManager.RefreshScene("HologramListScene");
     }
 }

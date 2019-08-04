@@ -1,31 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using LitJson;
-using TMPro;
-using UnityEngine.Networking;
+using HoloStorageConnector;
 
 public class PatientList : MonoBehaviour
 {
     [SerializeField]
-    private GameObject buttonTemplates;
-
+    private GameObject buttonTemplates = null;
     public static List<Patient> patientList = new List<Patient>();
+    public static bool InitialFlag = true;
 
-    public void ReadJsonFile()
+    void Start()
     {
-        StreamReader reader = new StreamReader("./Assets/Sample/samplePatientsWithHolograms.json");
-        string json = reader.ReadToEnd();
-
-        patientList.Clear();
-
-        JsonData jsonData = JsonMapper.ToObject(json);
-        for (int i = 0; i < jsonData.Count; i++)
+        if (InitialFlag)
         {
-            Patient patient = JsonMapper.ToObject<Patient>(jsonData[i].ToJson());
-            patientList.Add(patient);
+            InitialFlag = false;
+            StartCoroutine(getAllPateints());
         }
+        else
+        {
+            GenerateListView(patientList);
+        }      
+    }
+
+    IEnumerator getAllPateints()
+    {
+        yield return HoloStorageClient.GetMultiplePatients(patientList, "IDs");
+        GenerateListView(patientList);
+    }
+
+    private void GenerateListView(List<Patient> patientList)
+    {
         foreach (Patient patient in patientList)
         {
             GameObject button = Instantiate(buttonTemplates) as GameObject;
@@ -38,10 +43,5 @@ public class PatientList : MonoBehaviour
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
-    }
-
-    void Start()
-    {
-        ReadJsonFile();  
     }
 }
