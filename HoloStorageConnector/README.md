@@ -89,3 +89,7 @@ This package also provided some prefabs to save your development time, which cou
 </p>
 
 This package also provided a Demo scene to guide the developer how to use this package, which you can find [here](../HoloRepositoryDemoApplication/Assets/HoloStorageConnector/Demo).
+
+## Technologies
+The following technologies are used in this component:
+* [SimpleJSON](https://wiki.unity3d.com/index.php/SimpleJSON) is used to parse the JSON data.
