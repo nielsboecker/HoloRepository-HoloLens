@@ -20,19 +20,33 @@ public class DemoScript : MonoBehaviour
 
     public void GetAllPatients()
     {
-        StartCoroutine(getAllPatients());
+        StartCoroutine(getAllHolograms());
     }
 
     IEnumerator getAllPatients()
     {
         List<Patient> patientList = new List<Patient>();
-        yield return HoloStorageClient.GetMultiplePatients(patientList,"IDs");
+        yield return HoloStorageClient.GetMultiplePatients(patientList, "additionalProp1,additionalProp2,additionalProp3");
         All.SetActive(true);
         foreach (Patient patient in patientList)
         {
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
             button.GetComponent<DemoScript>().SetText(patient.name.full);
+            button.transform.SetParent(buttonTemplates.transform.parent, false);
+        }
+    }
+
+    IEnumerator getAllHolograms()
+    {
+        List<Hologram> hologramList = new List<Hologram>();
+        yield return HoloStorageClient.GetMultipleHolograms(hologramList, "additionalProp1,additionalProp2,additionalProp3");
+        All.SetActive(true);
+        foreach (Hologram hologram in hologramList)
+        {
+            GameObject button = Instantiate(buttonTemplates) as GameObject;
+            button.SetActive(true);
+            button.GetComponent<DemoScript>().SetText(hologram.bodySite);
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
     }

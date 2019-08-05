@@ -7,6 +7,7 @@ using Microsoft.MixedReality.Toolkit.Utilities.Gltf.Serialization;
 using System.Collections.Generic;
 using System.Reflection;
 using SimpleJSON;
+using System.IO;
 
 
 /// <summary>
@@ -50,24 +51,28 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
-            //string MultiplePatientUri = $"{BaseUri}{apiPrefix}/patients?={IDs}";
+            //string MultiplePatientUri = $"{BaseUri}{apiPrefix}/patients?pid={IDs}";
             string MultiplePatientUri = $"{BaseUri}/patients";
             yield return GetRequest(MultiplePatientUri);
 
+            StreamReader reader = new StreamReader("./Assets/Sample/samplePatients.json");
+            string json = reader.ReadToEnd();
+
             patientList.Clear();
+            string[] ids = IDs.Split(',');
             if (WebRequestReturnData != null)
             {
-                JSONNode InitialJsonData = JSON.Parse(WebRequestReturnData);
-                JSONArray JsonArray = InitialJsonData.AsArray;
-                foreach (JSONNode PatientJson in JsonArray)
+                JSONNode InitialJsonData = JSON.Parse(json);
+                foreach (string id in ids)
                 {
-                    Patient patient = JsonToPatient(PatientJson);
+                    JSONNode data = InitialJsonData[id];
+                    Patient patient = JsonToPatient(data);
                     if (patient.pid != null)
                     {
                         patientList.Add(patient);
                     }
                 }
-            }
+            }            
         }
 
         /// <summary>
@@ -100,22 +105,27 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
         {
-            //string MultipleHologramUri = $"{BaseUri}{apiPrefix}/holograms?={IDs}";        
+            //string MultipleHologramUri = $"{BaseUri}{apiPrefix}/holograms?hid={IDs}";        
             string MultipleHologramUri = $"{BaseUri}/holograms";
             yield return GetRequest(MultipleHologramUri);
 
+            StreamReader reader = new StreamReader("./Assets/Sample/sampleHolograms.json");
+            string json = reader.ReadToEnd();
+
             hologramList.Clear();
+            string[] ids = IDs.Split(',');
             if (WebRequestReturnData != null)
             {
-                JSONNode InitialJsonData = JSON.Parse(WebRequestReturnData);
-                JSONArray JsonArray = InitialJsonData.AsArray;
-                foreach (JSONNode HologramJson in JsonArray)
+                JSONNode InitialJsonData = JSON.Parse(json);
+                foreach (string id in ids)
                 {
-                    Hologram hologram = JsonToHologram(HologramJson);
-                    //if (hologram.hid != null)
-                    //{
+                    JSONNode data = InitialJsonData[id];
+                    JSONArray JsonArray = data.AsArray;
+                    foreach (JSONNode HologramJson in JsonArray)
+                    {
+                        Hologram hologram = JsonToHologram(HologramJson);
                         hologramList.Add(hologram);
-                    //}
+                    }
                 }
             }
         }
