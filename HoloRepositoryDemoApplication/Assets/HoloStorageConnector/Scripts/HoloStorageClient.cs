@@ -66,7 +66,7 @@ namespace HoloStorageConnector
                         patientList.Add(patient);
                     }
                 }
-            }            
+            }
         }
 
         /// <summary>
