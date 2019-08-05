@@ -1,13 +1,11 @@
 # HoloStorageConnector
-HoloStorageConnector is used to provide an importable Unity asset package, to facilitate the development of HoloLens app with HoloStorage. This package make connection with HoloStorage based on the [HoloStorage Accessor API](https://app.swaggerhub.com/apis/boonwj/HoloRepository/1.0.0#/default/get_patients). As the development of HoloStorage is still in progress, you could test the Connector package with the HoloRepositoryUI backend server, details could be found in our [main GitHub repo](https://github.com/nbckr/HoloRepository-Core).
+HoloStorageConnector is used to provide an importable Unity asset package, to facilitate the development of HoloLens app with HoloStorage. This package build the connection with HoloStorage based on the [HoloStorage Accessor API](https://app.swaggerhub.com/apis/boonwj/HoloRepository/1.0.0#/). Current connector package is developed based on HoloStorage Accessor API version 1.0.0, you can access our main [GitHub repository](https://github.com/nbckr/HoloRepository-Core) to find more information about the HoloStorage Accessor server.
 
 **Important note**: Currently, the HoloStorageConnector script is developed inside the DemoApplication. This folder only contains a symbolic link to the package inside that applicatiton's `Assets/` in order to prevent duplicate code. Ideally, it would be the other way around. However, due to inconsistencies in how Windows supports symlinks, this can break the build (if the symlink is not recognised in a Windows development environment, the Connector namespace is missing in the demo app). For 3rd party developers to obtain the package they can copy the folder or, which is the recommended way, download the AssetPackage from a GitHub release. 
 
 This package provides some scripts allow developers use it to retrieve data and load 3D objects from Storage server. It also provided a Demo scene to guide developer use this package. The detail of methods and usage of each scripts are listed below.
 
-**Important: If you get MRTK related errors or missing some materials and components, please import the [MRTK2](https://github.com/microsoft/MixedRealityToolkit-Unity/releases) again (Please import the version Microsoft Mixed Reality Toolkit v2.0.0 RC2.1).**
-
-**Remind: Current script is based on HoloRepositoryUI backend server, some method and class definition will be modified later.**
+**Important: If you get MRTK related errors or missing some materials and components, please import the [MRTK2](https://github.com/microsoft/MixedRealityToolkit-Unity/releases) again (The version used in this project is Microsoft Mixed Reality Toolkit v2.0.0 RC2.1).**
 
 To use the HoloStorageConnector, after you import the asset package, you could import the namespace like this:
 ```
@@ -15,19 +13,22 @@ using HoloStorageConnector;
 ```
 
 ## HoloStorageClient
-`HoloStorageClient` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patient and holograms based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri.
+`HoloStorageClient` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patients, holograms and authors based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri.
 
 |Method|Description|
 | :--- | :--- | 
 |`GetMultiplePatients(List<Patient> List, string IDs)`|Retrieve multiple patients meta data from HoloStorage server|
 |`GetPatient(Patient patient, string patientID)`|Retrieve a single patient meta data by patient ID|
-|`GetMultipleHolograms(List<Hologram> List, string IDs)`|Retrieve multiple Holograms meta data from HoloStorage server|
-|`GetHologram(Hologram hologram, string HolgramID)`|Retrieve a single Hologram meta data by hologram ID|
-|`LoadHologram(HologramInstantiationSettings setting, string HologramID)`|Load a Hologram object to scene by ID, requires Hologram instantiation settings|
+|`GetMultipleHolograms(List<Hologram> List, string IDs)`|Retrieve multiple holograms meta data from HoloStorage server|
+|`GetHologram(Hologram hologram, string HolgramID)`|Retrieve a single hologram meta data by hologram ID|
+|`GetMultipleAuthors(List<Author> List, string IDs)`|Retrieve multiple authors meta data from HoloStorage server|
+|`GetAuthor(Author author, string AuthorID)`|Retrieve a single author meta data by author ID|
+|`LoadHologram(string HologramID, HologramInstantiationSettings setting)`|Load a Hologram object to scene by ID, Hologram instantiation settings is optional|
 
 Example usage:
 ```
 StartCoroutine(RetrievePatients());
+
 IEnumerator RetrievePatients()
 {        
     List<Patient> patientList = new List<PatientInfo>();
@@ -40,23 +41,23 @@ IEnumerator RetrievePatients()
     }
 }
 ...
-HoloStorageClient.LoadHologram(setting, "hid");
+HoloStorageClient.LoadHologram("hid");
 ```
 ## HologramInstantiationSettings
 `HologramInstantiationSettings` script allow users to set the transform settings before load the 3D object from server, for example, set the position, rotation and scale of the 3D object, you can also determine whether the object could be manipulated or which scene you want to load.
 
 |Properties|Description|
 | :--- | :--- | 
-|`Name`|Set a name for the loaded model|
-|`Position`|Set position for the loaded model, the value should be a Vector3 object|
-|`Rotation`|Set rotation for the loaded model, the parameter should be a Vector3 object|
-|`Size`|Real size in the scene, The longest side of the loaded object will be set to this value |
-|`Manipulable`|Determine whether the object could be manipulated, default setting is true|
-|`SeceneName`|Determine which scene you want to load the object|
+|`Name`|Set a name for the loaded model. Default value is "LoadedModel"|
+|`Position`|Set position for the loaded model, the value should be a Vector3 object. Default value is (0, 0, 0)|
+|`Rotation`|Set rotation for the loaded model, the parameter should be a Vector3 object. Default value is (0, 0, 0)|
+|`Size`|Real size in the scene, The longest side of the loaded object will be set to this value. Default value is 0.5f|
+|`Manipulable`|Determine whether the object could be manipulated. Default setting is true|
+|`SeceneName`|Determine which scene you want to load the object. Default value is null, which means the object will be loaded to the current active scene|
 
 Example usage:
 
-You need to create a HologramInstantiationSettings instance before you load the hologram, and pass the settings as a parameter when call the LoadHologram method.
+You could create a HologramInstantiationSettings instance before you load the hologram, and pass the settings as a parameter when call the LoadHologram method. The settings are optional, if you ignore the settings, the value of each properties will be set to default.
 ```
 void LoadModel()
 {
@@ -65,7 +66,7 @@ void LoadModel()
     setting.Rotation = new Vector3(0, 180, 0);
     setting.Position = new Vector3(0f, 0f, 2f);
     setting.Size = 0.5f;
-    HoloStorageClient.LoadHologram(setting, "hid");
+    HoloStorageClient.LoadHologram("hid", setting);
 }
 ```
 
@@ -74,12 +75,10 @@ void LoadModel()
 
 |Classes|Description|
 | :--- | :--- | 
-|`Patient`|Patient object, contains the basic information of the patient, like name date od birth and address|
-|`Hologram`|Hologram object, contains the basic information of the hologram, like title, create date and author|
-|`PersonName`|Name for a person, contains title, full name, first name and last name|
-|`Address`|Contains street, city state and postcode properties|
-|`Subject`|Subject of the Hologram|
-|`Author`|Author of the Hologram|
+|`Patient`|Patient object, contains the basic information of the patient, like id, name, date of birth and gender|
+|`Hologram`|Hologram object, contains the basic information of the hologram, like title, create date and description|
+|`Author`|Author of the Hologram, contains the ID and name of the author|
+|`PersonName`|Name for a person, contains title, full name, given name and family name|
 
 ## Prefabs
 This package also provided some prefabs to save your development time, which could be found in Prefabs folder.
