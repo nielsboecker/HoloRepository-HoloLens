@@ -52,8 +52,7 @@ public class HologramList : MonoBehaviour
             button.SetActive(true);
 
             button.GetComponent<HologramListItem>().SetID(hologram.hid);
-            //string Info = string.Format("Hologram name: {0}\nTitle: {1}\nDate of Creation: {2}", hologram.subject.name.full, hologram.title, hologram.createdDate.Substring(0, 10));
-            button.GetComponent<HologramListItem>().SetText($"Subject patient ID: {hologram.subject.pid}");
+            button.GetComponent<HologramListItem>().SetText($"Hologram title: {hologram.title}\nDescription: {hologram.description}\nDate of Creation: {hologram.creationDate.Substring(0, 10)}");
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
