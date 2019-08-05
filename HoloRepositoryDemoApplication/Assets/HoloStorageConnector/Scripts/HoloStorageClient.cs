@@ -245,26 +245,15 @@ namespace HoloStorageConnector
             try
             {
                 patient.pid = Json["pid"].Value;
+                patient.gender = Json["gender"].Value;
+                patient.birthDate = Json["birthDate"].Value;
 
                 PersonName name = new PersonName();
                 name.title = Json["name"]["title"].Value;
                 name.full = Json["name"]["full"].Value;
-                name.first = Json["name"]["first"].Value;
-                name.last = Json["name"]["last"].Value;
+                name.given = Json["name"]["given"].Value;
+                name.family = Json["name"]["family"].Value;
                 patient.name = name;
-
-                patient.gender = Json["gender"].Value;
-                patient.email = Json["email"].Value;
-                patient.phone = Json["phone"].Value;
-                patient.birthDate = Json["birthDate"].Value;
-                patient.pictureUrl = Json["pictureUrl"].Value;
-
-                Address address = new Address();
-                address.street = Json["address"]["street"].Value;
-                address.city = Json["address"]["city"].Value;
-                address.state = Json["address"]["state"].Value;
-                address.postcode = Json["address"]["postcode"].AsInt;
-                patient.address = address;
             }
             catch (Exception e)
             {
@@ -283,7 +272,7 @@ namespace HoloStorageConnector
         {
             Hologram hologram = new Hologram();
 
-            if (Json["bodySite"].Value == "")
+            if (Json["hid"].Value == "")
             {
                 Debug.LogError("No response from server with this hologram ID!");
                 return hologram;
@@ -293,30 +282,16 @@ namespace HoloStorageConnector
             {
                 hologram.hid = Json["hid"].Value;
                 hologram.title = Json["title"].Value;
-
-                Subject subject = new Subject();
-                subject.pid = Json["subject"]["pid"].Value;
-                PersonName name = new PersonName();
-                name.title = Json["subject"]["name"]["title"].Value;
-                name.full = Json["subject"]["name"]["full"].Value;
-                name.first = Json["subject"]["name"]["first"].Value;
-                name.last = Json["subject"]["name"]["last"].Value;
-                subject.name = name;
-                hologram.subject = subject;
-
-                Author author = new Author();
-                author.aid = Json["author"]["aid"].Value;
-                PersonName AuthorName = new PersonName();
-                AuthorName.title = Json["author"]["name"]["title"].Value;
-                AuthorName.full = Json["author"]["name"]["full"].Value;
-                AuthorName.first = Json["author"]["name"]["first"].Value;
-                AuthorName.last = Json["author"]["name"]["last"].Value;
-                author.name = AuthorName;
-                hologram.author = author;
-
-                hologram.createdDate = Json["createdDate"].Value;
+                hologram.description = Json["description"].Value;
+                hologram.contentType = Json["contentType"].Value;
                 hologram.fileSizeInkb = Json["fileSizeInkb"].AsInt;
-                hologram.imagingStudySeriesId = Json["imagingStudySeriesId"].Value;
+                hologram.bodySite = Json["bodySite"].Value;
+                hologram.dateOfImaging = Json["dateOfImaging"].Value;
+                hologram.creationDate = Json["creationDate"].Value;
+                hologram.creationMode = Json["creationMode"].Value;
+                hologram.creationDescription = Json["creationDescription"].Value;
+                hologram.aid = Json["aid"].Value;
+                hologram.pid = Json["pid"].Value;
             }
             catch (Exception e)
             {
