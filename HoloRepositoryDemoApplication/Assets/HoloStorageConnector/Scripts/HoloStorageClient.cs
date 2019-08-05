@@ -7,7 +7,6 @@ using Microsoft.MixedReality.Toolkit.Utilities.Gltf.Serialization;
 using System.Collections.Generic;
 using System.Reflection;
 using SimpleJSON;
-using System.IO;
 
 namespace HoloStorageConnector
 {
@@ -81,16 +80,12 @@ namespace HoloStorageConnector
             string GetPatientUri = $"{BaseUri}/patients/{patientID}";
             yield return GetRequest(GetPatientUri);
 
-            try
+            if (WebRequestReturnData != null)
             {
                 JSONNode PatientJson = JSON.Parse(WebRequestReturnData);
                 Patient Patient = JsonToPatient(PatientJson, patientID);
                 CopyProperties(Patient, patient);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Failed to get the patient from server! \n[Error message]:" + e.Message);
-            }                      
+            }                
         }
 
         /// <summary>
@@ -139,16 +134,12 @@ namespace HoloStorageConnector
             string GetHologramUri = $"{BaseUri}/holograms/{HolgramID}";
             yield return GetRequest(GetHologramUri);
 
-            try
+            if (WebRequestReturnData != null)
             {
                 JSONNode HologramJson = JSON.Parse(WebRequestReturnData);
                 Hologram Hologram = JsonToHologram(HologramJson, HolgramID);
                 CopyProperties(Hologram, hologram);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Failed to get the hologram from server! \n[Error message]: " + e.Message);
-            }               
+            }             
         }
 
 
@@ -190,15 +181,12 @@ namespace HoloStorageConnector
         {
             string GetAuthorUri = $"{BaseUri}/authors/{AuthorID}";
             yield return GetRequest(GetAuthorUri);
-            try
+
+            if (WebRequestReturnData != null)
             {
                 JSONNode AuthorJson = JSON.Parse(WebRequestReturnData);
                 Author Author = JsonToAuthor(AuthorJson, AuthorID);
                 CopyProperties(Author, author);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Failed to get the author from server! \n[Error message]: " + e.Message);
             }
         }
 
