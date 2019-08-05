@@ -18,9 +18,9 @@ namespace HoloStorageConnector
     {
         #region Properties
         private static string StorageAccessorEndpoint = "http://localhost";
-        private static string Port = "3001";
-        private static int apiVersion = 1;
-        private static string BaseUri = $"{StorageAccessorEndpoint}:{Port}/api/v{apiVersion}";        
+        private static string Port = "8080";
+        private static string apiVersion = "1.0.0";
+        private static string BaseUri = $"{StorageAccessorEndpoint}:{Port}/api/{apiVersion}";        
         private static string WebRequestReturnData = null;
         #endregion Properties
 
@@ -36,7 +36,7 @@ namespace HoloStorageConnector
         {
             Port = port;
         }
-        public static void SetAPIVersion(int version)
+        public static void SetAPIVersion(string version)
         {
             apiVersion = version;
         }
@@ -53,14 +53,11 @@ namespace HoloStorageConnector
             string MultiplePatientUri = $"{BaseUri}/patients?pid={IDs}";
             yield return GetRequest(MultiplePatientUri);
 
-            StreamReader reader = new StreamReader("./Assets/Sample/samplePatients.json");
-            string json = reader.ReadToEnd();
-
             patientList.Clear();
             string[] ids = IDs.Split(',');
             if (WebRequestReturnData != null)
             {
-                JSONNode InitialJsonData = JSON.Parse(json);
+                JSONNode InitialJsonData = JSON.Parse(WebRequestReturnData);
                 foreach (string id in ids)
                 {
                     JSONNode data = InitialJsonData[id];
@@ -83,6 +80,7 @@ namespace HoloStorageConnector
         {
             string GetPatientUri = $"{BaseUri}/patients/{patientID}";
             yield return GetRequest(GetPatientUri);
+
             try
             {
                 JSONNode PatientJson = JSON.Parse(WebRequestReturnData);
@@ -106,18 +104,21 @@ namespace HoloStorageConnector
             string MultipleHologramUri = $"{BaseUri}/holograms?hid={IDs}";        
             yield return GetRequest(MultipleHologramUri);
 
-            StreamReader reader = new StreamReader("./Assets/Sample/sampleHolograms.json");
-            string json = reader.ReadToEnd();
-
             hologramList.Clear();
             string[] ids = IDs.Split(',');
             if (WebRequestReturnData != null)
             {
-                JSONNode InitialJsonData = JSON.Parse(json);
+                JSONNode InitialJsonData = JSON.Parse(WebRequestReturnData);
                 foreach (string id in ids)
                 {
                     JSONNode data = InitialJsonData[id];
                     JSONArray JsonArray = data.AsArray;
+
+                    if(JsonArray.Count == 0)
+                    {
+                        Debug.LogError($"Response from server is empty with this ID: {id}");
+                    }
+
                     foreach (JSONNode HologramJson in JsonArray)
                     {
                         Hologram hologram = JsonToHologram(HologramJson, id);
@@ -137,6 +138,7 @@ namespace HoloStorageConnector
         {
             string GetHologramUri = $"{BaseUri}/holograms/{HolgramID}";
             yield return GetRequest(GetHologramUri);
+
             try
             {
                 JSONNode HologramJson = JSON.Parse(WebRequestReturnData);
@@ -169,10 +171,9 @@ namespace HoloStorageConnector
                 foreach (string id in ids)
                 {
                     JSONNode data = InitialJsonData[id];
-                    JSONArray JsonArray = data.AsArray;
-                    foreach (JSONNode AuthorJson in JsonArray)
+                    Author author = JsonToAuthor(data, id);
+                    if (author.aid != null)
                     {
-                        Author author = JsonToAuthor(AuthorJson, id);
                         authorList.Add(author);
                     }
                 }
@@ -297,7 +298,7 @@ namespace HoloStorageConnector
 
             if (Json["pid"].Value == "")
             {
-                Debug.LogError($"No response from server with this patient ID: {id}");
+                Debug.LogError($"Response from server is empty with this patient ID: {id}");
                 return patient;
             }
 
@@ -333,7 +334,7 @@ namespace HoloStorageConnector
 
             if (Json["hid"].Value == "")
             {
-                Debug.LogError($"No response from server with this hologram ID: {id}");
+                Debug.LogError($"Response from server is empty with this ID: {id}");
                 return hologram;
             }
 
@@ -370,7 +371,7 @@ namespace HoloStorageConnector
 
             if (Json["aid"].Value == "")
             {
-                Debug.LogError($"No response from server with this author ID: {id}");
+                Debug.LogError($"Response from server is empty with this author ID: {id}");
                 return author;
             }
 

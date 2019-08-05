@@ -25,7 +25,7 @@ public class PatientList : MonoBehaviour
 
     IEnumerator getAllPateints()
     {
-        yield return HoloStorageClient.GetMultiplePatients(patientList, "additionalProp1,additionalProp2,additionalProp3");
+        yield return HoloStorageClient.GetMultiplePatients(patientList, "p-100,p-101,p-102");
         GenerateListView(patientList);
     }
 
@@ -37,7 +37,7 @@ public class PatientList : MonoBehaviour
             button.SetActive(true);
 
             button.GetComponent<PatientListItem>().SetID(patient.pid);
-            button.GetComponent<PatientListItem>().SetName(patient.name.full);
+            button.GetComponent<PatientListItem>().SetName($"{patient.name.given} {patient.name.family}");
             string Info = string.Format("Gender: {0}\nDate of birth: {1}", patient.gender, patient.birthDate.Substring(0, 10));
             button.GetComponent<PatientListItem>().SetText(Info);
 
