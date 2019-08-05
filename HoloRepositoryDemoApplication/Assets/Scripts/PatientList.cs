@@ -15,7 +15,7 @@ public class PatientList : MonoBehaviour
         if (InitialFlag)
         {
             InitialFlag = false;
-            StartCoroutine(getAllPateints());
+            StartCoroutine(getAllPatients());
         }
         else
         {
@@ -23,7 +23,7 @@ public class PatientList : MonoBehaviour
         }      
     }
 
-    IEnumerator getAllPateints()
+    IEnumerator getAllPatients()
     {
         yield return HoloStorageClient.GetMultiplePatients(patientList, "p-100,p-101,p-102");
         GenerateListView(patientList);

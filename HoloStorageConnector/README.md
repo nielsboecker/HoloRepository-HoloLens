@@ -93,3 +93,5 @@ This package also provided a Demo scene to guide the developer how to use this p
 ## Technologies
 The following technologies are used in this component:
 * [SimpleJSON](https://wiki.unity3d.com/index.php/SimpleJSON) is used to parse the JSON data.
+* [Unity 2018.4.2f1](https://unity3d.com/unity/whats-new/2018.4.2) is the main platform to develop the HoloLens app and connector package.   
+* [MRTK v2.0.0 RC2.1](https://github.com/microsoft/MixedRealityToolkit-Unity) is an open source development kit used to develop mixed reality applications.
