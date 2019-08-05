@@ -9,12 +9,11 @@ using System.Reflection;
 using SimpleJSON;
 using System.IO;
 
-
-/// <summary>
-/// Class <c>HoloStorageClient</c> provided multiple methods to retrieve data from Storage server.
-/// </summary>
 namespace HoloStorageConnector
 {
+    /// <summary>
+    /// Class <c>HoloStorageClient</c> provided multiple methods to retrieve data from Storage server.
+    /// </summary>
     public class HoloStorageClient : MonoBehaviour
     {
         #region Properties

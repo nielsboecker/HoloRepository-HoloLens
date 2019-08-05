@@ -5,6 +5,10 @@ using System;
 
 namespace HoloStorageConnector
 {
+    /// <summary>
+    /// Class <c>HologramInstantiationSettings</c> is used set the transform settings before load the 3D object from server
+    /// For example, the position, rotation and scale of the 3D object
+    /// </summary>
     public class HologramInstantiationSettings
     {
         #region Properties

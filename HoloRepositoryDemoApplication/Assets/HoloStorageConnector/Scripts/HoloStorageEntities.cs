@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// This script is used to define the related HoloStorage entities, make it easier to map the information from json data. 
-/// Currentlly, it is based on HoloStorage Accessor API version 0.1.0
-/// With the development of the package, this script will be modified to map HoloStorage Accessor API 1.0
+/// Currentlly, it is based on HoloStorage Accessor API version 1.0.0
+/// With the development of the package, this script would be modified to map further HoloStorage Accessor API versions
 /// </summary>
 namespace HoloStorageConnector
 {
@@ -29,17 +29,17 @@ namespace HoloStorageConnector
         public string pid { get; set; }
     }
 
+    public class Author
+    {
+        public string aid { get; set; }
+        public PersonName name { get; set; }
+    }
+
     public class PersonName
     {
         public string title { get; set; }
         public string full { get; set; }
         public string given { get; set; }
         public string family { get; set; }
-    }
-
-    public class Author
-    {
-        public string aid { get; set; }
-        public PersonName name { get; set; }
     }
 }
