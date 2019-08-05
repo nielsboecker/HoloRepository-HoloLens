@@ -20,7 +20,7 @@ public class DemoScript : MonoBehaviour
 
     public void GetAllPatients()
     {
-        StartCoroutine(getAllHolograms());
+        StartCoroutine(getAllPatients());
     }
 
     IEnumerator getAllPatients()

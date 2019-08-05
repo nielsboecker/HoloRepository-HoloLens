@@ -50,8 +50,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
-            //string MultiplePatientUri = $"{BaseUri}/patients?pid={IDs}";
-            string MultiplePatientUri = $"{BaseUri}/patients";
+            string MultiplePatientUri = $"{BaseUri}/patients?pid={IDs}";
             yield return GetRequest(MultiplePatientUri);
 
             StreamReader reader = new StreamReader("./Assets/Sample/samplePatients.json");
@@ -104,8 +103,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
         {
-            //string MultipleHologramUri = $"{BaseUri}/holograms?hid={IDs}";        
-            string MultipleHologramUri = $"{BaseUri}/holograms";
+            string MultipleHologramUri = $"{BaseUri}/holograms?hid={IDs}";        
             yield return GetRequest(MultipleHologramUri);
 
             StreamReader reader = new StreamReader("./Assets/Sample/sampleHolograms.json");
