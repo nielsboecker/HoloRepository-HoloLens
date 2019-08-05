@@ -51,7 +51,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
-            //string MultiplePatientUri = $"{BaseUri}{apiPrefix}/patients?pid={IDs}";
+            //string MultiplePatientUri = $"{BaseUri}/patients?pid={IDs}";
             string MultiplePatientUri = $"{BaseUri}/patients";
             yield return GetRequest(MultiplePatientUri);
 
@@ -105,7 +105,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
         {
-            //string MultipleHologramUri = $"{BaseUri}{apiPrefix}/holograms?hid={IDs}";        
+            //string MultipleHologramUri = $"{BaseUri}/holograms?hid={IDs}";        
             string MultipleHologramUri = $"{BaseUri}/holograms";
             yield return GetRequest(MultipleHologramUri);
 
@@ -150,6 +150,58 @@ namespace HoloStorageConnector
             {
                 Debug.LogError("Failed to get the hologram from server! \n[Error message]: " + e.Message);
             }               
+        }
+
+
+        /// <summary>
+        /// Method <c>GetMultipleAuthors</c> is used to retrieve multiple authors meta data from Storage server
+        /// </summary>
+        /// <param name="authorList">Author object list, used to store information</param>
+        /// <param name="IDs">IDs of querying authors</param>
+        /// <returns></returns>
+        public static IEnumerator GetMultipleAuthors(List<Author> authorList, string IDs)
+        {
+            string MultipleAuthorUri = $"{BaseUri}/authors?aid={IDs}";        
+            yield return GetRequest(MultipleAuthorUri);
+
+            authorList.Clear();
+            string[] ids = IDs.Split(',');
+            if (WebRequestReturnData != null)
+            {
+                JSONNode InitialJsonData = JSON.Parse(WebRequestReturnData);
+                foreach (string id in ids)
+                {
+                    JSONNode data = InitialJsonData[id];
+                    JSONArray JsonArray = data.AsArray;
+                    foreach (JSONNode AuthorJson in JsonArray)
+                    {
+                        Author author = JsonToAuthor(AuthorJson);
+                        authorList.Add(author);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method <c>GetAuthor</c> allows user retrieve single author from Storage server by hologram ID
+        /// </summary>
+        /// <param name="author">Author object, used to store information</param>
+        /// <param name="AuthorID">ID of querying author</param>
+        /// <returns></returns>
+        public static IEnumerator GetAuthor(Author author, string AuthorID)
+        {
+            string GetAuthorUri = $"{BaseUri}/authors/{AuthorID}";
+            yield return GetRequest(GetAuthorUri);
+            try
+            {
+                JSONNode AuthorJson = JSON.Parse(WebRequestReturnData);
+                Author Author = JsonToAuthor(AuthorJson);
+                CopyProperties(Author, author);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Failed to get the author from server! \n[Error message]: " + e.Message);
+            }
         }
 
         /// <summary>
@@ -308,6 +360,39 @@ namespace HoloStorageConnector
                 Debug.LogError("Failed to map hologram from response data! \n[Error message]: " + e);
             }            
             return hologram;
+        }
+
+        /// <summary>
+        /// Method <c>JsonToAuthor</c> map the json data into Author object
+        /// </summary>
+        /// <param name="Json">Initial json data</param>
+        /// <returns>Author object with retrieved information</returns>
+        public static Author JsonToAuthor(JSONNode Json)
+        {
+            Author author = new Author();
+
+            if (Json["aid"].Value == "")
+            {
+                Debug.LogError("No response from server with this author ID!");
+                return author;
+            }
+
+            try
+            {
+                author.aid = Json["aid"].Value;
+
+                PersonName name = new PersonName();
+                name.full = Json["name"]["full"].Value;
+                name.title = Json["name"]["title"].Value;               
+                name.given = Json["name"]["given"].Value;
+                name.family = Json["name"]["family"].Value;
+                author.name = name;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Failed to map author from response data! \n[Error message]: " + e);
+            }
+            return author;
         }
         #endregion Commom Method
     }
