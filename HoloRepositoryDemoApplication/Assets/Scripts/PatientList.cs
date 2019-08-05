@@ -25,7 +25,7 @@ public class PatientList : MonoBehaviour
 
     IEnumerator getAllPateints()
     {
-        yield return HoloStorageClient.GetMultiplePatients(patientList, "IDs");
+        yield return HoloStorageClient.GetMultiplePatients(patientList, "additionalProp1,additionalProp2,additionalProp3");
         GenerateListView(patientList);
     }
 

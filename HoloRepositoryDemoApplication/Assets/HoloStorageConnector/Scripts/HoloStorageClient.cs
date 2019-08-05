@@ -65,7 +65,7 @@ namespace HoloStorageConnector
                 foreach (string id in ids)
                 {
                     JSONNode data = InitialJsonData[id];
-                    Patient patient = JsonToPatient(data);
+                    Patient patient = JsonToPatient(data, id);
                     if (patient.pid != null)
                     {
                         patientList.Add(patient);
@@ -87,7 +87,7 @@ namespace HoloStorageConnector
             try
             {
                 JSONNode PatientJson = JSON.Parse(WebRequestReturnData);
-                Patient Patient = JsonToPatient(PatientJson);
+                Patient Patient = JsonToPatient(PatientJson, patientID);
                 CopyProperties(Patient, patient);
             }
             catch (Exception e)
@@ -122,7 +122,7 @@ namespace HoloStorageConnector
                     JSONArray JsonArray = data.AsArray;
                     foreach (JSONNode HologramJson in JsonArray)
                     {
-                        Hologram hologram = JsonToHologram(HologramJson);
+                        Hologram hologram = JsonToHologram(HologramJson, id);
                         hologramList.Add(hologram);
                     }
                 }
@@ -142,7 +142,7 @@ namespace HoloStorageConnector
             try
             {
                 JSONNode HologramJson = JSON.Parse(WebRequestReturnData);
-                Hologram Hologram = JsonToHologram(HologramJson);
+                Hologram Hologram = JsonToHologram(HologramJson, HolgramID);
                 CopyProperties(Hologram, hologram);
             }
             catch (Exception e)
@@ -174,7 +174,7 @@ namespace HoloStorageConnector
                     JSONArray JsonArray = data.AsArray;
                     foreach (JSONNode AuthorJson in JsonArray)
                     {
-                        Author author = JsonToAuthor(AuthorJson);
+                        Author author = JsonToAuthor(AuthorJson, id);
                         authorList.Add(author);
                     }
                 }
@@ -194,7 +194,7 @@ namespace HoloStorageConnector
             try
             {
                 JSONNode AuthorJson = JSON.Parse(WebRequestReturnData);
-                Author Author = JsonToAuthor(AuthorJson);
+                Author Author = JsonToAuthor(AuthorJson, AuthorID);
                 CopyProperties(Author, author);
             }
             catch (Exception e)
@@ -293,13 +293,13 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="Json">Initial json data</param>
         /// <returns>Patient object with retrieved information</returns>
-        public static Patient JsonToPatient(JSONNode Json)
+        public static Patient JsonToPatient(JSONNode Json, string id)
         {
             Patient patient = new Patient();
 
             if (Json["pid"].Value == "")
             {
-                Debug.LogError("No response from server with this patient ID!");
+                Debug.LogError($"No response from server with this patient ID: {id}");
                 return patient;
             }
 
@@ -329,13 +329,13 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="Json">Initial json data</param>
         /// <returns>Hologram object with retrieved information</returns>
-        public static Hologram JsonToHologram(JSONNode Json)
+        public static Hologram JsonToHologram(JSONNode Json, string id)
         {
             Hologram hologram = new Hologram();
 
             if (Json["hid"].Value == "")
             {
-                Debug.LogError("No response from server with this hologram ID!");
+                Debug.LogError($"No response from server with this hologram ID: {id}");
                 return hologram;
             }
 
@@ -366,13 +366,13 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="Json">Initial json data</param>
         /// <returns>Author object with retrieved information</returns>
-        public static Author JsonToAuthor(JSONNode Json)
+        public static Author JsonToAuthor(JSONNode Json, string id)
         {
             Author author = new Author();
 
             if (Json["aid"].Value == "")
             {
-                Debug.LogError("No response from server with this author ID!");
+                Debug.LogError($"No response from server with this author ID: {id}");
                 return author;
             }
 
