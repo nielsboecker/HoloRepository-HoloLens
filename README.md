@@ -5,16 +5,16 @@ The HoloRepository is a system for transforming medical imaging studies such as 
 * **HoloRepository demo application**: A simple application that demonstrates how to dynamically access 3D models stored in the HoloStorage. The scenes can be distributed alongside the Connector library and serve as examples and interactive documentation.
 
 <p align="center">
-  <a href="https://www.codefactor.io/repository/github/nbckr/holorepository-core">
+  <a href="https://www.codefactor.io/repository/github/nbckr/holorepository-hololens">
     <img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/nbckr/HoloRepository-HoloLens" />
   </a>
-  <a href="https://github.com/nbckr/HoloRepository-Core/issues">
+  <a href="https://github.com/nbckr/HoloRepository-HoloLens/issues">
     <img alt="GitHub issues" src="https://img.shields.io/github/issues/nbckr/HoloRepository-HoloLens" />
   </a>
-  <a href="https://github.com/nbckr/HoloRepository-Core/pulls">
+  <a href="https://github.com/nbckr/HoloRepository-HoloLens/pulls">
     <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/nbckr/HoloRepository-HoloLens" />
   </a>
-  <a href="https://github.com/nbckr/HoloRepository-Core/blob/master/LICENSE">
+  <a href="https://github.com/nbckr/HoloRepository-HoloLens/blob/master/LICENSE">
     <img alt="GitHub" src="https://img.shields.io/github/license/nbckr/HoloRepository-HoloLens" />
   </a>
 </p>
