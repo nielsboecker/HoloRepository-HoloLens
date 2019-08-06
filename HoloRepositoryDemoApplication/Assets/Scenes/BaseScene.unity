@@ -2259,6 +2259,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 60699048}
     m_Modifications:
+    - target: {fileID: 6732749397114062615, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_Name
+      value: HoloCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 6805912543573210283, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2374,11 +2379,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.0028
       objectReference: {fileID: 0}
-    - target: {fileID: 6732749397114062615, guid: 3d5dd5782c009d849b8534d2615b5768,
-        type: 3}
-      propertyPath: m_Name
-      value: HoloCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 6807180373711700659, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2397,17 +2397,17 @@ PrefabInstance:
     - target: {fileID: 3177094483460949721, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 29
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3177094483460949721, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3177094483460949721, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3177094483460949721, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -2437,7 +2437,7 @@ PrefabInstance:
     - target: {fileID: 3177094483460949721, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_text
-      value: Welcome to use HoloRepository
+      value: Welcome to HoloRepository
       objectReference: {fileID: 0}
     - target: {fileID: 3177094483460949721, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -2452,7 +2452,7 @@ PrefabInstance:
     - target: {fileID: 3177094483460949721, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6805695222421430641, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}

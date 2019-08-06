@@ -21,6 +21,7 @@ To our best knowledge, there have been no projects that combine medical hologram
 
 ## Development
 
+**This git repository used [Git Large File Storage](https://git-lfs.github.com/) extension to manage the  large files, before pulling this repository to your local work station, please ensure you have installed the Git LFS support.**
 
 ### Setup the environment
 This demo application is developed by Unity3D, please setup the environment before running the App:

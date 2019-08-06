@@ -1,0 +1,78 @@
+{
+  "p-100": [
+    {
+      "hid": "09462b7a-82d5-427e-b843-c500d342245a",
+      "title": "Malformed hip bones",
+      "description": "Malformed hip bones on an 8 year old child suffering from a birth defect",
+      "contentType": "model/gltf-binary",
+      "fileSizeInKb": 5120,
+      "bodySite": "hips",
+      "dateOfImaging": "2017-07-15T15:20:25Z",
+      "creationDate": "2017-07-21T17:32:28Z",
+      "creationMode": "GENERATE_FROM_IMAGING_STUDY",
+      "creationDescription": "By bone segmentation pipeline with HU threshold 750",
+      "aid": "02705d77-1de1-41bb-98fb-d8cd09f41cb6",
+      "pid": "p-100"
+    },
+    {
+      "hid": "29462b7a-82d5-427e-b843-c500d342245a",
+      "title": "Malformed hip bones",
+      "description": "Malformed hip bones on an 8 year old child suffering from a birth defect",
+      "contentType": "model/gltf-binary",
+      "fileSizeInKb": 5120,
+      "bodySite": "bones",
+      "dateOfImaging": "2017-07-15T15:20:25Z",
+      "creationDate": "2017-07-21T17:32:28Z",
+      "creationMode": "GENERATE_FROM_IMAGING_STUDY",
+      "creationDescription": "By bone segmentation pipeline with HU threshold 750",
+      "aid": "02705d77-1de1-41bb-98fb-d8cd09f41cb6",
+      "pid": "p-100"
+    }
+  ],
+  "p-101": [
+    {
+      "hid": "19462b7a-82d5-427e-b843-c500d342245a",
+      "title": "Malformed hip bones",
+      "description": "Malformed hip bones on an 8 year old child suffering from a birth defect",
+      "contentType": "model/gltf-binary",
+      "fileSizeInKb": 5120,
+      "bodySite": "lung",
+      "dateOfImaging": "2017-07-15T15:20:25Z",
+      "creationDate": "2017-07-21T17:32:28Z",
+      "creationMode": "GENERATE_FROM_IMAGING_STUDY",
+      "creationDescription": "By bone segmentation pipeline with HU threshold 750",
+      "aid": "02705d77-1de1-41bb-98fb-d8cd09f41cb6",
+      "pid": "p-101"
+    },
+    {
+      "hid": "29462b7a-82d5-427e-b843-c500d342245a",
+      "title": "Malformed hip bones",
+      "description": "Malformed hip bones on an 8 year old child suffering from a birth defect",
+      "contentType": "model/gltf-binary",
+      "fileSizeInKb": 5120,
+      "bodySite": "kidney",
+      "dateOfImaging": "2017-07-15T15:20:25Z",
+      "creationDate": "2017-07-21T17:32:28Z",
+      "creationMode": "GENERATE_FROM_IMAGING_STUDY",
+      "creationDescription": "By bone segmentation pipeline with HU threshold 750",
+      "aid": "02705d77-1de1-41bb-98fb-d8cd09f41cb6",
+      "pid": "p-101"
+    }
+  ],
+  "p-102": [
+    {
+      "hid": "39462b7a-82d5-427e-b843-c500d342245a",
+      "title": "Malformed hip bones",
+      "description": "Malformed hip bones on an 8 year old child suffering from a birth defect",
+      "contentType": "model/gltf-binary",
+      "fileSizeInKb": 5120,
+      "bodySite": "brain",
+      "dateOfImaging": "2017-07-15T15:20:25Z",
+      "creationDate": "2017-07-21T17:32:28Z",
+      "creationMode": "GENERATE_FROM_IMAGING_STUDY",
+      "creationDescription": "By bone segmentation pipeline with HU threshold 750",
+      "aid": "02705d77-1de1-41bb-98fb-d8cd09f41cb6",
+      "pid": "p-102"
+    }
+  ]
+}

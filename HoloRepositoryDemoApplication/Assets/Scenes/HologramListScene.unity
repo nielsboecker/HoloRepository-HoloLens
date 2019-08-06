@@ -584,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 6805695222421430641, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000021685883
+      value: -0.000038505554
       objectReference: {fileID: 0}
     - target: {fileID: 6805695222421430641, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -725,6 +725,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_margin.y
       value: 5.530124
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685969086307417569, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_overflowMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6805076532228327907, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}

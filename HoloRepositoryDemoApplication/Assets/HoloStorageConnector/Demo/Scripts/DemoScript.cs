@@ -26,13 +26,13 @@ public class DemoScript : MonoBehaviour
     IEnumerator getAllPatients()
     {
         List<Patient> patientList = new List<Patient>();
-        yield return HoloStorageClient.GetMultiplePatients(patientList,"IDs");
+        yield return HoloStorageClient.GetMultiplePatients(patientList, "p-101,p-102,p-103");
         All.SetActive(true);
         foreach (Patient patient in patientList)
         {
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
-            button.GetComponent<DemoScript>().SetText(patient.name.full);
+            button.GetComponent<DemoScript>().SetText($"{patient.name.given} {patient.name.family}");
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
     }
@@ -45,11 +45,11 @@ public class DemoScript : MonoBehaviour
     IEnumerator getPatientByID()
     {
         Patient patient = new Patient();
-        yield return HoloStorageClient.GetPatient(patient, "666da72f-1dfa-427a-96a9-c9fb30bf7296");
+        yield return HoloStorageClient.GetPatient(patient, "p-101");
         Single.SetActive(true);
         try
         {
-            SinglePatientInfo.text = $"Patient name: \n{patient.name.full}\nGender: {patient.gender}\nDate of Birth: \n{ patient.birthDate.Substring(0, 10)}";
+            SinglePatientInfo.text = $"Patient name: \n{patient.name.given} {patient.name.family}\nGender: {patient.gender}\nDate of Birth: \n{patient.birthDate.Substring(0, 10)}";
         }
         catch (Exception e)
         {

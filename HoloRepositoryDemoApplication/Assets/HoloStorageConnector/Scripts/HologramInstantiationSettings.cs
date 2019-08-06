@@ -5,6 +5,10 @@ using System;
 
 namespace HoloStorageConnector
 {
+    /// <summary>
+    /// Class <c>HologramInstantiationSettings</c> is used set the transform settings before load the 3D object from server
+    /// For example, the position, rotation and scale of the 3D object
+    /// </summary>
     public class HologramInstantiationSettings
     {
         #region Properties
@@ -43,13 +47,13 @@ namespace HoloStorageConnector
             gameobject.name = setting.Name;
 
             Mesh mesh = gameobject.GetComponentsInChildren<MeshFilter>()[0].sharedMesh;
-            float Max = Math.Max(Math.Max(mesh.bounds.size.x, mesh.bounds.size.y), mesh.bounds.size.z);
+            float max = Math.Max(Math.Max(mesh.bounds.size.x, mesh.bounds.size.y), mesh.bounds.size.z);
             
-            float ScaleSize = setting.Size / Max;
-            gameobject.transform.localScale = new Vector3(ScaleSize, ScaleSize, ScaleSize);
+            float scaleSize = setting.Size / max;
+            gameobject.transform.localScale = new Vector3(scaleSize, scaleSize, scaleSize);
 
-            Vector3 InitialPosition = new Vector3(mesh.bounds.center.x , -mesh.bounds.center.y, mesh.bounds.center.z) * ScaleSize;
-            gameobject.transform.position = InitialPosition + setting.Position;
+            Vector3 initialPosition = new Vector3(mesh.bounds.center.x , -mesh.bounds.center.y, mesh.bounds.center.z) * scaleSize;
+            gameobject.transform.position = initialPosition + setting.Position;
 
             gameobject.transform.eulerAngles = setting.Rotation;
 
