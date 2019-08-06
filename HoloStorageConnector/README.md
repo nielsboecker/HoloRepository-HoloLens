@@ -13,7 +13,7 @@ using HoloStorageConnector;
 ```
 
 ## HoloStorageClient
-`HoloStorageClient` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patients, holograms and authors based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri.
+`HoloStorageClient` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patients, holograms and authors based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri. You have to create a coroutine to run the retrieve methods, the details could be found in example usage.
 
 |Method|Description|
 | :--- | :--- | 
@@ -27,7 +27,12 @@ using HoloStorageConnector;
 
 Example usage:
 ```
+void Start()
+{
 StartCoroutine(RetrievePatients());
+...
+HoloStorageClient.LoadHologram("hid");
+}
 
 IEnumerator RetrievePatients()
 {        
@@ -40,8 +45,6 @@ IEnumerator RetrievePatients()
         Debug.Log(patient.name.full);
     }
 }
-...
-HoloStorageClient.LoadHologram("hid");
 ```
 ## HologramInstantiationSettings
 `HologramInstantiationSettings` script allow users to set the transform settings before load the 3D object from server, for example, set the position, rotation and scale of the 3D object, you can also determine whether the object could be manipulated or which scene you want to load.
