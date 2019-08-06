@@ -94,9 +94,9 @@ namespace HoloStorageConnector
         /// <param name="hologramList">Hologram object list, used to store information</param>
         /// <param name="IDs">IDs of querying holograms</param>
         /// <returns></returns>
-        public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
+        public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs, bool queryType)
         {
-            string multipleHologramUri = $"{BaseUri}/holograms?hid={IDs}";        
+            string multipleHologramUri = $"{BaseUri}/holograms?{(queryType?"hid":"pid")}={IDs}";
             yield return GetRequest(multipleHologramUri);
 
             hologramList.Clear();
@@ -111,7 +111,7 @@ namespace HoloStorageConnector
 
                     if(JsonArray.Count == 0)
                     {
-                        Debug.LogError($"Response from server is empty with this ID: {id}");
+                        Debug.LogError($"Response from server is empty with this patient ID: {id}");
                     }
 
                     foreach (JSONNode hologramJson in JsonArray)
@@ -321,7 +321,7 @@ namespace HoloStorageConnector
 
             if (json["hid"].Value == "")
             {
-                Debug.LogError($"Response from server is empty with this ID: {id}");
+                Debug.LogError($"Response from server is empty with this hologram ID: {id}");
                 return hologram;
             }
 

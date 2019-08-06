@@ -36,6 +36,7 @@ public class PatientListItem : MonoBehaviour
     public void TurnToHologramPage()
     {
         HologramList.InitialFlag = false;
+        HologramList.patientID = PatientID.text;
         ScenesManager.RefreshScene("HologramListScene");
     }
 }
