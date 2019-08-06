@@ -17,7 +17,7 @@ using HoloStorageConnector;
 | :--- | :--- | 
 |`GetMultiplePatients(List<Patient> patientList, string IDs)`|Retrieve multiple patients meta data from HoloStorage server|
 |`GetPatient(Patient patient, string patientID)`|Retrieve a single patient meta data by patient ID|
-|`GetMultipleHolograms(List<Hologram> hologramList, string IDs, QueryType queryType)`|Retrieve multiple holograms meta data from HoloStorage server. QueryType is optional, determines whether query holograms by hid or pid, could be either `QueryType.hid` and `QueryType.pid`, the default value is `QueryType.hid`|
+|`GetMultipleHolograms(List<Hologram> hologramList, string IDs, QueryType queryType)`|Retrieve multiple holograms meta data from HoloStorage server. QueryType is optional, determines whether query holograms by hid or pid, could be either `QueryType.hid` or `QueryType.pid`, the default value is `QueryType.hid`|
 |`GetHologram(Hologram hologram, string holgramID)`|Retrieve a single hologram meta data by hologram ID|
 |`GetMultipleAuthors(List<Author> authorList, string IDs)`|Retrieve multiple authors meta data from HoloStorage server|
 |`GetAuthor(Author author, string authorID)`|Retrieve a single author meta data by author ID|

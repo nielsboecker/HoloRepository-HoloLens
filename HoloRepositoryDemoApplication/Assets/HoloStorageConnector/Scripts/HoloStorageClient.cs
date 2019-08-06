@@ -10,7 +10,7 @@ using SimpleJSON;
 
 namespace HoloStorageConnector
 {
-    public enum QueryType { hid = 1, pid = 2}
+    public enum QueryType {hid, pid}
 
     /// <summary>
     /// Class <c>HoloStorageClient</c> provided multiple methods to retrieve data from Storage server.
