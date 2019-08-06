@@ -48,12 +48,12 @@ HoloStorageClient.LoadHologram("hid");
 
 |Properties|Description|
 | :--- | :--- | 
-|`name`|Set a name for the loaded model. Default value is "LoadedModel"|
-|`position`|Set position for the loaded model, the value should be a Vector3 object. Default value is (0, 0, 0)|
-|`rotation`|Set rotation for the loaded model, the parameter should be a Vector3 object. Default value is (0, 0, 0)|
-|`size`|Real size in the scene, The longest side of the loaded object will be set to this value. Default value is 0.5f|
-|`manipulable`|Determine whether the object could be manipulated. Default setting is true|
-|`seceneName`|Determine which scene you want to load the object. Default value is null, which means the object will be loaded to the current active scene|
+|`Name`|Set a name for the loaded model. Default value is "LoadedModel"|
+|`Position`|Set position for the loaded model, the value should be a Vector3 object. Default value is (0, 0, 0)|
+|`Rotation`|Set rotation for the loaded model, the parameter should be a Vector3 object. Default value is (0, 0, 0)|
+|`Size`|Real size in the scene, The longest side of the loaded object will be set to this value. Default value is 0.5f|
+|`Manipulable`|Determine whether the object could be manipulated. Default setting is true|
+|`SeceneName`|Determine which scene you want to load the object. Default value is null, which means the object will be loaded to the current active scene|
 
 Example usage:
 
@@ -62,10 +62,10 @@ You could create a HologramInstantiationSettings instance before you load the ho
 void LoadModel()
 {
     HologramInstantiationSettings setting = new HologramInstantiationSettings();
-    setting.name = "Loaded Model";
-    setting.rotation = new Vector3(0, 180, 0);
-    setting.position = new Vector3(0f, 0f, 2f);
-    setting.size = 0.5f;
+    setting.Name = "Loaded Model";
+    setting.Rotation = new Vector3(0, 180, 0);
+    setting.Position = new Vector3(0f, 0f, 2f);
+    setting.Size = 0.5f;
     HoloStorageClient.LoadHologram("hid", setting);
 }
 ```

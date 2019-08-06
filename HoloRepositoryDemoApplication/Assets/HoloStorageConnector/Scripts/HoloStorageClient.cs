@@ -16,11 +16,11 @@ namespace HoloStorageConnector
     public class HoloStorageClient : MonoBehaviour
     {
         #region Properties
-        private static string storageAccessorEndpoint = "http://localhost";
-        private static string port = "8080";
-        private static string apiVersion = "1.0.0";
-        private static string baseUri = $"{storageAccessorEndpoint}:{port}/api/{apiVersion}";        
-        private static string webRequestReturnData = null;
+        private static string StorageAccessorEndpoint = "http://localhost";
+        private static string Port = "8080";
+        private static string ApiVersion = "1.0.0";
+        private static readonly string BaseUri = $"{StorageAccessorEndpoint}:{Port}/api/{ApiVersion}";        
+        private static string WebRequestReturnData = null;
         #endregion Properties
 
         #region Public Method
@@ -29,15 +29,15 @@ namespace HoloStorageConnector
         /// </summary>
         public static void SetEndpoint(string endpoint)
         {
-            storageAccessorEndpoint = endpoint;
+            StorageAccessorEndpoint = endpoint;
         }
         public static void SetPort(string portValue)
         {
-            port = portValue;
+            Port = portValue;
         }
         public static void SetApiVersion(string version)
         {
-            apiVersion = version;
+            ApiVersion = version;
         }
 
         /// <summary>
@@ -49,14 +49,14 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
-            string multiplePatientUri = $"{baseUri}/patients?pid={IDs}";
+            string multiplePatientUri = $"{BaseUri}/patients?pid={IDs}";
             yield return GetRequest(multiplePatientUri);
 
             patientList.Clear();
             string[] ids = IDs.Split(',');
-            if (webRequestReturnData != null)
+            if (WebRequestReturnData != null)
             {
-                JSONNode initialJsonData = JSON.Parse(webRequestReturnData);
+                JSONNode initialJsonData = JSON.Parse(WebRequestReturnData);
                 foreach (string id in ids)
                 {
                     JSONNode data = initialJsonData[id];
@@ -77,12 +77,12 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetPatient(Patient resultPatient, string patientID)
         {
-            string getPatientUri = $"{baseUri}/patients/{patientID}";
+            string getPatientUri = $"{BaseUri}/patients/{patientID}";
             yield return GetRequest(getPatientUri);
 
-            if (webRequestReturnData != null)
+            if (WebRequestReturnData != null)
             {
-                JSONNode patientJson = JSON.Parse(webRequestReturnData);
+                JSONNode patientJson = JSON.Parse(WebRequestReturnData);
                 Patient receivedPatient = JsonToPatient(patientJson, patientID);
                 CopyProperties(receivedPatient, resultPatient);
             }                
@@ -96,14 +96,14 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
         {
-            string multipleHologramUri = $"{baseUri}/holograms?hid={IDs}";        
+            string multipleHologramUri = $"{BaseUri}/holograms?hid={IDs}";        
             yield return GetRequest(multipleHologramUri);
 
             hologramList.Clear();
             string[] ids = IDs.Split(',');
-            if (webRequestReturnData != null)
+            if (WebRequestReturnData != null)
             {
-                JSONNode initialJsonData = JSON.Parse(webRequestReturnData);
+                JSONNode initialJsonData = JSON.Parse(WebRequestReturnData);
                 foreach (string id in ids)
                 {
                     JSONNode data = initialJsonData[id];
@@ -131,12 +131,12 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetHologram(Hologram resultHologram, string holgramID)
         {
-            string getHologramUri = $"{baseUri}/holograms/{holgramID}";
+            string getHologramUri = $"{BaseUri}/holograms/{holgramID}";
             yield return GetRequest(getHologramUri);
 
-            if (webRequestReturnData != null)
+            if (WebRequestReturnData != null)
             {
-                JSONNode hologramJson = JSON.Parse(webRequestReturnData);
+                JSONNode hologramJson = JSON.Parse(WebRequestReturnData);
                 Hologram receivedHologram = JsonToHologram(hologramJson, holgramID);
                 CopyProperties(receivedHologram, resultHologram);
             }             
@@ -150,14 +150,14 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleAuthors(List<Author> authorList, string IDs)
         {
-            string multipleAuthorUri = $"{baseUri}/authors?aid={IDs}";        
+            string multipleAuthorUri = $"{BaseUri}/authors?aid={IDs}";        
             yield return GetRequest(multipleAuthorUri);
 
             authorList.Clear();
             string[] ids = IDs.Split(',');
-            if (webRequestReturnData != null)
+            if (WebRequestReturnData != null)
             {
-                JSONNode initialJsonData = JSON.Parse(webRequestReturnData);
+                JSONNode initialJsonData = JSON.Parse(WebRequestReturnData);
                 foreach (string id in ids)
                 {
                     JSONNode data = initialJsonData[id];
@@ -178,12 +178,12 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetAuthor(Author resultAuthor, string authorID)
         {
-            string getAuthorUri = $"{baseUri}/authors/{authorID}";
+            string getAuthorUri = $"{BaseUri}/authors/{authorID}";
             yield return GetRequest(getAuthorUri);
 
-            if (webRequestReturnData != null)
+            if (WebRequestReturnData != null)
             {
-                JSONNode authorJson = JSON.Parse(webRequestReturnData);
+                JSONNode authorJson = JSON.Parse(WebRequestReturnData);
                 Author receivedAuthor = JsonToAuthor(authorJson, authorID);
                 CopyProperties(receivedAuthor, resultAuthor);
             }
@@ -247,14 +247,14 @@ namespace HoloStorageConnector
             {
                 yield return webRequest.SendWebRequest();
 
-                webRequestReturnData = null;
+                WebRequestReturnData = null;
                 if (webRequest.isNetworkError)
                 {
                     Debug.LogError("Web request Error! [Error message]: " + webRequest.error);
                 }
                 else
                 {
-                    webRequestReturnData = webRequest.downloadHandler.text;
+                    WebRequestReturnData = webRequest.downloadHandler.text;
                 }
             }
         }
