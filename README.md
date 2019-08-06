@@ -4,6 +4,20 @@ The HoloRepository is a system for transforming medical imaging studies such as 
 * **HoloStorageConnector**: A Unity library handling the runtime network connections from HoloLens applications to the HoloStorage. Distributed as a separate UnityPackage, this is meant to facilitate development of 3rd party applications that plug into the HoloRepository ecosystem.
 * **HoloRepository demo application**: A simple application that demonstrates how to dynamically access 3D models stored in the HoloStorage. The scenes can be distributed alongside the Connector library and serve as examples and interactive documentation.
 
+<p align="center">
+  <a href="https://www.codefactor.io/repository/github/nbckr/holorepository-core">
+    <img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/nbckr/HoloRepository-HoloLens" />
+  </a>
+  <a href="https://github.com/nbckr/HoloRepository-Core/issues">
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/nbckr/HoloRepository-HoloLens" />
+  </a>
+  <a href="https://github.com/nbckr/HoloRepository-Core/pulls">
+    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/nbckr/HoloRepository-HoloLens" />
+  </a>
+  <a href="https://github.com/nbckr/HoloRepository-Core/blob/master/LICENSE">
+    <img alt="GitHub" src="https://img.shields.io/github/license/nbckr/HoloRepository-HoloLens" />
+  </a>
+</p>
 
 ## Description
 <p align="center">
@@ -17,7 +31,6 @@ To demonstrate the capabilities of the HoloRepository system, it is crucial to h
 The demo application will use the HoloStorageConnector to access data stored in the HoloStorage. The data in turn will have been generated through the HoloPipelines workflow or directly uploaded from the HoloRepository. The application will provide a basic UI and list the 3D models stored in the HoloStorage. They can then be loaded and placed, scaled and rotated within the augmented reality.
 
 To our best knowledge, there have been no projects that combine medical holograms and the FHIR standard. This project is the first to close that gap.
-
 
 ## Development
 
@@ -33,9 +46,7 @@ This demo application is developed by Unity3D, please setup the environment befo
 |![Visual Studio 2017](./HoloRepositoryDemoApplication/Images/visualstudio_logo.png)| **Visual Studio 2017:** In order to support the TextMeshPro UI in Unity, please make sure your Visual Studio 2017 version is later than  15.7.5. The current using version is **15.9.14**, which is highly recommended. [Download Link](https://visualstudio.microsoft.com/downloads/) |
 |![MRTK V2.](./HoloRepositoryDemoApplication/Images/mrtkicon.jpg)| **MRTK V2.0:** Initially, the MRTK v2.0 has already been imported into this project, you don't need to import the toolkit again. if you want to develop the HoloLens App on your own, please visit their [website](https://github.com/microsoft/MixedRealityToolkit-Unity). |
 
-
 The detail of related development tools could be found in [microsoft mixed reality offical site](https://docs.microsoft.com/en-us/windows/mixed-reality/install-the-tools).
-
 
 ### Start to run the app
 Before you start to run the HoloLens App, there are some settings are required in Unity. First, if you pull the application properly from this GitHub, the menu bar should contain the MRTK option. if not, please remove the local files and pull it gain.
@@ -62,10 +73,8 @@ Meanwhile, Please select **Visual Reality Supported** in XR Settings
     <img src="./HoloRepositoryDemoApplication/Images/XRSettings.png" height="200">
 </p>
 
-
 ### Run the app in Game mode
 If you have setup the environment and settings, please open the **BaseScene** in Scenes folder, and press Play Button to try it.
-
 
 ## Build and deployment
 You can build and deploy the application both in HoloLens emulator and the HoloLens devices.
@@ -80,10 +89,8 @@ Use Visual Studio to open the generated **.sln** file, then Select an **x86** bu
 
 The details of the deployment steps and other deploy methods are available in [microsoft mixed reality offical site](https://docs.microsoft.com/en-us/windows/mixed-reality/using-visual-studio).
 
-
 ## Code organisation
 The rest of the components of the overall project are kept in the [HoloRepository-Core](https://github.com/nbckr/HoloRepository-Core) mono-repository. The only exception are the components that are developed in Unity/C#, they are separately kept in this [HoloRepository-HoloLens](https://github.com/nbckr/HoloRepository-HoloLens) repository.
-
 
 ## Contact and support
 This component is owned by [fanbomeng97](https://github.com/fanbomeng97). Please get in touch if you have any questions. For change requests and bug reports, please open a new issue.
