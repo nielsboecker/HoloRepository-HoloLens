@@ -59,11 +59,13 @@ public class DemoScript : MonoBehaviour
 
     public void LoadModel()
     {
-        HologramInstantiationSettings setting = new HologramInstantiationSettings();
-        setting.Manipulable = true;
-        setting.Rotation = new Vector3(0, 180, 0);
-        setting.Position = new Vector3(0.22f, -0.2f, 0.8f);
-        setting.Size = 0.12f;
+        HologramInstantiationSettings setting = new HologramInstantiationSettings
+        {
+            Manipulable = true,
+            Rotation = new Vector3(0, 180, 0),
+            Position = new Vector3(0.22f, -0.2f, 0.8f),
+            Size = 0.12f
+        };
         HoloStorageClient.LoadHologram("hid", setting);
     }
 

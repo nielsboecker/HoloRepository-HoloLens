@@ -13,6 +13,7 @@ public class HologramList : MonoBehaviour
     public static bool InitialFlag = true;
     public static bool SceneSwitchFlag = false;
     public static List<Hologram> hologramList = new List<Hologram>();
+    public static string patientID = string.Empty;
 
     public void Start()
     {
@@ -28,12 +29,12 @@ public class HologramList : MonoBehaviour
             return;
         }
 
-        StartCoroutine(getAllHolograms());
+        StartCoroutine(getAllHolograms(patientID));
     }
 
-    IEnumerator getAllHolograms()
+    IEnumerator getAllHolograms(string patientID)
     {       
-        yield return HoloStorageClient.GetMultipleHolograms(hologramList, "h-100,h-101,h-102");
+        yield return HoloStorageClient.GetMultipleHolograms(hologramList, patientID, QueryType.pid);
         if (hologramList.Count == 0)
         {
             Message.text = "There is no Holograms for this patient";

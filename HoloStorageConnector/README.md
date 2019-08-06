@@ -5,21 +5,19 @@ HoloStorageConnector is used to provide an importable Unity asset package, to fa
 
 This package provides some scripts allow developers use it to retrieve data and load 3D objects from Storage server. It also provided a Demo scene to guide developer use this package. The detail of methods and usage of each scripts are listed below.
 
-**Important: If you get MRTK related errors or missing some materials and components, please import the [MRTK2](https://github.com/microsoft/MixedRealityToolkit-Unity/releases) again (The version used in this project is Microsoft Mixed Reality Toolkit v2.0.0 RC2.1).**
-
 To use the HoloStorageConnector, after you import the asset package, you could import the namespace like this:
 ```
 using HoloStorageConnector;
 ```
 
 ## HoloStorageClient
-`HoloStorageClient` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patients, holograms and authors based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri.
+`HoloStorageClient` script provided multiple methods to retrieve data from Storage server. For now, you could retrieve the meta data of patients, holograms and authors based on ID, and also load 3D object from the server. Please note, currently the `LoadHologram` method only load the object from a hard code uri. You have to create a coroutine to run the retrieve methods, the details could be found in example usage.
 
 |Method|Description|
 | :--- | :--- | 
 |`GetMultiplePatients(List<Patient> patientList, string IDs)`|Retrieve multiple patients meta data from HoloStorage server|
 |`GetPatient(Patient patient, string patientID)`|Retrieve a single patient meta data by patient ID|
-|`GetMultipleHolograms(List<Hologram> hologramList, string IDs)`|Retrieve multiple holograms meta data from HoloStorage server|
+|`GetMultipleHolograms(List<Hologram> hologramList, string IDs, QueryType queryType)`|Retrieve multiple holograms meta data from HoloStorage server. QueryType is optional, determines whether query holograms by hid or pid, could be either `QueryType.hid` or `QueryType.pid`, the default value is `QueryType.hid`|
 |`GetHologram(Hologram hologram, string holgramID)`|Retrieve a single hologram meta data by hologram ID|
 |`GetMultipleAuthors(List<Author> authorList, string IDs)`|Retrieve multiple authors meta data from HoloStorage server|
 |`GetAuthor(Author author, string authorID)`|Retrieve a single author meta data by author ID|
@@ -27,7 +25,12 @@ using HoloStorageConnector;
 
 Example usage:
 ```
+void Start()
+{
 StartCoroutine(RetrievePatients());
+...
+HoloStorageClient.LoadHologram("hid");
+}
 
 IEnumerator RetrievePatients()
 {        
@@ -40,8 +43,6 @@ IEnumerator RetrievePatients()
         Debug.Log(patient.name.full);
     }
 }
-...
-HoloStorageClient.LoadHologram("hid");
 ```
 ## HologramInstantiationSettings
 `HologramInstantiationSettings` script allow users to set the transform settings before load the 3D object from server, for example, set the position, rotation and scale of the 3D object, you can also determine whether the object could be manipulated or which scene you want to load.

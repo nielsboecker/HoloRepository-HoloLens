@@ -10,6 +10,8 @@ using SimpleJSON;
 
 namespace HoloStorageConnector
 {
+    public enum QueryType {hid, pid}
+
     /// <summary>
     /// Class <c>HoloStorageClient</c> provided multiple methods to retrieve data from Storage server.
     /// </summary>
@@ -94,9 +96,9 @@ namespace HoloStorageConnector
         /// <param name="hologramList">Hologram object list, used to store information</param>
         /// <param name="IDs">IDs of querying holograms</param>
         /// <returns></returns>
-        public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
+        public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs, QueryType queryType = QueryType.hid)
         {
-            string multipleHologramUri = $"{BaseUri}/holograms?hid={IDs}";        
+            string multipleHologramUri = $"{BaseUri}/holograms?{(queryType == QueryType.hid ? "hid" : "pid")}={IDs}";
             yield return GetRequest(multipleHologramUri);
 
             hologramList.Clear();
@@ -111,7 +113,7 @@ namespace HoloStorageConnector
 
                     if(JsonArray.Count == 0)
                     {
-                        Debug.LogError($"Response from server is empty with this ID: {id}");
+                        Debug.LogError($"Response from server is empty with this patient ID: {id}");
                     }
 
                     foreach (JSONNode hologramJson in JsonArray)
@@ -295,11 +297,13 @@ namespace HoloStorageConnector
                 patient.gender = json["gender"].Value;
                 patient.birthDate = json["birthDate"].Value;
 
-                PersonName name = new PersonName();
-                name.title = json["name"]["title"].Value;
-                name.full = json["name"]["full"].Value;
-                name.given = json["name"]["given"].Value;
-                name.family = json["name"]["family"].Value;
+                PersonName name = new PersonName
+                {
+                    title = json["name"]["title"].Value,
+                    full = json["name"]["full"].Value,
+                    given = json["name"]["given"].Value,
+                    family = json["name"]["family"].Value
+                };
                 patient.name = name;
             }
             catch (Exception e)
@@ -321,7 +325,7 @@ namespace HoloStorageConnector
 
             if (json["hid"].Value == "")
             {
-                Debug.LogError($"Response from server is empty with this ID: {id}");
+                Debug.LogError($"Response from server is empty with this hologram ID: {id}");
                 return hologram;
             }
 
@@ -366,11 +370,13 @@ namespace HoloStorageConnector
             {
                 author.aid = json["aid"].Value;
 
-                PersonName name = new PersonName();
-                name.full = json["name"]["full"].Value;
-                name.title = json["name"]["title"].Value;               
-                name.given = json["name"]["given"].Value;
-                name.family = json["name"]["family"].Value;
+                PersonName name = new PersonName
+                {
+                    full = json["name"]["full"].Value,
+                    title = json["name"]["title"].Value,
+                    given = json["name"]["given"].Value,
+                    family = json["name"]["family"].Value
+                };
                 author.name = name;
             }
             catch (Exception e)
