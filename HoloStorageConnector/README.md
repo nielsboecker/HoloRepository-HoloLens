@@ -5,8 +5,6 @@ HoloStorageConnector is used to provide an importable Unity asset package, to fa
 
 This package provides some scripts allow developers use it to retrieve data and load 3D objects from Storage server. It also provided a Demo scene to guide developer use this package. The detail of methods and usage of each scripts are listed below.
 
-**Important: If you get MRTK related errors or missing some materials and components, please import the [MRTK2](https://github.com/microsoft/MixedRealityToolkit-Unity/releases) again (The version used in this project is Microsoft Mixed Reality Toolkit v2.0.0 RC2.1).**
-
 To use the HoloStorageConnector, after you import the asset package, you could import the namespace like this:
 ```
 using HoloStorageConnector;
