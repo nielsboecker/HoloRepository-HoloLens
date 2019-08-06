@@ -16,32 +16,32 @@ namespace HoloStorageConnector
     public class HoloStorageClient : MonoBehaviour
     {
         #region Properties
-        private static string StorageAccessorEndpoint = "http://localhost";
-        private static string Port = "8080";
+        private static string storageAccessorEndpoint = "http://localhost";
+        private static string port = "8080";
         private static string apiVersion = "1.0.0";
-        private static string BaseUri = $"{StorageAccessorEndpoint}:{Port}/api/{apiVersion}";        
-        private static string WebRequestReturnData = null;
+        private static string baseUri = $"{storageAccessorEndpoint}:{port}/api/{apiVersion}";        
+        private static string webRequestReturnData = null;
         #endregion Properties
 
         #region Public Method
         /// <summary>
-        /// Set end point Uri
+        /// Set base end point Uri
         /// </summary>
-        public static void SetEndPoint(string endPoint)
+        public static void SetEndpoint(string endpoint)
         {
-            StorageAccessorEndpoint = endPoint;
+            storageAccessorEndpoint = endpoint;
         }
-        public static void SetPort(string port)
+        public static void SetPort(string portValue)
         {
-            Port = port;
+            port = portValue;
         }
-        public static void SetAPIVersion(string version)
+        public static void SetApiVersion(string version)
         {
             apiVersion = version;
         }
 
         /// <summary>
-        /// Method <c>GetMultiplePatients</c> is used to retrieve multiple patient meta data from Storage server 
+        /// Method <c>GetMultiplePatients</c> is used to retrieve multiple patients meta data from Storage server 
         /// Result will be store in the parameter list 
         /// </summary>
         /// <param name="patientList">Patient object list, used to store information</param>
@@ -49,17 +49,17 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
-            string MultiplePatientUri = $"{BaseUri}/patients?pid={IDs}";
-            yield return GetRequest(MultiplePatientUri);
+            string multiplePatientUri = $"{baseUri}/patients?pid={IDs}";
+            yield return GetRequest(multiplePatientUri);
 
             patientList.Clear();
             string[] ids = IDs.Split(',');
-            if (WebRequestReturnData != null)
+            if (webRequestReturnData != null)
             {
-                JSONNode InitialJsonData = JSON.Parse(WebRequestReturnData);
+                JSONNode initialJsonData = JSON.Parse(webRequestReturnData);
                 foreach (string id in ids)
                 {
-                    JSONNode data = InitialJsonData[id];
+                    JSONNode data = initialJsonData[id];
                     Patient patient = JsonToPatient(data, id);
                     if (patient.pid != null)
                     {
@@ -72,19 +72,19 @@ namespace HoloStorageConnector
         /// <summary>
         /// Method <c>GetPatient</c> allows user retrieve single patient meta data from Storage server by patient ID. 
         /// </summary>
-        /// <param name="patient">Patient object, used to store information</param>
+        /// <param name="resultPatient">Patient object, used to store information</param>
         /// <param name="patientID">ID of querying patient</param>
         /// <returns></returns>
-        public static IEnumerator GetPatient(Patient patient, string patientID)
+        public static IEnumerator GetPatient(Patient resultPatient, string patientID)
         {
-            string GetPatientUri = $"{BaseUri}/patients/{patientID}";
-            yield return GetRequest(GetPatientUri);
+            string getPatientUri = $"{baseUri}/patients/{patientID}";
+            yield return GetRequest(getPatientUri);
 
-            if (WebRequestReturnData != null)
+            if (webRequestReturnData != null)
             {
-                JSONNode PatientJson = JSON.Parse(WebRequestReturnData);
-                Patient Patient = JsonToPatient(PatientJson, patientID);
-                CopyProperties(Patient, patient);
+                JSONNode patientJson = JSON.Parse(webRequestReturnData);
+                Patient receivedPatient = JsonToPatient(patientJson, patientID);
+                CopyProperties(receivedPatient, resultPatient);
             }                
         }
 
@@ -96,17 +96,17 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs)
         {
-            string MultipleHologramUri = $"{BaseUri}/holograms?hid={IDs}";        
-            yield return GetRequest(MultipleHologramUri);
+            string multipleHologramUri = $"{baseUri}/holograms?hid={IDs}";        
+            yield return GetRequest(multipleHologramUri);
 
             hologramList.Clear();
             string[] ids = IDs.Split(',');
-            if (WebRequestReturnData != null)
+            if (webRequestReturnData != null)
             {
-                JSONNode InitialJsonData = JSON.Parse(WebRequestReturnData);
+                JSONNode initialJsonData = JSON.Parse(webRequestReturnData);
                 foreach (string id in ids)
                 {
-                    JSONNode data = InitialJsonData[id];
+                    JSONNode data = initialJsonData[id];
                     JSONArray JsonArray = data.AsArray;
 
                     if(JsonArray.Count == 0)
@@ -114,9 +114,9 @@ namespace HoloStorageConnector
                         Debug.LogError($"Response from server is empty with this ID: {id}");
                     }
 
-                    foreach (JSONNode HologramJson in JsonArray)
+                    foreach (JSONNode hologramJson in JsonArray)
                     {
-                        Hologram hologram = JsonToHologram(HologramJson, id);
+                        Hologram hologram = JsonToHologram(hologramJson, id);
                         hologramList.Add(hologram);
                     }
                 }
@@ -126,22 +126,21 @@ namespace HoloStorageConnector
         /// <summary>
         /// Method <c>GetHologram</c> allows user retrieve single hologram from Storage server by hologram ID
         /// </summary>
-        /// <param name="hologram">Hologram object, used to store information</param>
-        /// <param name="HolgramID">ID of querying hologram</param>
+        /// <param name="resultHologram">Hologram object, used to store information</param>
+        /// <param name="holgramID">ID of querying hologram</param>
         /// <returns></returns>
-        public static IEnumerator GetHologram(Hologram hologram, string HolgramID)
+        public static IEnumerator GetHologram(Hologram resultHologram, string holgramID)
         {
-            string GetHologramUri = $"{BaseUri}/holograms/{HolgramID}";
-            yield return GetRequest(GetHologramUri);
+            string getHologramUri = $"{baseUri}/holograms/{holgramID}";
+            yield return GetRequest(getHologramUri);
 
-            if (WebRequestReturnData != null)
+            if (webRequestReturnData != null)
             {
-                JSONNode HologramJson = JSON.Parse(WebRequestReturnData);
-                Hologram Hologram = JsonToHologram(HologramJson, HolgramID);
-                CopyProperties(Hologram, hologram);
+                JSONNode hologramJson = JSON.Parse(webRequestReturnData);
+                Hologram receivedHologram = JsonToHologram(hologramJson, holgramID);
+                CopyProperties(receivedHologram, resultHologram);
             }             
         }
-
 
         /// <summary>
         /// Method <c>GetMultipleAuthors</c> is used to retrieve multiple authors meta data from Storage server
@@ -151,17 +150,17 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleAuthors(List<Author> authorList, string IDs)
         {
-            string MultipleAuthorUri = $"{BaseUri}/authors?aid={IDs}";        
-            yield return GetRequest(MultipleAuthorUri);
+            string multipleAuthorUri = $"{baseUri}/authors?aid={IDs}";        
+            yield return GetRequest(multipleAuthorUri);
 
             authorList.Clear();
             string[] ids = IDs.Split(',');
-            if (WebRequestReturnData != null)
+            if (webRequestReturnData != null)
             {
-                JSONNode InitialJsonData = JSON.Parse(WebRequestReturnData);
+                JSONNode initialJsonData = JSON.Parse(webRequestReturnData);
                 foreach (string id in ids)
                 {
-                    JSONNode data = InitialJsonData[id];
+                    JSONNode data = initialJsonData[id];
                     Author author = JsonToAuthor(data, id);
                     if (author.aid != null)
                     {
@@ -174,19 +173,19 @@ namespace HoloStorageConnector
         /// <summary>
         /// Method <c>GetAuthor</c> allows user retrieve single author from Storage server by hologram ID
         /// </summary>
-        /// <param name="author">Author object, used to store information</param>
-        /// <param name="AuthorID">ID of querying author</param>
+        /// <param name="resultAuthor">Author object, used to store information</param>
+        /// <param name="authorID">ID of querying author</param>
         /// <returns></returns>
-        public static IEnumerator GetAuthor(Author author, string AuthorID)
+        public static IEnumerator GetAuthor(Author resultAuthor, string authorID)
         {
-            string GetAuthorUri = $"{BaseUri}/authors/{AuthorID}";
-            yield return GetRequest(GetAuthorUri);
+            string getAuthorUri = $"{baseUri}/authors/{authorID}";
+            yield return GetRequest(getAuthorUri);
 
-            if (WebRequestReturnData != null)
+            if (webRequestReturnData != null)
             {
-                JSONNode AuthorJson = JSON.Parse(WebRequestReturnData);
-                Author Author = JsonToAuthor(AuthorJson, AuthorID);
-                CopyProperties(Author, author);
+                JSONNode authorJson = JSON.Parse(webRequestReturnData);
+                Author receivedAuthor = JsonToAuthor(authorJson, authorID);
+                CopyProperties(receivedAuthor, resultAuthor);
             }
         }
 
@@ -194,22 +193,21 @@ namespace HoloStorageConnector
         /// Method <c>LoadHologram</c> is used to load hologram from Storage server
         /// It requires thehologram ID as the parameter 
         /// </summary>
-        /// <param name="HologramID">ID of Hologram</param>
-        public static async void LoadHologram(string HologramID, HologramInstantiationSettings setting = null)
+        /// <param name="hologramID">ID of Hologram</param>
+        public static async void LoadHologram(string hologramID, HologramInstantiationSettings setting = null)
         {
             if (setting == null)
             {
                 setting = new HologramInstantiationSettings();
             }
 
-            WebRequestReturnData = null;
-            //string GetHologramUri = $"{BaseUri}{apiPrefix}/holograms/{HolgramID}/download";
-            string GetHologramUri = "https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb";      
+            //string getHologramUri = $"{BaseUri}{apiPrefix}/holograms/{hologramID}/download";
+            string getHologramUri = "https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb";      
 
             Response response = new Response();
             try
             {
-                response = await Rest.GetAsync(GetHologramUri);
+                response = await Rest.GetAsync(getHologramUri);
             }
             catch (Exception e)
             {
@@ -218,7 +216,7 @@ namespace HoloStorageConnector
 
             if (!response.Successful)
             {
-                Debug.LogError($"Failed to get glb model from {GetHologramUri}");
+                Debug.LogError($"Failed to get glb model from {getHologramUri}");
                 return;
             }
 
@@ -248,14 +246,15 @@ namespace HoloStorageConnector
             using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
             {
                 yield return webRequest.SendWebRequest();
-                WebRequestReturnData = null;
+
+                webRequestReturnData = null;
                 if (webRequest.isNetworkError)
                 {
                     Debug.LogError("Web request Error! [Error message]: " + webRequest.error);
                 }
                 else
                 {
-                    WebRequestReturnData = webRequest.downloadHandler.text;
+                    webRequestReturnData = webRequest.downloadHandler.text;
                 }
             }
         }
@@ -278,13 +277,13 @@ namespace HoloStorageConnector
         /// <summary>
         /// Method <c>JsonToPatient</c> map the json data into Patient object 
         /// </summary>
-        /// <param name="Json">Initial json data</param>
+        /// <param name="json">Initial json data</param>
         /// <returns>Patient object with retrieved information</returns>
-        public static Patient JsonToPatient(JSONNode Json, string id)
+        public static Patient JsonToPatient(JSONNode json, string id)
         {
             Patient patient = new Patient();
 
-            if (Json["pid"].Value == "")
+            if (json["pid"].Value == "")
             {
                 Debug.LogError($"Response from server is empty with this patient ID: {id}");
                 return patient;
@@ -292,15 +291,15 @@ namespace HoloStorageConnector
 
             try
             {
-                patient.pid = Json["pid"].Value;
-                patient.gender = Json["gender"].Value;
-                patient.birthDate = Json["birthDate"].Value;
+                patient.pid = json["pid"].Value;
+                patient.gender = json["gender"].Value;
+                patient.birthDate = json["birthDate"].Value;
 
                 PersonName name = new PersonName();
-                name.title = Json["name"]["title"].Value;
-                name.full = Json["name"]["full"].Value;
-                name.given = Json["name"]["given"].Value;
-                name.family = Json["name"]["family"].Value;
+                name.title = json["name"]["title"].Value;
+                name.full = json["name"]["full"].Value;
+                name.given = json["name"]["given"].Value;
+                name.family = json["name"]["family"].Value;
                 patient.name = name;
             }
             catch (Exception e)
@@ -314,13 +313,13 @@ namespace HoloStorageConnector
         /// <summary>
         /// Method <c>JsonToHologram</c> map the json data into Hologram object
         /// </summary>
-        /// <param name="Json">Initial json data</param>
+        /// <param name="json">Initial json data</param>
         /// <returns>Hologram object with retrieved information</returns>
-        public static Hologram JsonToHologram(JSONNode Json, string id)
+        public static Hologram JsonToHologram(JSONNode json, string id)
         {
             Hologram hologram = new Hologram();
 
-            if (Json["hid"].Value == "")
+            if (json["hid"].Value == "")
             {
                 Debug.LogError($"Response from server is empty with this ID: {id}");
                 return hologram;
@@ -328,18 +327,18 @@ namespace HoloStorageConnector
 
             try
             {
-                hologram.hid = Json["hid"].Value;
-                hologram.title = Json["title"].Value;
-                hologram.description = Json["description"].Value;
-                hologram.contentType = Json["contentType"].Value;
-                hologram.fileSizeInkb = Json["fileSizeInkb"].AsInt;
-                hologram.bodySite = Json["bodySite"].Value;
-                hologram.dateOfImaging = Json["dateOfImaging"].Value;
-                hologram.creationDate = Json["creationDate"].Value;
-                hologram.creationMode = Json["creationMode"].Value;
-                hologram.creationDescription = Json["creationDescription"].Value;
-                hologram.aid = Json["aid"].Value;
-                hologram.pid = Json["pid"].Value;
+                hologram.hid = json["hid"].Value;
+                hologram.title = json["title"].Value;
+                hologram.description = json["description"].Value;
+                hologram.contentType = json["contentType"].Value;
+                hologram.fileSizeInkb = json["fileSizeInkb"].AsInt;
+                hologram.bodySite = json["bodySite"].Value;
+                hologram.dateOfImaging = json["dateOfImaging"].Value;
+                hologram.creationDate = json["creationDate"].Value;
+                hologram.creationMode = json["creationMode"].Value;
+                hologram.creationDescription = json["creationDescription"].Value;
+                hologram.aid = json["aid"].Value;
+                hologram.pid = json["pid"].Value;
             }
             catch (Exception e)
             {
@@ -351,13 +350,13 @@ namespace HoloStorageConnector
         /// <summary>
         /// Method <c>JsonToAuthor</c> map the json data into Author object
         /// </summary>
-        /// <param name="Json">Initial json data</param>
+        /// <param name="json">Initial json data</param>
         /// <returns>Author object with retrieved information</returns>
-        public static Author JsonToAuthor(JSONNode Json, string id)
+        public static Author JsonToAuthor(JSONNode json, string id)
         {
             Author author = new Author();
 
-            if (Json["aid"].Value == "")
+            if (json["aid"].Value == "")
             {
                 Debug.LogError($"Response from server is empty with this author ID: {id}");
                 return author;
@@ -365,13 +364,13 @@ namespace HoloStorageConnector
 
             try
             {
-                author.aid = Json["aid"].Value;
+                author.aid = json["aid"].Value;
 
                 PersonName name = new PersonName();
-                name.full = Json["name"]["full"].Value;
-                name.title = Json["name"]["title"].Value;               
-                name.given = Json["name"]["given"].Value;
-                name.family = Json["name"]["family"].Value;
+                name.full = json["name"]["full"].Value;
+                name.title = json["name"]["title"].Value;               
+                name.given = json["name"]["given"].Value;
+                name.family = json["name"]["family"].Value;
                 author.name = name;
             }
             catch (Exception e)
