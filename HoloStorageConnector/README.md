@@ -17,13 +17,13 @@ using HoloStorageConnector;
 
 |Method|Description|
 | :--- | :--- | 
-|`GetMultiplePatients(List<Patient> List, string IDs)`|Retrieve multiple patients meta data from HoloStorage server|
+|`GetMultiplePatients(List<Patient> patientList, string IDs)`|Retrieve multiple patients meta data from HoloStorage server|
 |`GetPatient(Patient patient, string patientID)`|Retrieve a single patient meta data by patient ID|
-|`GetMultipleHolograms(List<Hologram> List, string IDs)`|Retrieve multiple holograms meta data from HoloStorage server|
-|`GetHologram(Hologram hologram, string HolgramID)`|Retrieve a single hologram meta data by hologram ID|
-|`GetMultipleAuthors(List<Author> List, string IDs)`|Retrieve multiple authors meta data from HoloStorage server|
-|`GetAuthor(Author author, string AuthorID)`|Retrieve a single author meta data by author ID|
-|`LoadHologram(string HologramID, HologramInstantiationSettings setting)`|Load a Hologram object to scene by ID, Hologram instantiation settings is optional|
+|`GetMultipleHolograms(List<Hologram> hologramList, string IDs)`|Retrieve multiple holograms meta data from HoloStorage server|
+|`GetHologram(Hologram hologram, string holgramID)`|Retrieve a single hologram meta data by hologram ID|
+|`GetMultipleAuthors(List<Author> authorList, string IDs)`|Retrieve multiple authors meta data from HoloStorage server|
+|`GetAuthor(Author author, string authorID)`|Retrieve a single author meta data by author ID|
+|`LoadHologram(string hologramID, HologramInstantiationSettings setting)`|Load a Hologram object to scene by ID, Hologram instantiation settings is optional|
 
 Example usage:
 ```
@@ -31,8 +31,8 @@ StartCoroutine(RetrievePatients());
 
 IEnumerator RetrievePatients()
 {        
-    List<Patient> patientList = new List<PatientInfo>();
-    yield return HoloStorageClient.GetMultiplePatients(patientList, "IDs");
+    List<Patient> patientList = new List<Patient>();
+    yield return HoloStorageClient.GetMultiplePatients(patientList, "pids");
     //Do something here...
     //For example:
     foreach (Patient patient in patientList)
@@ -48,12 +48,12 @@ HoloStorageClient.LoadHologram("hid");
 
 |Properties|Description|
 | :--- | :--- | 
-|`Name`|Set a name for the loaded model. Default value is "LoadedModel"|
-|`Position`|Set position for the loaded model, the value should be a Vector3 object. Default value is (0, 0, 0)|
-|`Rotation`|Set rotation for the loaded model, the parameter should be a Vector3 object. Default value is (0, 0, 0)|
-|`Size`|Real size in the scene, The longest side of the loaded object will be set to this value. Default value is 0.5f|
-|`Manipulable`|Determine whether the object could be manipulated. Default setting is true|
-|`SeceneName`|Determine which scene you want to load the object. Default value is null, which means the object will be loaded to the current active scene|
+|`name`|Set a name for the loaded model. Default value is "LoadedModel"|
+|`position`|Set position for the loaded model, the value should be a Vector3 object. Default value is (0, 0, 0)|
+|`rotation`|Set rotation for the loaded model, the parameter should be a Vector3 object. Default value is (0, 0, 0)|
+|`size`|Real size in the scene, The longest side of the loaded object will be set to this value. Default value is 0.5f|
+|`manipulable`|Determine whether the object could be manipulated. Default setting is true|
+|`seceneName`|Determine which scene you want to load the object. Default value is null, which means the object will be loaded to the current active scene|
 
 Example usage:
 
@@ -62,10 +62,10 @@ You could create a HologramInstantiationSettings instance before you load the ho
 void LoadModel()
 {
     HologramInstantiationSettings setting = new HologramInstantiationSettings();
-    setting.Name = "Loaded Model";
-    setting.Rotation = new Vector3(0, 180, 0);
-    setting.Position = new Vector3(0f, 0f, 2f);
-    setting.Size = 0.5f;
+    setting.name = "Loaded Model";
+    setting.rotation = new Vector3(0, 180, 0);
+    setting.position = new Vector3(0f, 0f, 2f);
+    setting.size = 0.5f;
     HoloStorageClient.LoadHologram("hid", setting);
 }
 ```
@@ -88,7 +88,7 @@ This package also provided some prefabs to save your development time, which cou
     <img src="../HoloRepositoryDemoApplication/Images/DemoScene.png" height="400">
 </p>
 
-This package also provided a Demo scene to guide the developer how to use this package, which you can find [here](../HoloRepositoryDemoApplication/Assets/HoloStorageConnector/Demo).
+This package also provided a demo scene to guide the developer how to use this package, which you can find [here](../HoloRepositoryDemoApplication/Assets/HoloStorageConnector/Demo).
 
 ## Technologies
 The following technologies are used in this component:
