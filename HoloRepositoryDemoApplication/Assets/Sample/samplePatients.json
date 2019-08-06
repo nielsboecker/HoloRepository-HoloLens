@@ -1,6 +1,6 @@
 {
-  "additionalProp1": {
-    "pid": "1321e0b8-99ea-4961-aab7-b65fbc8f9673",
+  "p-100": {
+    "pid": "p-100",
     "gender": "male",
     "birthDate": "2019-08-05",
     "name": {
@@ -10,8 +10,8 @@
       "family": "Portebello"
     }
   },
-  "additionalProp2": {
-    "pid": "2321e0b8-99ea-4961-aab7-b65fbc8f9673",
+  "p-101": {
+    "pid": "p-101",
     "gender": "male",
     "birthDate": "2019-08-05",
     "name": {
@@ -21,8 +21,8 @@
       "family": "Portebello"
     }
   },
-  "additionalProp3": {
-    "pid": "3321e0b8-99ea-4961-aab7-b65fbc8f9673",
+  "p-102": {
+    "pid": "p-102",
     "gender": "male",
     "birthDate": "2019-08-05",
     "name": {
