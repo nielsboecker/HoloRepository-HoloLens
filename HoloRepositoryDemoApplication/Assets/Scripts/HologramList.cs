@@ -9,27 +9,32 @@ public class HologramList : MonoBehaviour
     [SerializeField]
     private GameObject buttonTemplates = null;
     [SerializeField]
+    private TextMeshProUGUI Title = null;
+    [SerializeField]
     private TextMeshProUGUI Message = null;
+
     public static bool InitialFlag = true;
     public static bool SceneSwitchFlag = false;
     public static List<Hologram> hologramList = new List<Hologram>();
-    public static string patientID = string.Empty;
+    public static Patient Patient;
 
     public void Start()
     {
         if (InitialFlag)
         {
+            Title.text = "Hologram List";
             Message.text = "Please select a patient to check the Hologram";
             return;
         }
         if (SceneSwitchFlag)
         {
             GenerateListView(hologramList);
+            Title.text = $"{Patient.name.given} {Patient.name.family}";
             SceneSwitchFlag = false;
             return;
         }
 
-        StartCoroutine(getAllHolograms(patientID));
+        StartCoroutine(getAllHolograms(Patient.pid));
     }
 
     IEnumerator getAllHolograms(string patientID)
@@ -42,6 +47,7 @@ public class HologramList : MonoBehaviour
         else
         {
             GenerateListView(hologramList);
+            Title.text = $"{Patient.name.given} {Patient.name.family}";
         }
     }
 
@@ -52,7 +58,8 @@ public class HologramList : MonoBehaviour
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
 
-            button.GetComponent<HologramListItem>().SetID(hologram.hid);
+            button.GetComponent<HologramListItem>().SetPatient(Patient);
+            button.GetComponent<HologramListItem>().SetHologram(hologram);
             button.GetComponent<HologramListItem>().SetText($"Hologram title: {hologram.title}\nDescription: {hologram.description}\nDate of Creation: {hologram.creationDate.Substring(0, 10)}");
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);

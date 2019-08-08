@@ -7,8 +7,8 @@ public class HologramListItem : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI HologramInfo = null;
-    [SerializeField]
-    private Text HologramID = null;
+    private Patient Patient;
+    private Hologram Hologram;
 
     private void Start()
     {
@@ -19,9 +19,15 @@ public class HologramListItem : MonoBehaviour
     {
         HologramInfo.text = HologramInformation;
     }
-    public void SetID(string id)
+
+    public void SetPatient(Patient patient)
     {
-        HologramID.text = id;
+        Patient = patient;
+    }
+
+    public void SetHologram(Hologram hologram)
+    {
+        Hologram = hologram;
     }
 
     public void LoadHologram()

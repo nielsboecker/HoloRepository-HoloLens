@@ -10,6 +10,7 @@ public class PatientList : MonoBehaviour
     private GameObject buttonTemplates = null;
     [SerializeField]
     private TextMeshProUGUI Message = null;
+
     public static List<Patient> patientList = new List<Patient>();
     public static bool InitialFlag = true;
 
@@ -46,10 +47,9 @@ public class PatientList : MonoBehaviour
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
 
-            button.GetComponent<PatientListItem>().SetID(patient.pid);
+            button.GetComponent<PatientListItem>().SetPatient(patient);
             button.GetComponent<PatientListItem>().SetName($"{patient.name.given} {patient.name.family}");
-            string Info = string.Format("Gender: {0}\nDate of birth: {1}", patient.gender, patient.birthDate.Substring(0, 10));
-            button.GetComponent<PatientListItem>().SetText(Info);
+            button.GetComponent<PatientListItem>().SetText($"Gender: {patient.gender}\nDate of birth: {patient.birthDate.Substring(0, 10)}");
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
