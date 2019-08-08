@@ -33,6 +33,8 @@ public class HologramListItem : MonoBehaviour
     public void LoadHologram()
     {
         HologramList.SceneSwitchFlag = true;
+        HologramDisplayScene.Patient = Patient;
+        HologramDisplayScene.Hologram = Hologram;
         HologramInstantiationSettings setting = new HologramInstantiationSettings
         {
             Name = "Loaded Model",

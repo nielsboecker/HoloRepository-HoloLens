@@ -8,8 +8,6 @@ public class PatientListItem : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI PatientInfo = null;
-    [SerializeField]
-    private TextMeshProUGUI PatientName = null;
     private Patient Patient;
 
     public static List<Hologram> HologramsList = new List<Hologram>();
@@ -17,11 +15,6 @@ public class PatientListItem : MonoBehaviour
     private void Start()
     {
         PatientInfo = GetComponent<TextMeshProUGUI>();
-    }
-
-    public void SetName(string name)
-    {
-        PatientName.text = name;
     }
 
     public void SetText(string Patientinformation)
