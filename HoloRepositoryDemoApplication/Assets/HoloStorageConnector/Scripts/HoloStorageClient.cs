@@ -285,6 +285,12 @@ namespace HoloStorageConnector
         {
             Patient patient = new Patient();
 
+            if (json == null)
+            {
+                Debug.LogError($"Response error with this patient ID: {id}");
+                return patient;
+            }
+
             if (json["pid"].Value == "")
             {
                 Debug.LogError($"Response from server is empty with this patient ID: {id}");
@@ -323,6 +329,12 @@ namespace HoloStorageConnector
         {
             Hologram hologram = new Hologram();
 
+            if (json == null)
+            {
+                Debug.LogError($"Response error with this hologram ID: {id}");
+                return hologram;
+            }
+
             if (json["hid"].Value == "")
             {
                 Debug.LogError($"Response from server is empty with this hologram ID: {id}");
@@ -359,6 +371,12 @@ namespace HoloStorageConnector
         public static Author JsonToAuthor(JSONNode json, string id)
         {
             Author author = new Author();
+
+            if (json == null)
+            {
+                Debug.LogError($"Response error with this author ID: {id}");
+                return author;
+            }
 
             if (json["aid"].Value == "")
             {

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HoloStorageConnector;
+using TMPro;
 
 public class PatientList : MonoBehaviour
 {
     [SerializeField]
     private GameObject buttonTemplates = null;
+    [SerializeField]
+    private TextMeshProUGUI Message = null;
     public static List<Patient> patientList = new List<Patient>();
     public static bool InitialFlag = true;
 
@@ -26,7 +29,14 @@ public class PatientList : MonoBehaviour
     IEnumerator getAllPatients()
     {
         yield return HoloStorageClient.GetMultiplePatients(patientList, "p-100,p-101,p-102");
-        GenerateListView(patientList);
+        if (patientList.Count == 0)
+        {
+            Message.text = "There is no patients for you";
+        }
+        else
+        {
+            GenerateListView(patientList);
+        }
     }
 
     private void GenerateListView(List<Patient> patientList)

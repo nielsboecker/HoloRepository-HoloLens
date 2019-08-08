@@ -322,7 +322,7 @@ PrefabInstance:
     - target: {fileID: 6805695222421430641, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000007566274
+      value: -0.000030825115
       objectReference: {fileID: 0}
     - target: {fileID: 6805518110635639303, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -519,6 +519,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 536918290299244165, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476700521869955545, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6699897955958755257, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
       propertyPath: m_Sprite
@@ -543,6 +553,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PatientListButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 258
       objectReference: {fileID: 0}
     - target: {fileID: 3340919421675747160, guid: 3d5dd5782c009d849b8534d2615b5768,
         type: 3}
@@ -814,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonTemplates: {fileID: 34065467}
+  Message: {fileID: 34065471}
 --- !u!114 &34065469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,6 +891,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 34065463}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &34065471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5798787529305212004, guid: 3d5dd5782c009d849b8534d2615b5768,
+    type: 3}
+  m_PrefabInstance: {fileID: 34065463}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &562133861
 GameObject:
   m_ObjectHideFlags: 0
