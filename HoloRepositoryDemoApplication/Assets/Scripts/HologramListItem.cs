@@ -7,8 +7,8 @@ public class HologramListItem : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI HologramInfo = null;
-    private Patient Patient;
-    private Hologram Hologram;
+    private Patient patient;
+    private Hologram hologram;
 
     private void Start()
     {
@@ -20,21 +20,21 @@ public class HologramListItem : MonoBehaviour
         HologramInfo.text = HologramInformation;
     }
 
-    public void SetPatient(Patient patient)
+    public void SetPatient(Patient setPatient)
     {
-        Patient = patient;
+        patient = setPatient;
     }
 
-    public void SetHologram(Hologram hologram)
+    public void SetHologram(Hologram setHologram)
     {
-        Hologram = hologram;
+        hologram = setHologram;
     }
 
     public void LoadHologram()
     {
         HologramList.SceneSwitchFlag = true;
-        HologramDisplayScene.Patient = Patient;
-        HologramDisplayScene.Hologram = Hologram;
+        HologramDisplayScene.patient = patient;
+        HologramDisplayScene.hologram = hologram;
         HologramInstantiationSettings setting = new HologramInstantiationSettings
         {
             Name = "Loaded Model",

@@ -16,7 +16,7 @@ public class HologramList : MonoBehaviour
     public static bool InitialFlag = true;
     public static bool SceneSwitchFlag = false;
     public static List<Hologram> hologramList = new List<Hologram>();
-    public static Patient Patient;
+    public static Patient patient;
 
     public void Start()
     {
@@ -29,12 +29,12 @@ public class HologramList : MonoBehaviour
         if (SceneSwitchFlag)
         {
             GenerateListView(hologramList);
-            Title.text = $"{Patient.name.given} {Patient.name.family}";
+            Title.text = $"{patient.name.given} {patient.name.family}";
             SceneSwitchFlag = false;
             return;
         }
 
-        StartCoroutine(getAllHolograms(Patient.pid));
+        StartCoroutine(getAllHolograms(patient.pid));
     }
 
     IEnumerator getAllHolograms(string patientID)
@@ -47,7 +47,7 @@ public class HologramList : MonoBehaviour
         else
         {
             GenerateListView(hologramList);
-            Title.text = $"{Patient.name.given} {Patient.name.family}";
+            Title.text = $"{patient.name.given} {patient.name.family}";
         }
     }
 
@@ -58,7 +58,7 @@ public class HologramList : MonoBehaviour
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
 
-            button.GetComponent<HologramListItem>().SetPatient(Patient);
+            button.GetComponent<HologramListItem>().SetPatient(patient);
             button.GetComponent<HologramListItem>().SetHologram(hologram);
             button.GetComponent<HologramListItem>().SetText($"<b><size=12>{hologram.title}</b></size>\nBody Site: {hologram.bodySite}\nDate of Creation: {hologram.creationDate.Substring(0, 10)}");
 
