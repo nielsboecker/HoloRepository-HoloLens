@@ -19,8 +19,8 @@ namespace HoloStorageConnector
     {
         #region Properties
         private static string StorageAccessorEndpoint = "http://localhost";
-        private static string Port = "8080";
-        private static string ApiVersion = "1.0.0";
+        private static string Port = "3200";
+        private static string ApiVersion = "v1";
         private static readonly string BaseUri = $"{StorageAccessorEndpoint}:{Port}/api/{ApiVersion}";        
         private static string WebRequestReturnData = null;
         #endregion Properties
@@ -51,7 +51,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
-            string multiplePatientUri = $"{BaseUri}/patients?pid={IDs}";
+            string multiplePatientUri = $"{BaseUri}/patients?pids={IDs}";
             yield return GetRequest(multiplePatientUri);
 
             patientList.Clear();
@@ -98,7 +98,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs, QueryType queryType = QueryType.hid)
         {
-            string multipleHologramUri = $"{BaseUri}/holograms?{(queryType == QueryType.hid ? "hid" : "pid")}={IDs}";
+            string multipleHologramUri = $"{BaseUri}/holograms?{(queryType == QueryType.hid ? "hids" : "pids")}={IDs}";
             yield return GetRequest(multipleHologramUri);
 
             hologramList.Clear();
@@ -152,7 +152,7 @@ namespace HoloStorageConnector
         /// <returns></returns>
         public static IEnumerator GetMultipleAuthors(List<Author> authorList, string IDs)
         {
-            string multipleAuthorUri = $"{BaseUri}/authors?aid={IDs}";        
+            string multipleAuthorUri = $"{BaseUri}/authors?aids={IDs}";        
             yield return GetRequest(multipleAuthorUri);
 
             authorList.Clear();
