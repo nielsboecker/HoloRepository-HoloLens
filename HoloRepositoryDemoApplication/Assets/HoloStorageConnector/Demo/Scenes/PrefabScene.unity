@@ -541,6 +541,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4439515282428795955, guid: f0740905550d73042bd19202f59e8e19,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1289304114223630032, guid: f0740905550d73042bd19202f59e8e19,
         type: 3}
       propertyPath: PatientsId

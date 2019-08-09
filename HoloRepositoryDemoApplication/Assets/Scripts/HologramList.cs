@@ -60,7 +60,7 @@ public class HologramList : MonoBehaviour
 
             button.GetComponent<HologramListItem>().SetPatient(Patient);
             button.GetComponent<HologramListItem>().SetHologram(hologram);
-            button.GetComponent<HologramListItem>().SetText($"<b><size=12>{hologram.title}</b></size>\nDescription: {hologram.description}\nDate of Creation: {hologram.creationDate.Substring(0, 10)}");
+            button.GetComponent<HologramListItem>().SetText($"<b><size=12>{hologram.title}</b></size>\nBody Site: {hologram.bodySite}\nDate of Creation: {hologram.creationDate.Substring(0, 10)}");
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
