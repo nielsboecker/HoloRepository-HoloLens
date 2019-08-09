@@ -10,7 +10,7 @@ using SimpleJSON;
 
 namespace HoloStorageConnector
 {
-    public enum QueryType {hid, pid}
+    public enum QueryType {hids, pids}
 
     /// <summary>
     /// Class <c>HoloStorageClient</c> provided multiple methods to retrieve data from Storage server.
@@ -48,7 +48,6 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="patientList">Patient object list, used to store information</param>
         /// <param name="IDs">IDs of querying patients</param>
-        /// <returns></returns>
         public static IEnumerator GetMultiplePatients(List<Patient> patientList, string IDs)
         {
             string multiplePatientUri = $"{BaseUri}/patients?pids={IDs}";
@@ -76,7 +75,6 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="resultPatient">Patient object, used to store information</param>
         /// <param name="patientID">ID of querying patient</param>
-        /// <returns></returns>
         public static IEnumerator GetPatient(Patient resultPatient, string patientID)
         {
             string getPatientUri = $"{BaseUri}/patients/{patientID}";
@@ -95,10 +93,9 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="hologramList">Hologram object list, used to store information</param>
         /// <param name="IDs">IDs of querying holograms</param>
-        /// <returns></returns>
-        public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs, QueryType queryType = QueryType.hid)
+        public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs, QueryType queryType = QueryType.hids)
         {
-            string multipleHologramUri = $"{BaseUri}/holograms?{(queryType == QueryType.hid ? "hids" : "pids")}={IDs}";
+            string multipleHologramUri = $"{BaseUri}/holograms?{(queryType == QueryType.hids ? "hids" : "pids")}={IDs}";
             yield return GetRequest(multipleHologramUri);
 
             hologramList.Clear();
@@ -130,7 +127,6 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="resultHologram">Hologram object, used to store information</param>
         /// <param name="holgramID">ID of querying hologram</param>
-        /// <returns></returns>
         public static IEnumerator GetHologram(Hologram resultHologram, string holgramID)
         {
             string getHologramUri = $"{BaseUri}/holograms/{holgramID}";
@@ -149,7 +145,6 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="authorList">Author object list, used to store information</param>
         /// <param name="IDs">IDs of querying authors</param>
-        /// <returns></returns>
         public static IEnumerator GetMultipleAuthors(List<Author> authorList, string IDs)
         {
             string multipleAuthorUri = $"{BaseUri}/authors?aids={IDs}";        
@@ -177,7 +172,6 @@ namespace HoloStorageConnector
         /// </summary>
         /// <param name="resultAuthor">Author object, used to store information</param>
         /// <param name="authorID">ID of querying author</param>
-        /// <returns></returns>
         public static IEnumerator GetAuthor(Author resultAuthor, string authorID)
         {
             string getAuthorUri = $"{BaseUri}/authors/{authorID}";
@@ -241,7 +235,6 @@ namespace HoloStorageConnector
         /// Common method <c>GetRequest</c> is used to handle web request 
         /// </summary>
         /// <param name="uri">Endpoint for the web request</param>
-        /// <returns></returns>
         private static IEnumerator GetRequest(string uri)
         {
             using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))

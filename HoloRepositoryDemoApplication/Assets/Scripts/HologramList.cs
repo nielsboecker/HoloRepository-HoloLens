@@ -39,7 +39,7 @@ public class HologramList : MonoBehaviour
 
     IEnumerator getAllHolograms(string patientID)
     {       
-        yield return HoloStorageClient.GetMultipleHolograms(hologramList, patientID, QueryType.pid);
+        yield return HoloStorageClient.GetMultipleHolograms(hologramList, patientID, QueryType.pids);
         if (hologramList.Count == 0)
         {
             Message.text = "There is no Holograms for this patient";
