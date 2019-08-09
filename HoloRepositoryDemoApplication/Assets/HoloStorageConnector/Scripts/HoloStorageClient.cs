@@ -15,7 +15,7 @@ namespace HoloStorageConnector
     /// <summary>
     /// Class <c>HoloStorageClient</c> provided multiple methods to retrieve data from Storage server.
     /// </summary>
-    public class HoloStorageClient : MonoBehaviour
+    public class HoloStorageClient
     {
         #region Properties
         private static string StorageAccessorEndpoint = "http://localhost";

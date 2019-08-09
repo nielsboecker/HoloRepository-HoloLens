@@ -13,24 +13,24 @@ public class HologramList : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI Message = null;
 
-    public static bool InitialFlag = true;
-    public static bool SceneSwitchFlag = false;
+    public static bool initialFlag = true;
+    public static bool sceneSwitchFlag = false;
     public static List<Hologram> hologramList = new List<Hologram>();
     public static Patient patient;
 
     public void Start()
     {
-        if (InitialFlag)
+        if (initialFlag)
         {
-            Title.text = "Hologram List";
-            Message.text = "Please select a patient to check the Hologram";
+            Title.text = "Holograms";
+            Message.text = "Please select a patient to browse available holograms";
             return;
         }
-        if (SceneSwitchFlag)
+        if (sceneSwitchFlag)
         {
             GenerateListView(hologramList);
             Title.text = $"{patient.name.given} {patient.name.family}";
-            SceneSwitchFlag = false;
+            sceneSwitchFlag = false;
             return;
         }
 

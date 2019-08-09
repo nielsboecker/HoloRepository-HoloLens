@@ -8,13 +8,7 @@ public class PatientListItem : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI PatientInfo = null;
-    [SerializeField]
-    private RawImage Avatar = null;
-    [SerializeField]
-    private Texture2D Boy = null;
-    [SerializeField]
-    private Texture2D Girl = null;
-    private Patient Patient;
+    private Patient patient;
 
     public static List<Hologram> HologramsList = new List<Hologram>();
 
@@ -27,25 +21,15 @@ public class PatientListItem : MonoBehaviour
     {
         PatientInfo.text = Patientinformation;
     }
-    public void SetPatient(Patient patient)
+    public void SetPatient(Patient setPatient)
     {
-        Patient = patient;
-    }
-
-    public void SetImage(string gender)
-    {
-        if (gender == "male")
-        {
-            Avatar.texture = Boy;
-            return;
-        }
-        Avatar.texture = Girl;
+        patient = setPatient;
     }
 
     public void TurnToHologramPage()
     {
-        HologramList.InitialFlag = false;
-        HologramList.Patient = Patient;
+        HologramList.initialFlag = false;
+        HologramList.patient = patient;
         ScenesManager.RefreshScene("HologramListScene");
     }
 }

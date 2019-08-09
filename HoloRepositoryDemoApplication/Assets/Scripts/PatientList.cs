@@ -12,13 +12,13 @@ public class PatientList : MonoBehaviour
     private TextMeshProUGUI Message = null;
 
     public static List<Patient> patientList = new List<Patient>();
-    public static bool InitialFlag = true;
+    public static bool initialFlag = true;
 
     void Start()
     {
-        if (InitialFlag)
+        if (initialFlag)
         {
-            InitialFlag = false;
+            initialFlag = false;
             StartCoroutine(getAllPatients());
         }
         else
@@ -48,7 +48,6 @@ public class PatientList : MonoBehaviour
             button.SetActive(true);
 
             button.GetComponent<PatientListItem>().SetPatient(patient);
-            button.GetComponent<PatientListItem>().SetImage(patient.gender);
             button.GetComponent<PatientListItem>().SetText($"<b><size=12>{patient.name.given} {patient.name.family}</b></size>\nGender: {patient.gender}\nDate of birth: {patient.birthDate.Substring(0, 10)}");
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);

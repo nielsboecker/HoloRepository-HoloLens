@@ -8,7 +8,7 @@ public class HologramLoader : MonoBehaviour
     public string ModelName = "LoadedModel";
     public Vector3 ModelPosition = new Vector3(0f, 0f, 0f);
     public Vector3 ModelRotation = new Vector3(0f, 0f, 0f);
-    public float ModelSize = 1.0f;
+    public float ModelSize = 0.5f;
     public bool Manipulable = true;
 
     void Start()

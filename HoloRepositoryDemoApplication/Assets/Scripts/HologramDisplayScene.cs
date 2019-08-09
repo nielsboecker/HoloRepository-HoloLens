@@ -21,19 +21,19 @@ public class HologramDisplayScene : MonoBehaviour
         PatientName.text = $"{patient.name.given} {patient.name.family}";
 
         PatientInfo.text = 
-            $"<b><size=15>Gender: </size></b>{patient.gender}\n" +
-            $"<b><size=15>Date of birth: </size></b>{patient.birthDate.Substring(0, 10)}";
+            $"<b>Gender: </b>{patient.gender}\n" +
+            $"<b>Date of birth: </b>{patient.birthDate.Substring(0, 10)}";
 
         HologramTitle.text = hologram.title;
 
         HologramInfo.text = 
-            $"<b><size=15>Description:</size></b>\n{hologram.description}\n" +
-            $"<b><size=15>Content Type: </size></b>{hologram.contentType}\n" +
-            $"<b><size=15>File Size: </size></b>{hologram.fileSizeInkb}\n" +
-            $"<b><size=15>Body Site: </size></b>{hologram.bodySite}\n" +
-            $"<b><size=15>Date Of Imaging: </size></b>{hologram.dateOfImaging.Substring(0, 10)}\n" +
-            $"<b><size=15>Creation Date: </size></b>{hologram.creationDate.Substring(0, 10)}\n" +
-            $"<b><size=15>Creation Mode: </size></b>\n{hologram.creationMode}\n" +
-            $"<b><size=15>Creation Description:</size></b>\n{hologram.creationDescription}";
+            $"<b>Description: </b>{hologram.description}\n" +
+            $"<b>Content Type: </b>{hologram.contentType}\n" +
+            $"<b>File Size: </b>{hologram.fileSizeInkb}KB\n" +
+            $"<b>Body Site: </b>{hologram.bodySite}\n" +
+            $"<b>Date Of Imaging: </b>{hologram.dateOfImaging.Substring(0, 10)}\n" +
+            $"<b>Creation Date: </b>{hologram.creationDate.Substring(0, 10)}\n" +
+            $"<b>Creation Mode: </b>{hologram.creationMode}\n" +
+            $"<b>Creation Description: </b>{hologram.creationDescription}";
     }
 }

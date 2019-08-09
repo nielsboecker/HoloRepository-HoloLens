@@ -32,7 +32,7 @@ public class HologramListItem : MonoBehaviour
 
     public void LoadHologram()
     {
-        HologramList.SceneSwitchFlag = true;
+        HologramList.sceneSwitchFlag = true;
         HologramDisplayScene.patient = patient;
         HologramDisplayScene.hologram = hologram;
         HologramInstantiationSettings setting = new HologramInstantiationSettings
@@ -43,6 +43,6 @@ public class HologramListItem : MonoBehaviour
             SceneName = "HologramDisplayScene",
             Size = 0.5f
         };
-        HoloStorageClient.LoadHologram("ef051fa3-ccfd-4a3e-8bf6-3cd4c1c8dc23", setting);
+        HoloStorageClient.LoadHologram(hologram.hid, setting);
     }
 }
