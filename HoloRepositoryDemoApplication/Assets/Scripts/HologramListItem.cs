@@ -43,6 +43,6 @@ public class HologramListItem : MonoBehaviour
             SceneName = "HologramDisplayScene",
             Size = 0.5f
         };
-        HoloStorageClient.LoadHologram("hid", setting);
+        HoloStorageClient.LoadHologram("ef051fa3-ccfd-4a3e-8bf6-3cd4c1c8dc23", setting);
     }
 }

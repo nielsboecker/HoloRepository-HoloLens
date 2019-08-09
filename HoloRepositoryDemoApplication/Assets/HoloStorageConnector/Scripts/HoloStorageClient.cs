@@ -203,8 +203,7 @@ namespace HoloStorageConnector
                 setting = new HologramInstantiationSettings();
             }
 
-            //string getHologramUri = $"{BaseUri}{apiPrefix}/holograms/{hologramID}/download";
-            string getHologramUri = "https://holoblob.blob.core.windows.net/test/DamagedHelmet-18486331-5441-4271-8169-fcac6b7d8c29.glb";      
+            string getHologramUri = $"{BaseUri}/holograms/{hologramID}/download";
 
             Response response = new Response();
             try
