@@ -96,7 +96,7 @@ You could add this list view to you scene, choose the information type that you 
 ### HologramLoader
 Drag this prefab into you scene, and set the related options in the inspector. In the play mode, it will load the hologram to you scene. 
 <p align="center">
-    <img src="../HoloRepositoryDemoApplication/Images/HologramLoader.png" height="200">
+    <img src="../HoloRepositoryDemoApplication/Images/HologramLoader.png">
 </p>
 
 ## Demo scene
