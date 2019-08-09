@@ -298,7 +298,7 @@ namespace HoloStorageConnector
                 PersonName name = new PersonName
                 {
                     title = json["name"]["title"].Value,
-                    full = json["name"]["full"].Value,
+                    full = $"{json["name"]["given"].Value} {json["name"]["family"].Value}",
                     given = json["name"]["given"].Value,
                     family = json["name"]["family"].Value
                 };

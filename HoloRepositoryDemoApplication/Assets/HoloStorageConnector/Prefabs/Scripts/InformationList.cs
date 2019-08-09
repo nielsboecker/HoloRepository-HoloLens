@@ -67,7 +67,7 @@ public class InformationList : MonoBehaviour
             button.SetActive(true);
 
             string information =
-                $"{(patientName ? $"<b>{patient.name.given} {patient.name.family}</b>\n" : "")}" +
+                $"{(patientName ? $"<b>{patient.name.full}</b>\n" : "")}" +
                 $"{(patientID ? $"ID: {patient.pid}\n" : "")}" +               
                 $"{(birthDate ? $"Date of birth: {patient.birthDate.Substring(0, 10)}\n" : "")}" +
                 $"{(gender ? $"Gender: {patient.gender}" : "")}";

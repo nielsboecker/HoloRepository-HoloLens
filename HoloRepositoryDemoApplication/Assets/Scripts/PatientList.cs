@@ -48,7 +48,7 @@ public class PatientList : MonoBehaviour
             button.SetActive(true);
 
             button.GetComponent<PatientListItem>().SetPatient(patient);
-            button.GetComponent<PatientListItem>().SetText($"<b><size=12>{patient.name.given} {patient.name.family}</b></size>\nGender: {patient.gender}\nDate of birth: {patient.birthDate.Substring(0, 10)}");
+            button.GetComponent<PatientListItem>().SetText($"<b><size=12>{patient.name.full}</b></size>\nGender: {patient.gender}\nDate of birth: {patient.birthDate.Substring(0, 10)}");
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }

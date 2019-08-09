@@ -32,7 +32,7 @@ public class DemoScript : MonoBehaviour
         {
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
-            button.GetComponent<DemoScript>().SetText($"{patient.name.given} {patient.name.family}");
+            button.GetComponent<DemoScript>().SetText(patient.name.full);
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }
     }
@@ -49,7 +49,7 @@ public class DemoScript : MonoBehaviour
         Single.SetActive(true);
         try
         {
-            SinglePatientInfo.text = $"Patient name: \n{patient.name.given} {patient.name.family}\nGender: {patient.gender}\nDate of Birth: \n{patient.birthDate.Substring(0, 10)}";
+            SinglePatientInfo.text = $"Patient name: \n{patient.name.full}\nGender: {patient.gender}\nDate of Birth: \n{patient.birthDate.Substring(0, 10)}";
         }
         catch (Exception e)
         {
