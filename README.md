@@ -58,7 +58,7 @@ Before you start to run the HoloLens App, there are some settings are required i
 Go to **Menu bar -> File -> Build setting**, select **Universal Windows Platform**, choose Target Device as **HoloLens**, Architecture as **x86**, Build type as **D3D**, Visual Studio Version as **Visual Studio 2017**, select the **Unity C# Projects** option in Debugging.
 
 <p align="center">
-    <img src="./HoloRepositoryDemoApplication/Images/BuildSetting.png" height="400">
+    <img src="./HoloRepositoryDemoApplication/Images/BuildSetting.png" height="550">
 </p>
 
 If the Unity C# Projects option is not available, please go to **Player Settings**, and choose **.NET** as Scripting Backend in Other Settings.
