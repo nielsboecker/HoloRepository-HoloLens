@@ -90,13 +90,13 @@ This package also provided some prefabs to save your development time, which cou
 You could add this list view to you scene, choose the information type that you want to get, whether patient or hologram, you could also select what information you want to display in the list, all settings could be done in inspector.
 
 <p align="center">
-    <img src="../HoloRepositoryDemoApplication/Images/InformationList.png">
+    <img src="../HoloRepositoryDemoApplication/Images/InformationList.png" height="300">
 </p>
 
 ### HologramLoader
 Drag this prefab into you scene, and set the related options in the inspector. In the play mode, it will load the hologram to you scene. 
 <p align="center">
-    <img src="../HoloRepositoryDemoApplication/Images/HologramLoader.png">
+    <img src="../HoloRepositoryDemoApplication/Images/HologramLoader.png" height="200">
 </p>
 
 ## Demo scene
