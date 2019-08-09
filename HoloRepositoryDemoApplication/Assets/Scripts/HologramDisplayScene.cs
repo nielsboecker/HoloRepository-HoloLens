@@ -18,7 +18,7 @@ public class HologramDisplayScene : MonoBehaviour
 
     void Start()
     {
-        PatientName.text = $"{patient.name.given} {patient.name.family}";
+        PatientName.text = patient.name.full;
 
         PatientInfo.text = 
             $"<b>Gender: </b>{patient.gender}\n" +

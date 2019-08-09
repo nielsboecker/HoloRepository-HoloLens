@@ -29,7 +29,7 @@ public class HologramList : MonoBehaviour
         if (sceneSwitchFlag)
         {
             GenerateListView(hologramList);
-            Title.text = $"{patient.name.given} {patient.name.family}";
+            Title.text = patient.name.full;
             sceneSwitchFlag = false;
             return;
         }
@@ -47,7 +47,7 @@ public class HologramList : MonoBehaviour
         else
         {
             GenerateListView(hologramList);
-            Title.text = $"{patient.name.given} {patient.name.family}";
+            Title.text = patient.name.full;
         }
     }
 
