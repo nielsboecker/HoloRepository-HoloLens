@@ -66,7 +66,7 @@ public class DemoScript : MonoBehaviour
             Position = new Vector3(0.22f, -0.2f, 0.8f),
             Size = 0.12f
         };
-        HoloStorageClient.LoadHologram("hid", setting);
+        HoloStorageClient.LoadHologram("ef051fa3-ccfd-4a3e-8bf6-3cd4c1c8dc23", setting);
     }
 
     public void SetText(string name)
