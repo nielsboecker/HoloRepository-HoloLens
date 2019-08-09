@@ -94,3 +94,6 @@ The rest of the components of the overall project are kept in the [HoloRepositor
 
 ## Contact and support
 This component is owned by [fanbomeng97](https://github.com/fanbomeng97). Please get in touch if you have any questions. For change requests and bug reports, please open a new issue.
+
+## Others
+Icons used in this project are made by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com).
