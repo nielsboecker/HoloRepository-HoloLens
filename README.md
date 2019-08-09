@@ -58,7 +58,7 @@ Before you start to run the HoloLens App, there are some settings are required i
 Go to **Menu bar -> File -> Build setting**, select **Universal Windows Platform**, choose Target Device as **HoloLens**, Architecture as **x86**, Build type as **D3D**, Visual Studio Version as **Visual Studio 2017**, select the **Unity C# Projects** option in Debugging.
 
 <p align="center">
-    <img src="./HoloRepositoryDemoApplication/Images/BuildSetting.png" height="400">
+    <img src="./HoloRepositoryDemoApplication/Images/BuildSetting.png" height="550">
 </p>
 
 If the Unity C# Projects option is not available, please go to **Player Settings**, and choose **.NET** as Scripting Backend in Other Settings.
@@ -94,3 +94,6 @@ The rest of the components of the overall project are kept in the [HoloRepositor
 
 ## Contact and support
 This component is owned by [fanbomeng97](https://github.com/fanbomeng97). Please get in touch if you have any questions. For change requests and bug reports, please open a new issue.
+
+## Others
+Icons used in this project are made by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com).

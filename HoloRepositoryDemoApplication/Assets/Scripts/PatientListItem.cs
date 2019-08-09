@@ -8,10 +8,8 @@ public class PatientListItem : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI PatientInfo = null;
-    [SerializeField]
-    private Text PatientID = null;
-    [SerializeField]
-    private TextMeshProUGUI PatientName = null;
+    private Patient patient;
+
     public static List<Hologram> HologramsList = new List<Hologram>();
 
     private void Start()
@@ -19,24 +17,19 @@ public class PatientListItem : MonoBehaviour
         PatientInfo = GetComponent<TextMeshProUGUI>();
     }
 
-    public void SetName(string name)
-    {
-        PatientName.text = name;
-    }
-
     public void SetText(string Patientinformation)
     {
         PatientInfo.text = Patientinformation;
     }
-    public void SetID(string id)
+    public void SetPatient(Patient setPatient)
     {
-        PatientID.text = id;
+        patient = setPatient;
     }
 
     public void TurnToHologramPage()
     {
-        HologramList.InitialFlag = false;
-        HologramList.patientID = PatientID.text;
+        HologramList.initialFlag = false;
+        HologramList.patient = patient;
         ScenesManager.RefreshScene("HologramListScene");
     }
 }

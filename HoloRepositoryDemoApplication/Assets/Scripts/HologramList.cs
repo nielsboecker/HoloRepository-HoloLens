@@ -9,32 +9,37 @@ public class HologramList : MonoBehaviour
     [SerializeField]
     private GameObject buttonTemplates = null;
     [SerializeField]
+    private TextMeshProUGUI Title = null;
+    [SerializeField]
     private TextMeshProUGUI Message = null;
-    public static bool InitialFlag = true;
-    public static bool SceneSwitchFlag = false;
+
+    public static bool initialFlag = true;
+    public static bool sceneSwitchFlag = false;
     public static List<Hologram> hologramList = new List<Hologram>();
-    public static string patientID = string.Empty;
+    public static Patient patient;
 
     public void Start()
     {
-        if (InitialFlag)
+        if (initialFlag)
         {
-            Message.text = "Please select a patient to check the Hologram";
+            Title.text = "Holograms";
+            Message.text = "Please select a patient to browse available holograms";
             return;
         }
-        if (SceneSwitchFlag)
+        if (sceneSwitchFlag)
         {
             GenerateListView(hologramList);
-            SceneSwitchFlag = false;
+            Title.text = patient.name.full;
+            sceneSwitchFlag = false;
             return;
         }
 
-        StartCoroutine(getAllHolograms(patientID));
+        StartCoroutine(getAllHolograms(patient.pid));
     }
 
     IEnumerator getAllHolograms(string patientID)
     {       
-        yield return HoloStorageClient.GetMultipleHolograms(hologramList, patientID, QueryType.pid);
+        yield return HoloStorageClient.GetMultipleHolograms(hologramList, patientID, QueryType.pids);
         if (hologramList.Count == 0)
         {
             Message.text = "There is no Holograms for this patient";
@@ -42,6 +47,7 @@ public class HologramList : MonoBehaviour
         else
         {
             GenerateListView(hologramList);
+            Title.text = patient.name.full;
         }
     }
 
@@ -52,8 +58,9 @@ public class HologramList : MonoBehaviour
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
 
-            button.GetComponent<HologramListItem>().SetID(hologram.hid);
-            button.GetComponent<HologramListItem>().SetText($"Hologram title: {hologram.title}\nDescription: {hologram.description}\nDate of Creation: {hologram.creationDate.Substring(0, 10)}");
+            button.GetComponent<HologramListItem>().SetPatient(patient);
+            button.GetComponent<HologramListItem>().SetHologram(hologram);
+            button.GetComponent<HologramListItem>().SetText($"<b><size=12>{hologram.title}</b></size>\nBody Site: {hologram.bodySite}\nDate of Creation: {hologram.creationDate.Substring(0, 10)}");
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }

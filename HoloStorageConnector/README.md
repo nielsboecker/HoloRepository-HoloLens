@@ -62,11 +62,13 @@ You could create a HologramInstantiationSettings instance before you load the ho
 ```
 void LoadModel()
 {
-    HologramInstantiationSettings setting = new HologramInstantiationSettings();
-    setting.Name = "Loaded Model";
-    setting.Rotation = new Vector3(0, 180, 0);
-    setting.Position = new Vector3(0f, 0f, 2f);
-    setting.Size = 0.5f;
+    HologramInstantiationSettings setting = new HologramInstantiationSettings
+    {
+        Manipulable = true,
+        Rotation = new Vector3(0, 180, 0),
+        Position = new Vector3(0f, 0f, 2.0f),
+        Size = 0.5f
+    };
     HoloStorageClient.LoadHologram("hid", setting);
 }
 ```
@@ -82,14 +84,33 @@ void LoadModel()
 |`PersonName`|Name for a person, contains title, full name, given name and family name|
 
 ## Prefabs
-This package also provided some prefabs to save your development time, which could be found in Prefabs folder.
+This package also provided some prefabs to save your development time, which could be found in [Prefabs folder](../HoloRepositoryDemoApplication/Assets/HoloStorageConnector/Prefabs).
+
+### InformationList
+You could add this list view to you scene, choose the information type that you want to get, whether patient or hologram, you could also select what information you want to display in the list, all settings could be done in inspector.
+
+<p align="center">
+    <img src="../HoloRepositoryDemoApplication/Images/InformationList.png" height="300">
+</p>
+
+### HologramLoader
+Drag this prefab into you scene, and set the related options in the inspector. In the play mode, it will load the hologram to you scene. 
+<p align="center">
+    <img src="../HoloRepositoryDemoApplication/Images/HologramLoader.png">
+</p>
 
 ## Demo scene
 <p align="center">
     <img src="../HoloRepositoryDemoApplication/Images/DemoScene.png" height="400">
 </p>
 
-This package also provided a demo scene to guide the developer how to use this package, which you can find [here](../HoloRepositoryDemoApplication/Assets/HoloStorageConnector/Demo).
+This package also provided some demo scene to guide the developer how to use this package, which you can find [here](../HoloRepositoryDemoApplication/Assets/HoloStorageConnector/Demo). You could follow the StorageConnectorDemo scene and demo script to learn the basic usage of the HoloStorageConnector package. There is also a prefab scene to demostrate how to use the prefabs, feel free to explore.
+
+Note: You have to import the TMP Essentials when you open the scenes at first time, just follow the guide in the window.
+
+<p align="center">
+    <img src="../HoloRepositoryDemoApplication/Images/TMP.png">
+</p>
 
 ## Technologies
 The following technologies are used in this component:

@@ -576,11 +576,11 @@ PlayerSettings:
       Chat: False
       CodeGeneration: False
       Contacts: False
-      EnterpriseAuthentication: False
+      EnterpriseAuthentication: True
       HumanInterfaceDevice: False
       InputInjectionBrokered: False
-      InternetClient: False
-      InternetClientServer: False
+      InternetClient: True
+      InternetClientServer: True
       Location: False
       LowLevelDevices: False
       Microphone: True
