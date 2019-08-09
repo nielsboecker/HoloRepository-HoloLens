@@ -95,7 +95,7 @@ namespace HoloStorageConnector
         /// <param name="IDs">IDs of querying holograms</param>
         public static IEnumerator GetMultipleHolograms(List<Hologram> hologramList, string IDs, QueryType queryType = QueryType.hids)
         {
-            string multipleHologramUri = $"{BaseUri}/holograms?{(queryType == QueryType.hids ? "hids" : "pids")}={IDs}";
+            string multipleHologramUri = $"{BaseUri}/holograms?{queryType.ToString()}={IDs}";
             yield return GetRequest(multipleHologramUri);
 
             hologramList.Clear();
