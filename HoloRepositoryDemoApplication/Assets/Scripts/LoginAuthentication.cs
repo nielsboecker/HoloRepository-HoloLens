@@ -22,14 +22,17 @@ public class LoginAuthentication : MonoBehaviour
         {
             case "03825":
                 PatientList.patientIds = "p100,p101,p102,p103,p104,p105,p106";
+                PatientList.practitionerName = "Maudie";
                 switchScene();
                 break;
             case "03826":
                 PatientList.patientIds = "p100,p107,p108,p109,p110";
+                PatientList.practitionerName = "Erlinda";
                 switchScene();
                 break;
             case "03827":
                 PatientList.patientIds = "p100,p105,p110";
+                PatientList.practitionerName = "Jonah";
                 switchScene();
                 break;
             default:

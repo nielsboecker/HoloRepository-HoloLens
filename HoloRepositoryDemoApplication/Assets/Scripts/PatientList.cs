@@ -10,13 +10,17 @@ public class PatientList : MonoBehaviour
     private GameObject buttonTemplates = null;
     [SerializeField]
     private TextMeshProUGUI Message = null;
+    [SerializeField]
+    private TextMeshProUGUI Name = null;
 
     public static List<Patient> patientList = new List<Patient>();
     public static bool initialFlag = true;
     public static string patientIds = string.Empty;
+    public static string practitionerName = string.Empty;
 
     void Start()
     {
+        Name.text = $"Welcome to HoloRepository, Dr {practitionerName}";
         if (initialFlag)
         {
             initialFlag = false;

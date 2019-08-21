@@ -42,6 +42,7 @@ public class HologramList : MonoBehaviour
         yield return HoloStorageClient.GetMultipleHolograms(hologramList, patientID, QueryType.pids);
         if (hologramList.Count == 0)
         {
+            Title.text = patient.name.full;
             Message.text = "There is no Holograms for this patient";
         }
         else
