@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 public class LoginAuthentication : MonoBehaviour
 {
     [SerializeField]
-    private bool DevelopMode = false;
-    [SerializeField]
     private TMP_InputField PIN = null;
     [SerializeField]
     private TextMeshProUGUI WarningInfo = null;
@@ -20,26 +18,25 @@ public class LoginAuthentication : MonoBehaviour
 
     public void Auth()
     {
-        if (DevelopMode)
+        switch (PIN.text)
         {
-            Destroy(PINPad);
-            SceneManager.LoadScene("PatientListScene", LoadSceneMode.Additive);
-            SceneManager.LoadScene("HologramListScene", LoadSceneMode.Additive);
-        }
-        else
-        {
-            if (PIN.text == "3825")
-            {
-                Destroy(PINPad);
-                SceneManager.LoadScene("PatientListScene", LoadSceneMode.Additive);
-                SceneManager.LoadScene("HologramListScene", LoadSceneMode.Additive);
-            }
-            else
-            {
+            case "03825":
+                PatientList.patientIds = "p100,p101,p102,p103,p104,p105,p106";
+                switchScene();
+                break;
+            case "03826":
+                PatientList.patientIds = "p100,p107,p108,p109,p110";
+                switchScene();
+                break;
+            case "03827":
+                PatientList.patientIds = "p100,p105,p110";
+                switchScene();
+                break;
+            default:
                 WarningInfo.text = "The PIN is wrong!";
                 PIN.Select();
                 PIN.text = "";
-            }
+                break;
         }
     }
 
@@ -49,4 +46,12 @@ public class LoginAuthentication : MonoBehaviour
         PIN.Select();
         PIN.text = "";
     }
+
+    public void switchScene()
+    {
+        Destroy(PINPad);
+        SceneManager.LoadScene("PatientListScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("HologramListScene", LoadSceneMode.Additive);
+    }
+
 }

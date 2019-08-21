@@ -170,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327b1b21811239145b24c1855eac4c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DevelopMode: 1
   PIN: {fileID: 1477444612}
   WarningInfo: {fileID: 977501667}
   PINPad: {fileID: 60699047}
@@ -201,7 +200,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -228,7 +227,7 @@ Light:
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
-  m_ShadowAngle: 0
+  m_ShadowAngle: 8.3
 --- !u!4 &170076735
 Transform:
   m_ObjectHideFlags: 0

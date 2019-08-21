@@ -13,6 +13,7 @@ public class PatientList : MonoBehaviour
 
     public static List<Patient> patientList = new List<Patient>();
     public static bool initialFlag = true;
+    public static string patientIds = string.Empty;
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class PatientList : MonoBehaviour
 
     IEnumerator getAllPatients()
     {
-        yield return HoloStorageClient.GetMultiplePatients(patientList, "p-100,p-101,p-102");
+        yield return HoloStorageClient.GetMultiplePatients(patientList, patientIds);
         if (patientList.Count == 0)
         {
             Message.text = "There is no patients for you";
