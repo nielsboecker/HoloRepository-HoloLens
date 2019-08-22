@@ -56,5 +56,4 @@ public class LoginAuthentication : MonoBehaviour
         SceneManager.LoadScene("PatientListScene", LoadSceneMode.Additive);
         SceneManager.LoadScene("HologramListScene", LoadSceneMode.Additive);
     }
-
 }
