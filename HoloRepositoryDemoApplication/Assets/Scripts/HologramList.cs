@@ -42,6 +42,7 @@ public class HologramList : MonoBehaviour
         yield return HoloStorageClient.GetMultipleHolograms(hologramList, patientID, QueryType.pids);
         if (hologramList.Count == 0)
         {
+            Title.text = patient.name.full;
             Message.text = "There is no Holograms for this patient";
         }
         else
@@ -58,9 +59,11 @@ public class HologramList : MonoBehaviour
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
 
+            string creationDate = hologram.creationDate == "" ? "Unknown" : hologram.creationDate.Substring(0, 10);
+
             button.GetComponent<HologramListItem>().SetPatient(patient);
             button.GetComponent<HologramListItem>().SetHologram(hologram);
-            button.GetComponent<HologramListItem>().SetText($"<b><size=12>{hologram.title}</b></size>\nBody Site: {hologram.bodySite}\nDate of Creation: {hologram.creationDate.Substring(0, 10)}");
+            button.GetComponent<HologramListItem>().SetText($"<b><size=12>{hologram.title}</b></size>\nBody Site: {hologram.bodySite}\nDate of Creation: {creationDate}");
 
             button.transform.SetParent(buttonTemplates.transform.parent, false);
         }

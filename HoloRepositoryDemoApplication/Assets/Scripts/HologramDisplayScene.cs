@@ -20,9 +20,13 @@ public class HologramDisplayScene : MonoBehaviour
     {
         PatientName.text = patient.name.full;
 
+        string patientBirthDate = patient.birthDate == "" ? "Unknown" : patient.birthDate.Substring(0, 10);
+        string hologramDateOfImaging = hologram.dateOfImaging == "" ? "Unknown" : hologram.dateOfImaging.Substring(0, 10);
+        string hologramCreationDate = hologram.creationDate == "" ? "Unknown" : hologram.creationDate.Substring(0, 10);
+    
         PatientInfo.text = 
             $"<b>Gender: </b>{patient.gender}\n" +
-            $"<b>Date of birth: </b>{patient.birthDate.Substring(0, 10)}";
+            $"<b>Date of birth: </b>{patientBirthDate}";
 
         HologramTitle.text = hologram.title;
 
@@ -31,8 +35,8 @@ public class HologramDisplayScene : MonoBehaviour
             $"<b>Content Type: </b>{hologram.contentType}\n" +
             $"<b>File Size: </b>{hologram.fileSizeInkb}KB\n" +
             $"<b>Body Site: </b>{hologram.bodySite}\n" +
-            $"<b>Date Of Imaging: </b>{hologram.dateOfImaging.Substring(0, 10)}\n" +
-            $"<b>Creation Date: </b>{hologram.creationDate.Substring(0, 10)}\n" +
+            $"<b>Date Of Imaging: </b>{hologramDateOfImaging}\n" +
+            $"<b>Creation Date: </b>{hologramCreationDate}\n" +
             $"<b>Creation Mode: </b>{hologram.creationMode}\n" +
             $"<b>Creation Description: </b>{hologram.creationDescription}";
     }

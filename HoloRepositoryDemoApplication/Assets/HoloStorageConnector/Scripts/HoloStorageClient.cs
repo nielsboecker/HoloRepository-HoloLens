@@ -110,7 +110,7 @@ namespace HoloStorageConnector
 
                     if(JsonArray.Count == 0)
                     {
-                        Debug.LogError($"Response from server is empty with this patient ID: {id}");
+                        Debug.LogWarning($"Response from server is empty with this patient ID: {id}");
                     }
 
                     foreach (JSONNode hologramJson in JsonArray)
@@ -279,13 +279,13 @@ namespace HoloStorageConnector
 
             if (json == null)
             {
-                Debug.LogError($"Response error with this patient ID: {id}");
+                Debug.LogWarning($"Response error with this patient ID: {id}");
                 return patient;
             }
 
             if (json["pid"].Value == "")
             {
-                Debug.LogError($"Response from server is empty with this patient ID: {id}");
+                Debug.LogWarning($"Response from server is empty with this patient ID: {id}");
                 return patient;
             }
 
@@ -298,9 +298,9 @@ namespace HoloStorageConnector
                 PersonName name = new PersonName
                 {
                     title = json["name"]["title"].Value,
-                    full = $"{json["name"]["given"].Value} {json["name"]["family"].Value}",
+                    full = json["name"]["full"].Value,
                     given = json["name"]["given"].Value,
-                    family = json["name"]["family"].Value
+                    family = json["name"]["family"].Value,
                 };
                 patient.name = name;
             }
@@ -323,13 +323,13 @@ namespace HoloStorageConnector
 
             if (json == null)
             {
-                Debug.LogError($"Response error with this hologram ID: {id}");
+                Debug.LogWarning($"Response error with this hologram ID: {id}");
                 return hologram;
             }
 
             if (json["hid"].Value == "")
             {
-                Debug.LogError($"Response from server is empty with this hologram ID: {id}");
+                Debug.LogWarning($"Response from server is empty with this hologram ID: {id}");
                 return hologram;
             }
 
@@ -366,13 +366,13 @@ namespace HoloStorageConnector
 
             if (json == null)
             {
-                Debug.LogError($"Response error with this author ID: {id}");
+                Debug.LogWarning($"Response error with this author ID: {id}");
                 return author;
             }
 
             if (json["aid"].Value == "")
             {
-                Debug.LogError($"Response from server is empty with this author ID: {id}");
+                Debug.LogWarning($"Response from server is empty with this author ID: {id}");
                 return author;
             }
 
@@ -382,10 +382,10 @@ namespace HoloStorageConnector
 
                 PersonName name = new PersonName
                 {
-                    full = $"{json["name"]["given"].Value} {json["name"]["family"].Value}",
                     title = json["name"]["title"].Value,
+                    full = json["name"]["full"].Value,
                     given = json["name"]["given"].Value,
-                    family = json["name"]["family"].Value
+                    family = json["name"]["family"].Value,
                 };
                 author.name = name;
             }
