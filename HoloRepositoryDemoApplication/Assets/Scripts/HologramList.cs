@@ -59,7 +59,7 @@ public class HologramList : MonoBehaviour
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
 
-            string creationDate = hologram.creationDate == "Unknown" ? "Unknown" : hologram.creationDate.Substring(0, 10);
+            string creationDate = hologram.creationDate == "" ? "Unknown" : hologram.creationDate.Substring(0, 10);
 
             button.GetComponent<HologramListItem>().SetPatient(patient);
             button.GetComponent<HologramListItem>().SetHologram(hologram);

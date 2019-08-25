@@ -18,6 +18,7 @@ public class LoginAuthentication : MonoBehaviour
 
     public void Auth()
     {
+        //The practitioners list are hard-coded now, because the authentication is just a proof-of-concept
         switch (PIN.text)
         {
             case "03825":

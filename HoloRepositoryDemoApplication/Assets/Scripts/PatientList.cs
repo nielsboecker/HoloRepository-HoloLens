@@ -52,7 +52,7 @@ public class PatientList : MonoBehaviour
             GameObject button = Instantiate(buttonTemplates) as GameObject;
             button.SetActive(true);
 
-            string birthDate = patient.birthDate == "Unknown" ? "Unknown" : patient.birthDate.Substring(0, 10);
+            string birthDate = patient.birthDate == "" ? "Unknown" : patient.birthDate.Substring(0, 10);
 
             button.GetComponent<PatientListItem>().SetPatient(patient);
             button.GetComponent<PatientListItem>().SetText($"<b><size=12>{patient.name.full}</b></size>\nGender: {patient.gender}\nDate of birth: {birthDate}");

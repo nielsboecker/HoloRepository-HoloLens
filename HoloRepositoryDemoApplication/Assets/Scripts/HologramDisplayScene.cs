@@ -20,9 +20,9 @@ public class HologramDisplayScene : MonoBehaviour
     {
         PatientName.text = patient.name.full;
 
-        string patientBirthDate = patient.birthDate == "Unknown" ? "Unknown" : patient.birthDate.Substring(0, 10);
-        string hologramDateOfImaging = hologram.dateOfImaging == "Unknown" ? "Unknown" : hologram.dateOfImaging.Substring(0, 10);
-        string hologramCreationDate = hologram.creationDate == "Unknown" ? "Unknown" : hologram.creationDate.Substring(0, 10);
+        string patientBirthDate = patient.birthDate == "" ? "Unknown" : patient.birthDate.Substring(0, 10);
+        string hologramDateOfImaging = hologram.dateOfImaging == "" ? "Unknown" : hologram.dateOfImaging.Substring(0, 10);
+        string hologramCreationDate = hologram.creationDate == "" ? "Unknown" : hologram.creationDate.Substring(0, 10);
     
         PatientInfo.text = 
             $"<b>Gender: </b>{patient.gender}\n" +

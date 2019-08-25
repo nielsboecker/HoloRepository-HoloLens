@@ -110,7 +110,7 @@ namespace HoloStorageConnector
 
                     if(JsonArray.Count == 0)
                     {
-                        Debug.LogError($"Response from server is empty with this patient ID: {id}");
+                        Debug.LogWarning($"Response from server is empty with this patient ID: {id}");
                     }
 
                     foreach (JSONNode hologramJson in JsonArray)
@@ -279,28 +279,28 @@ namespace HoloStorageConnector
 
             if (json == null)
             {
-                Debug.LogError($"Response error with this patient ID: {id}");
+                Debug.LogWarning($"Response error with this patient ID: {id}");
                 return patient;
             }
 
             if (json["pid"].Value == "")
             {
-                Debug.LogError($"Response from server is empty with this patient ID: {id}");
+                Debug.LogWarning($"Response from server is empty with this patient ID: {id}");
                 return patient;
             }
 
             try
             {
-                patient.pid = json["pid"].Value == "" ? "Unknown" : json["pid"].Value;
-                patient.gender = json["gender"].Value == "" ? "Unknown" : json["gender"].Value;
-                patient.birthDate = json["birthDate"].Value == "" ? "Unknown" : json["birthDate"].Value;
+                patient.pid = json["pid"].Value;
+                patient.gender = json["gender"].Value;
+                patient.birthDate = json["birthDate"].Value;
 
                 PersonName name = new PersonName
                 {
-                    title = json["name"]["title"].Value == "" ? "Unknown" : json["name"]["title"].Value,
-                    full = json["name"]["given"].Value == "" && json["name"]["family"].Value == "" ? "Unknown" : $"{json["name"]["given"].Value} {json["name"]["family"].Value}",
-                    given = json["name"]["given"].Value == "" ? "Unknown" : json["name"]["given"].Value,
-                    family = json["name"]["family"].Value == "" ? "Unknown" : json["name"]["family"].Value
+                    title = json["name"]["title"].Value,
+                    full = json["name"]["full"].Value,
+                    given = json["name"]["given"].Value,
+                    family = json["name"]["family"].Value,
                 };
                 patient.name = name;
             }
@@ -323,30 +323,30 @@ namespace HoloStorageConnector
 
             if (json == null)
             {
-                Debug.LogError($"Response error with this hologram ID: {id}");
+                Debug.LogWarning($"Response error with this hologram ID: {id}");
                 return hologram;
             }
 
             if (json["hid"].Value == "")
             {
-                Debug.LogError($"Response from server is empty with this hologram ID: {id}");
+                Debug.LogWarning($"Response from server is empty with this hologram ID: {id}");
                 return hologram;
             }
 
             try
             {
                 hologram.hid = json["hid"].Value;
-                hologram.title = json["title"].Value == "" ? "Unknown" : json["title"].Value;
-                hologram.description = json["description"].Value == "" ? "Unknown" : json["description"].Value;
-                hologram.contentType = json["contentType"].Value == "" ? "Unknown" : json["contentType"].Value;
-                hologram.fileSizeInkb = json["fileSizeInkb"].Value == "" ? 0 : json["fileSizeInkb"].AsInt;
-                hologram.bodySite = json["bodySite"].Value == "" ? "Unknown" : json["bodySite"].Value;
-                hologram.dateOfImaging = json["dateOfImaging"].Value == "" ? "Unknown" : json["dateOfImaging"].Value;
-                hologram.creationDate = json["creationDate"].Value == "" ? "Unknown" : json["creationDate"].Value;
-                hologram.creationMode = json["creationMode"].Value == "" ? "Unknown" : json["creationMode"].Value;
-                hologram.creationDescription = json["creationDescription"].Value == "" ? "Unknown" : json["creationDescription"].Value;
-                hologram.aid = json["aid"].Value == "" ? "Unknown" : json["aid"].Value;
-                hologram.pid = json["pid"].Value == "" ? "Unknown" : json["pid"].Value;
+                hologram.title = json["title"].Value;
+                hologram.description = json["description"].Value;
+                hologram.contentType = json["contentType"].Value;
+                hologram.fileSizeInkb = json["fileSizeInkb"].AsInt;
+                hologram.bodySite = json["bodySite"].Value;
+                hologram.dateOfImaging = json["dateOfImaging"].Value;
+                hologram.creationDate = json["creationDate"].Value;
+                hologram.creationMode = json["creationMode"].Value;
+                hologram.creationDescription = json["creationDescription"].Value;
+                hologram.aid = json["aid"].Value;
+                hologram.pid = json["pid"].Value;
             }
             catch (Exception e)
             {
@@ -366,26 +366,26 @@ namespace HoloStorageConnector
 
             if (json == null)
             {
-                Debug.LogError($"Response error with this author ID: {id}");
+                Debug.LogWarning($"Response error with this author ID: {id}");
                 return author;
             }
 
             if (json["aid"].Value == "")
             {
-                Debug.LogError($"Response from server is empty with this author ID: {id}");
+                Debug.LogWarning($"Response from server is empty with this author ID: {id}");
                 return author;
             }
 
             try
             {
-                author.aid = json["aid"].Value == "" ? "Unknown" : json["aid"].Value;
+                author.aid = json["aid"].Value;
 
                 PersonName name = new PersonName
                 {
-                    title = json["name"]["title"].Value == "" ? "Unknown" : json["name"]["title"].Value,
-                    full = json["name"]["given"].Value == "" && json["name"]["family"].Value == "" ? "Unknown": $"{json["name"]["given"].Value} {json["name"]["family"].Value}",
-                    given = json["name"]["given"].Value == "" ? "Unknown" : json["name"]["given"].Value,
-                    family = json["name"]["family"].Value == "" ? "Unknown" : json["name"]["family"].Value
+                    title = json["name"]["title"].Value,
+                    full = json["name"]["full"].Value,
+                    given = json["name"]["given"].Value,
+                    family = json["name"]["family"].Value,
                 };
                 author.name = name;
             }
