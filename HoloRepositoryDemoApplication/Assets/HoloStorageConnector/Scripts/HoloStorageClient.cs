@@ -339,7 +339,7 @@ namespace HoloStorageConnector
                 hologram.title = json["title"].Value;
                 hologram.description = json["description"].Value;
                 hologram.contentType = json["contentType"].Value;
-                hologram.fileSizeInkb = json["fileSizeInkb"].AsInt;
+                hologram.fileSizeInKb = json["fileSizeInKb"].AsInt;
                 hologram.bodySite = json["bodySite"].Value;
                 hologram.dateOfImaging = json["dateOfImaging"].Value;
                 hologram.creationDate = json["creationDate"].Value;

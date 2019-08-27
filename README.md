@@ -89,6 +89,17 @@ Use Visual Studio to open the generated **.sln** file, then Select an **x86** bu
 
 The details of the deployment steps and other deploy methods are available in [microsoft mixed reality official site](https://docs.microsoft.com/en-us/windows/mixed-reality/using-visual-studio).
 
+## Testing
+Testing for HoloStorageConnector is using the Unity test runner, which uses a Unity integration of the NUnit library, is an open-source unit testing library for .Net languages. Due to the Connector methods are based on the UnityWebRequest library, we need to use the play mode testing in this project.
+
+To run the test, you need the run the latest Accessor server. then in the Unity editor, go to **Menu bar -> Window -> General -> Test runner**, then select **PlayMode** button and you will see all the test cases list in the test runner, you could click **Run All** to start the testing. 
+
+<p align="center">
+    <img src="./HoloRepositoryDemoApplication/Images/test.png" height="200">
+</p>
+
+To find more information of the testing in Unity, you could access the [Unity Manual](https://docs.unity3d.com/Manual/testing-editortestsrunner.html) website.
+
 ## Code organisation
 The rest of the components of the overall project are kept in the [HoloRepository-Core](https://github.com/nbckr/HoloRepository-Core) mono-repository. The only exception are the components that are developed in Unity/C#, they are separately kept in this [HoloRepository-HoloLens](https://github.com/nbckr/HoloRepository-HoloLens) repository.
 

@@ -91,7 +91,7 @@ public class InformationList : MonoBehaviour
                 $"{(hologramID ? $"ID: {hologram.hid}\n":"")}" +
                 $"{(description ? $"Description: {hologram.description}\n" : "")}" +               
                 $"{(contentType ? $"Content Type: {hologram.contentType}\n" : "")}" +
-                $"{(fileSizeInkb ? $"File Size: {hologram.fileSizeInkb}\n" : "")}" +
+                $"{(fileSizeInkb ? $"File Size: {hologram.fileSizeInKb}\n" : "")}" +
                 $"{(bodySite ? $"Body Site: {hologram.bodySite}\n" : "")}" +
                 $"{(dateOfImaging ? $"Date Of Imaging: {hologram.dateOfImaging.Substring(0, 10)}\n" : "")}" +
                 $"{(creationDate ? $"Creation Date: {hologram.creationDate.Substring(0, 10)}\n" : "")}" +
