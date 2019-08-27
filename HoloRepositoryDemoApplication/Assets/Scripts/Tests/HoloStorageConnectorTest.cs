@@ -26,7 +26,7 @@ namespace Tests
         public IEnumerator getMultiplePatientTest()
         {
             List<Patient> patientList = new List<Patient>();
-            yield return HoloStorageClient.GetMultiplePatients(patientList, "p100,p101,test");
+            yield return HoloStorageClient.GetMultiplePatients(patientList, "p100,p101,nullPatient");
 
             Assert.AreEqual(patientList[0].pid,"p100");
             Assert.AreEqual(patientList[0].gender, "female");
@@ -38,7 +38,7 @@ namespace Tests
             Assert.AreEqual(patientList[1].birthDate, "1947-06-04");
             Assert.AreEqual(patientList[1].name.full, "Buster Greenholt");
 
-            //The response with "pid = test" from server should be empty
+            //The response with "pid = nullPatient" from server should be empty
             Assert.AreEqual(patientList.Count, 2);
         }
 
@@ -66,7 +66,7 @@ namespace Tests
         public IEnumerator getMultipleHologramsTest()
         {
             List<Hologram> hologramList = new List<Hologram>();
-            yield return HoloStorageClient.GetMultipleHolograms(hologramList, "p100,p101,test", QueryType.pids);
+            yield return HoloStorageClient.GetMultipleHolograms(hologramList, "p100,p101,nullPatient", QueryType.pids);
 
             Assert.AreEqual(hologramList[0].hid, "h101");
             Assert.AreEqual(hologramList[0].title, "Lungs Hologram");
@@ -83,7 +83,7 @@ namespace Tests
 
             Assert.AreEqual(hologramList[1].hid, "h100");
 
-            //Totally 3 holograms data from server, (no response with "pid = test")
+            //Totally 3 holograms data from server, (no response with "pid = nullPatient")
             Assert.AreEqual(hologramList.Count, 3);
         }
 
@@ -101,7 +101,7 @@ namespace Tests
         public IEnumerator getMultipleAuthorTest()
         {
             List<Author> authorList = new List<Author>();
-            yield return HoloStorageClient.GetMultipleAuthors(authorList, "a100,a101,test");
+            yield return HoloStorageClient.GetMultipleAuthors(authorList, "a100,a101,nullAuthor");
 
             Assert.AreEqual(authorList[0].aid, "a100");
             Assert.AreEqual(authorList[0].name.full, "Maudie Kirlin");
@@ -109,7 +109,7 @@ namespace Tests
             Assert.AreEqual(authorList[1].aid, "a101");
             Assert.AreEqual(authorList[1].name.full, "Erlinda Franecki");
 
-            //The response from server with "aid = test" should be empty
+            //The response from server with "aid = nullAuthor" should be empty
             Assert.AreEqual(authorList.Count, 2);
         }
 
