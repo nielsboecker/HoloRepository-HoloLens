@@ -19,7 +19,7 @@ namespace HoloStorageConnector
         public string title { get; set; }
         public string description { get; set; }
         public string contentType { get; set; }
-        public int fileSizeInkb { get; set; }
+        public int fileSizeInKb { get; set; }
         public string bodySite { get; set; }
         public string dateOfImaging { get; set; }
         public string creationDate { get; set; }

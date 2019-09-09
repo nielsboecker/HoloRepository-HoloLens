@@ -33,7 +33,7 @@ public class HologramDisplayScene : MonoBehaviour
         HologramInfo.text = 
             $"<b>Description: </b>{hologram.description}\n" +
             $"<b>Content Type: </b>{hologram.contentType}\n" +
-            $"<b>File Size: </b>{hologram.fileSizeInkb}KB\n" +
+            $"<b>File Size: </b>{hologram.fileSizeInKb}KB\n" +
             $"<b>Body Site: </b>{hologram.bodySite}\n" +
             $"<b>Date Of Imaging: </b>{hologramDateOfImaging}\n" +
             $"<b>Creation Date: </b>{hologramCreationDate}\n" +

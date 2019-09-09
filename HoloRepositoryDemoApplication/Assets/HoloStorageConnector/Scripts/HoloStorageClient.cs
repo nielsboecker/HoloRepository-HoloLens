@@ -18,10 +18,10 @@ namespace HoloStorageConnector
     public class HoloStorageClient
     {
         #region Properties
-        private static string StorageAccessorEndpoint = "http://localhost";
+        private static string StorageAccessorEndpoint = "http://51.104.216.54";
         private static string Port = "3200";
         private static string ApiVersion = "v1";
-        private static readonly string BaseUri = $"{StorageAccessorEndpoint}:{Port}/api/{ApiVersion}";        
+        private static readonly string BaseUri = $"{StorageAccessorEndpoint}/api/{ApiVersion}";        
         private static string WebRequestReturnData = null;
         #endregion Properties
 
@@ -339,7 +339,7 @@ namespace HoloStorageConnector
                 hologram.title = json["title"].Value;
                 hologram.description = json["description"].Value;
                 hologram.contentType = json["contentType"].Value;
-                hologram.fileSizeInkb = json["fileSizeInkb"].AsInt;
+                hologram.fileSizeInKb = json["fileSizeInKb"].AsInt;
                 hologram.bodySite = json["bodySite"].Value;
                 hologram.dateOfImaging = json["dateOfImaging"].Value;
                 hologram.creationDate = json["creationDate"].Value;
